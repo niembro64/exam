@@ -46,12 +46,42 @@ const Edit = (props) => {
   };
 
   const onChangeHandler = (event) => {
-    event.preventDefault();
-
+    // event.preventDefault();
+    console.log("On change handler");
     // p(event.target.value);
     const newState = {
       ...form,
       [event.target.name]: event.target.value,
+    };
+    setForm(newState);
+  };
+  const onChangeHandlerPegLeg = (event) => {
+    // event.preventDefault();
+    console.log("On change handler");
+    // p(event.target.value);
+    const newState = {
+      ...form,
+      pegLeg: !form.pegLeg,
+    };
+    setForm(newState);
+  };
+  const onChangeHandlerEyePatch = (event) => {
+    // event.preventDefault();
+    console.log("On change handler");
+    // p(event.target.value);
+    const newState = {
+      ...form,
+      eyePatch: !form.eyePatch,
+    };
+    setForm(newState);
+  };
+  const onChangeHandlerHookHand = (event) => {
+    // event.preventDefault();
+    console.log("On change handler");
+    // p(event.target.value);
+    const newState = {
+      ...form,
+      hookHand: !form.hookHand,
     };
     setForm(newState);
   };
@@ -122,16 +152,17 @@ const Edit = (props) => {
         </Link> */}
       </div>
 
+      {/* <div className="box4"> */}
       <form onSubmit={onSubmitHandler} className="box3">
-        <div id="floatContainer" className="float-container">
+        <div id="floatContainer" className="box4">
           <label
-            style={{ position: "absolute", zIndex: 1 }}
+            // style={{ position: "absolute", zIndex: 1 }}
             htmlFor="pirateName"
           >
             pirateName
           </label>
           <input
-            style={{ position: "relative", zIndex: 2 }}
+            // style={{ position: "relative", zIndex: 2 }}
             autoFocus="autofocus"
             id="floatField"
             type="text"
@@ -142,37 +173,39 @@ const Edit = (props) => {
             // default="asdf"
           />
         </div>
-        <div id="floatContainer" className="float-container">
+        {/* <div id="floatContainer" className="float-container"> */}
+        <div className="box4">
           <label
-            style={{ position: "absolute", zIndex: 1 }}
+            // style={{ position: "absolute", zIndex: 1 }}
             htmlFor="imageUrl"
           >
             imageUrl
           </label>
           <input
-            style={{ position: "relative", zIndex: 2 }}
-            autoFocus="autofocus"
+            // style={{ position: "relative", zIndex: 2 }}
+            // autoFocus="autofocus"
             id="floatField"
             type="text"
             name="imageUrl"
             onChange={onChangeHandler}
+            // placeholder=""
 
             // placeholder=""
             // default="asdf"
           />
         </div>
-        <div id="floatContainer" className="float-container">
+        <div id="floatContainer" className="box4">
           <label
-            style={{ position: "absolute", zIndex: 1 }}
+            // style={{ position: "absolute", zIndex: 1 }}
             htmlFor="numChests"
           >
             numChests
           </label>
           <input
-            style={{ position: "relative", zIndex: 2 }}
-            autoFocus="autofocus"
+            // style={{ position: "relative", zIndex: 2 }}
+            // autoFocus="autofocus"
             id="floatField"
-            type="text"
+            type="number"
             name="numChests"
             onChange={onChangeHandler}
 
@@ -180,16 +213,16 @@ const Edit = (props) => {
             // default="asdf"
           />
         </div>
-        <div id="floatContainer" className="float-container">
+        <div id="floatContainer" className="box4">
           <label
-            style={{ position: "absolute", zIndex: 1 }}
+            // style={{ position: "absolute", zIndex: 1 }}
             htmlFor="catchPhrase"
           >
             catchPhrase
           </label>
           <input
-            style={{ position: "relative", zIndex: 2 }}
-            autoFocus="autofocus"
+            // style={{ position: "relative", zIndex: 2 }}
+            // autoFocus="autofocus"
             id="floatField"
             type="text"
             name="catchPhrase"
@@ -199,16 +232,16 @@ const Edit = (props) => {
             // default="asdf"
           />
         </div>
-        <div id="floatContainer" className="float-container">
+        <div id="floatContainer" className="box4">
           <label
-            style={{ position: "absolute", zIndex: 1 }}
+            // style={{ position: "absolute", zIndex: 1 }}
             htmlFor="crewPosition"
           >
             crewPosition
           </label>
           <input
-            style={{ position: "relative", zIndex: 2 }}
-            autoFocus="autofocus"
+            // style={{ position: "relative", zIndex: 2 }}
+            // autoFocus="autofocus"
             id="floatField"
             type="text"
             name="crewPosition"
@@ -218,74 +251,93 @@ const Edit = (props) => {
             // default="asdf"
           />
         </div>
-        <div id="floatContainer" className="float-container">
+        <div id="floatContainer" className="box4">
           <label
-            style={{ position: "absolute", zIndex: 1 }}
+            // style={{ position: "absolute", zIndex: 1 }}
             htmlFor="pegLeg"
           >
             pegLeg
           </label>
           <input
-            style={{ position: "relative", zIndex: 2 }}
-            autoFocus="autofocus"
-            id="floatField"
-            type="text"
+            // style={{ position: "relative", zIndex: 2 }}
+            // autoFocus="autofocus"
+            // id="floatField"
+            type="checkbox"
             name="pegLeg"
-            onChange={onChangeHandler}
+            onClick={onChangeHandlerPegLeg}
 
+            checked={form.pegLeg}
             // placeholder=""
             // default="asdf"
           />
         </div>
-        <div id="floatContainer" className="float-container">
+        <div id="floatContainer" className="box4">
           <label
-            style={{ position: "absolute", zIndex: 1 }}
+            // style={{ position: "absolute", zIndex: 1 }}
             htmlFor="eyePatch"
           >
             eyePatch
           </label>
           <input
-            style={{ position: "relative", zIndex: 2 }}
-            autoFocus="autofocus"
+            // style={{ position: "relative", zIndex: 2 }}
+            // autoFocus="autofocus"
             id="floatField"
-            type="text"
+            type="checkbox"
             name="eyePatch"
-            onChange={onChangeHandler}
+            onClick={onChangeHandlerEyePatch}
+            checked={form.eyePatch}
 
             // placeholder=""
             // default="asdf"
           />
         </div>
-        <div id="floatContainer" className="float-container">
+        <div id="floatContainer" className="box4">
           <label
-            style={{ position: "absolute", zIndex: 1 }}
+            // style={{ position: "absolute", zIndex: 1 }}
             htmlFor="hookHand"
           >
             hookHand
           </label>
           <input
-            style={{ position: "relative", zIndex: 2 }}
-            autoFocus="autofocus"
+            // style={{ position: "relative", zIndex: 2 }}
+            // autoFocus="autofocus"
             id="floatField"
-            type="text"
+            type="checkbox"
             name="hookHand"
-            onChange={onChangeHandler}
-
+            onClick={onChangeHandlerHookHand}
+            checked={form.hookHand}
             // placeholder=""
             // default="asdf"
           />
         </div>
-        <span className="alert-danger">{ error.pirateName && error.pirateName.message}</span>
-        <span className="alert-danger">{ error.imageUrl && error.imageUrl.message}</span>
-        <span className="alert-danger">{ error.numChests && error.numChests.message}</span>
-        <span className="alert-danger">{ error.catchPhrase && error.catchPhrase.message}</span>
-        <span className="alert-danger">{ error.crewPosition && error.crewPosition.message}</span>
-        <span className="alert-danger">{ error.pegLeg && error.pegLeg.message}</span>
-        <span className="alert-danger">{ error.eyePatch && error.eyePatch.message}</span>
-        <span className="alert-danger">{ error.hookHand && error.hookHand.message}</span>
+        <span className="alert-danger">
+          {error.pirateName && error.pirateName.message}
+        </span>
+        <span className="alert-danger">
+          {error.imageUrl && error.imageUrl.message}
+        </span>
+        <span className="alert-danger">
+          {error.numChests && error.numChests.message}
+        </span>
+        <span className="alert-danger">
+          {error.catchPhrase && error.catchPhrase.message}
+        </span>
+        <span className="alert-danger">
+          {error.crewPosition && error.crewPosition.message}
+        </span>
+        <span className="alert-danger">
+          {error.pegLeg && error.pegLeg.message}
+        </span>
+        <span className="alert-danger">
+          {error.eyePatch && error.eyePatch.message}
+        </span>
+        <span className="alert-danger">
+          {error.hookHand && error.hookHand.message}
+        </span>
 
         <input type="submit" className="btn btn-primary" />
       </form>
+      {/* </div> */}
       <div className="box">
         <p>form</p>
         <p> {form.name}</p>
