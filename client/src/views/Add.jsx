@@ -15,7 +15,14 @@ const Edit = (props) => {
 
   // });
   const [form, setForm] = useState({
-    name: "",
+    pirateName: "",
+    imageUrl: "",
+    numChests: "",
+    catchPhrase: "",
+    crewPosition: "",
+    pegLeg: "",
+    eyePatch: "",
+    hookHand: "",
   });
   const [error, setError] = useState({ name: {} });
 
@@ -26,7 +33,7 @@ const Edit = (props) => {
     event.preventDefault();
 
     axios
-      .post("http://localhost:9000/api/author/create", form)
+      .post("http://localhost:9000/api/pirate/create", form)
       .then((res) => {
         console.log(res.data);
         history.push(`/`);
@@ -117,24 +124,167 @@ const Edit = (props) => {
 
       <form onSubmit={onSubmitHandler} className="box3">
         <div id="floatContainer" className="float-container">
-          <label style={{ position: "absolute", zIndex: 1 }} htmlFor="name">
-            Name
+          <label
+            style={{ position: "absolute", zIndex: 1 }}
+            htmlFor="pirateName"
+          >
+            pirateName
           </label>
           <input
             style={{ position: "relative", zIndex: 2 }}
             autoFocus="autofocus"
             id="floatField"
             type="text"
-            name="name"
-            value={form.name}
+            name="pirateName"
             onChange={onChangeHandler}
 
             // placeholder=""
             // default="asdf"
           />
         </div>
-        <span className="alert-danger">{error.name && error.name.message}</span>
-        <input type="submit" className="btn btn-success mx-4" />
+        <div id="floatContainer" className="float-container">
+          <label
+            style={{ position: "absolute", zIndex: 1 }}
+            htmlFor="imageUrl"
+          >
+            imageUrl
+          </label>
+          <input
+            style={{ position: "relative", zIndex: 2 }}
+            autoFocus="autofocus"
+            id="floatField"
+            type="text"
+            name="imageUrl"
+            onChange={onChangeHandler}
+
+            // placeholder=""
+            // default="asdf"
+          />
+        </div>
+        <div id="floatContainer" className="float-container">
+          <label
+            style={{ position: "absolute", zIndex: 1 }}
+            htmlFor="numChests"
+          >
+            numChests
+          </label>
+          <input
+            style={{ position: "relative", zIndex: 2 }}
+            autoFocus="autofocus"
+            id="floatField"
+            type="text"
+            name="numChests"
+            onChange={onChangeHandler}
+
+            // placeholder=""
+            // default="asdf"
+          />
+        </div>
+        <div id="floatContainer" className="float-container">
+          <label
+            style={{ position: "absolute", zIndex: 1 }}
+            htmlFor="catchPhrase"
+          >
+            catchPhrase
+          </label>
+          <input
+            style={{ position: "relative", zIndex: 2 }}
+            autoFocus="autofocus"
+            id="floatField"
+            type="text"
+            name="catchPhrase"
+            onChange={onChangeHandler}
+
+            // placeholder=""
+            // default="asdf"
+          />
+        </div>
+        <div id="floatContainer" className="float-container">
+          <label
+            style={{ position: "absolute", zIndex: 1 }}
+            htmlFor="crewPosition"
+          >
+            crewPosition
+          </label>
+          <input
+            style={{ position: "relative", zIndex: 2 }}
+            autoFocus="autofocus"
+            id="floatField"
+            type="text"
+            name="crewPosition"
+            onChange={onChangeHandler}
+
+            // placeholder=""
+            // default="asdf"
+          />
+        </div>
+        <div id="floatContainer" className="float-container">
+          <label
+            style={{ position: "absolute", zIndex: 1 }}
+            htmlFor="pegLeg"
+          >
+            pegLeg
+          </label>
+          <input
+            style={{ position: "relative", zIndex: 2 }}
+            autoFocus="autofocus"
+            id="floatField"
+            type="text"
+            name="pegLeg"
+            onChange={onChangeHandler}
+
+            // placeholder=""
+            // default="asdf"
+          />
+        </div>
+        <div id="floatContainer" className="float-container">
+          <label
+            style={{ position: "absolute", zIndex: 1 }}
+            htmlFor="eyePatch"
+          >
+            eyePatch
+          </label>
+          <input
+            style={{ position: "relative", zIndex: 2 }}
+            autoFocus="autofocus"
+            id="floatField"
+            type="text"
+            name="eyePatch"
+            onChange={onChangeHandler}
+
+            // placeholder=""
+            // default="asdf"
+          />
+        </div>
+        <div id="floatContainer" className="float-container">
+          <label
+            style={{ position: "absolute", zIndex: 1 }}
+            htmlFor="hookHand"
+          >
+            hookHand
+          </label>
+          <input
+            style={{ position: "relative", zIndex: 2 }}
+            autoFocus="autofocus"
+            id="floatField"
+            type="text"
+            name="hookHand"
+            onChange={onChangeHandler}
+
+            // placeholder=""
+            // default="asdf"
+          />
+        </div>
+        <span className="alert-danger">{ error.pirateName && error.pirateName.message}</span>
+        <span className="alert-danger">{ error.imageUrl && error.imageUrl.message}</span>
+        <span className="alert-danger">{ error.numChests && error.numChests.message}</span>
+        <span className="alert-danger">{ error.catchPhrase && error.catchPhrase.message}</span>
+        <span className="alert-danger">{ error.crewPosition && error.crewPosition.message}</span>
+        <span className="alert-danger">{ error.pegLeg && error.pegLeg.message}</span>
+        <span className="alert-danger">{ error.eyePatch && error.eyePatch.message}</span>
+        <span className="alert-danger">{ error.hookHand && error.hookHand.message}</span>
+
+        <input type="submit" className="btn btn-primary mx-4" />
       </form>
       <div className="box">
         <p>form</p>
