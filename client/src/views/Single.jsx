@@ -12,12 +12,12 @@ const Single = (props) => {
   const [one, setOne] = useState({
     pirateName: "",
     imageUrl: "",
-    numChests: "",
+    numChests: 0,
     catchPhrase: "",
     crewPosition: "",
-    pegLeg: "",
-    eyePatch: "",
-    hookHand: "",
+    pegLeg: true,
+    eyePatch: true,
+    hookHand: true,
   });
 
   useEffect(() => {
@@ -49,9 +49,9 @@ const Single = (props) => {
           <button className="btn btn-secondary mx-4">Back</button>
         </Link>
         <h2>View</h2>
-        <Link to={`/${one._id}/edit`}>
+        {/* <Link to={`/${one._id}/edit`}>
           <button className="btn btn-success mx-4">Edit</button>
-        </Link>
+        </Link> */}
         <Link to={`/`}>
           <button
             onClick={() => {
@@ -93,17 +93,34 @@ const Single = (props) => {
               <tr>
                 <td className="align-middle">numChests:</td>
                 <td className="align-middle">{one.numChests}</td>
-                <td className="align-middle"><button className="btn btn-secondary mx-4">{one.numChests}</button></td>
+                <td className="align-middle p-3"></td>
+              </tr>
+              <tr>
+                <td className="align-middle">pegLeg</td>
+                <td className="align-middle">{one.pegLeg ? "Yes" : "No"}</td>
+                <td className="align-middle">
+                  <button className="btn btn-secondary mx-4">
+                    {one.pegLeg ? "No" : "Yes"}
+                  </button>
+                </td>
               </tr>
               <tr>
                 <td className="align-middle">eyePatch</td>
-                <td className="align-middle">{one.eyePatch}</td>
-                <td className="align-middle"><button className="btn btn-secondary mx-4">{one.eyePatch}</button></td>
+                <td className="align-middle">{one.eyePatch ? "Yes" : "No"}</td>
+                <td className="align-middle">
+                  <button className="btn btn-secondary mx-4">
+                    {one.eyePatch ? "No" : "Yes"}
+                  </button>
+                </td>
               </tr>
               <tr>
                 <td className="align-middle">hookHand:</td>
-                <td className="align-middle">{one.hookHand}</td>
-                <td className="align-middle"><button className="btn btn-secondary mx-4">{one.hookHand}</button></td>
+                <td className="align-middle">{one.hookHand ? "Yes" : "No"}</td>
+                <td className="align-middle">
+                  <button className="btn btn-secondary mx-4">
+                    {one.hookHand ? "No" : "Yes"}
+                  </button>
+                </td>
               </tr>
             </tbody>
           </table>

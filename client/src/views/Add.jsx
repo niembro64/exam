@@ -17,12 +17,12 @@ const Edit = (props) => {
   const [form, setForm] = useState({
     pirateName: "",
     imageUrl: "",
-    numChests: "",
+    numChests: 0,
     catchPhrase: "",
     crewPosition: "",
-    pegLeg: "",
-    eyePatch: "",
-    hookHand: "",
+    pegLeg: true,
+    eyePatch: true,
+    hookHand: true,
   });
   const [error, setError] = useState({ name: {} });
 
