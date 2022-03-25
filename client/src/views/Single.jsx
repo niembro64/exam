@@ -51,7 +51,7 @@ const Single = (props) => {
   //   };
 
   //   axios
-  //     .patch(`http://localhost:9000/api/author/update/${_id}`, copyState)
+  //     .patch(`http://localhost:9000/api/pirate/update/${_id}`, copyState)
   //     .then((res) => {
   //       console.log("Edit | onSubmitHandler | Success Submitting")
   //       console.log(res.data);
@@ -76,11 +76,93 @@ const Single = (props) => {
     }
   };
 
-  const onSubmitHandler = (event) => {
+  const onClickHandlerPegLeg = (event) => {
     event.preventDefault();
-    console.log("Single | onSubmitHandler | Jumped In");
+    console.log("Single | onClickHandler | Jumped In");
+
+    console.log({ [event.target.name]: event.target.value ? "true" : "false" });
 
     const copyState = {
+      pegLeg: !one.pegLeg,
+    };
+
+    setOne({
+      pirateName: one.pirateName,
+      imageUrl: one.imageUrl,
+      numChests: one.numChests,
+      catchPhrase: one.catchPhrase,
+      crewPosition: one.crewPosition,
+      pegLeg: !one.pegLeg,
+      eyePatch: one.eyePatch,
+      hookHand: one.hookHand,
+      // [event.target.name]: !event.target.value,
+    });
+
+    console.log("CopyState:");
+    console.log(copyState);
+
+    axios
+      .patch(`http://localhost:9000/api/pirate/update/${_id}`, copyState)
+      .then((res) => {
+        console.log("Single | onClickHandler | Success Submitting");
+        console.log(res.data);
+        // history.push(`/`);
+      })
+      .catch((err) => {
+        p("Single | onClickHandler | Error");
+        console.log(err.response.data.error.errors);
+        setError(err.response.data.error.errors);
+      });
+  };
+  const onClickHandlerEyePatch = (event) => {
+    event.preventDefault();
+    console.log("Single | onClickHandler | Jumped In");
+
+    console.log({ [event.target.name]: event.target.value ? "true" : "false" });
+
+    const copyState = {
+      eyePatch: !one.eyePatch,
+    };
+
+    setOne({
+      pirateName: one.pirateName,
+      imageUrl: one.imageUrl,
+      numChests: one.numChests,
+      catchPhrase: one.catchPhrase,
+      crewPosition: one.crewPosition,
+      pegLeg: one.pegLeg,
+      eyePatch: !one.eyePatch,
+      hookHand: one.hookHand,
+      // [event.target.name]: !event.target.value,
+    });
+
+    console.log("CopyState:");
+    console.log(copyState);
+
+    axios
+      .patch(`http://localhost:9000/api/pirate/update/${_id}`, copyState)
+      .then((res) => {
+        console.log("Single | onClickHandler | Success Submitting");
+        console.log(res.data);
+        // history.push(`/`);
+      })
+      .catch((err) => {
+        p("Single | onClickHandler | Error");
+        console.log(err.response.data.error.errors);
+        setError(err.response.data.error.errors);
+      });
+  };
+  const onClickHandlerHookHand = (event) => {
+    event.preventDefault();
+    console.log("Single | onClickHandler | Jumped In");
+
+    console.log({ [event.target.name]: event.target.value ? "true" : "false" });
+
+    const copyState = {
+      hookHand: !one.hookHand,
+    };
+
+    setOne({
       pirateName: one.pirateName,
       imageUrl: one.imageUrl,
       numChests: one.numChests,
@@ -88,18 +170,22 @@ const Single = (props) => {
       crewPosition: one.crewPosition,
       pegLeg: one.pegLeg,
       eyePatch: one.eyePatch,
-      hookHand: one.hookHand,
-    };
+      hookHand: !one.hookHand,
+      // [event.target.name]: !event.target.value,
+    });
+
+    console.log("CopyState:");
+    console.log(copyState);
 
     axios
-      .patch(`http://localhost:9000/api/author/update/${_id}`, copyState)
+      .patch(`http://localhost:9000/api/pirate/update/${_id}`, copyState)
       .then((res) => {
-        console.log("Single | onSubmitHandler | Success Submitting");
+        console.log("Single | onClickHandler | Success Submitting");
         console.log(res.data);
-        history.push(`/`);
+        // history.push(`/`);
       })
       .catch((err) => {
-        p("Single | onSubmitHandler | Error");
+        p("Single | onClickHandler | Error");
         console.log(err.response.data.error.errors);
         setError(err.response.data.error.errors);
       });
@@ -163,50 +249,9 @@ const Single = (props) => {
                 <td className="align-middle">{one.pegLeg ? "Yes" : "No"}</td>
                 <td className="align-middle">
                   <button
-                    onClick={() => {
-                      setOne({
-                        pirateName: one.pirateName,
-                        imageUrl: one.imageUrl,
-                        numChests: one.numChests,
-                        catchPhrase: one.catchPhrase,
-                        crewPosition: one.crewPosition,
-                        pegLeg: !one.pegLeg,
-                        eyePatch: one.eyePatch,
-                        hookHand: one.hookHand,
-                      });
-
-                      const copyState = {
-                        pirateName: one.pirateName,
-                        imageUrl: one.imageUrl,
-                        numChests: one.numChests,
-                        catchPhrase: one.catchPhrase,
-                        crewPosition: one.crewPosition,
-                        pegLeg: one.pegLeg,
-                        eyePatch: one.eyePatch,
-                        hookHand: one.hookHand,
-                      };
-
-                      axios
-                        .patch(
-                          `http://localhost:9000/api/author/update/${_id}`,
-                          copyState
-                        )
-                        .then((res) => {
-                          console.log(
-                            "Edit | onSubmitHandler | Success Submitting"
-                          );
-                          console.log(res.data);
-                          // history.push(`/`);
-                        })
-                        .catch((err) => {
-                          p("Edit | onSubmitHandler | Error");
-                          console.log(err.response.data.error.errors);
-                          setError(err.response.data.error.errors);
-                        });
-
-                      console.log("in on click");
-                    }}
+                    onClick={(event) => onClickHandlerPegLeg(event)}
                     className="btn btn-secondary mx-4"
+                    name="pegLeg"
                   >
                     {one.pegLeg ? "No" : "Yes"}
                   </button>
@@ -217,20 +262,9 @@ const Single = (props) => {
                 <td className="align-middle">{one.eyePatch ? "Yes" : "No"}</td>
                 <td className="align-middle">
                   <button
-                    onClick={() => {
-                      setOne({
-                        pirateName: one.pirateName,
-                        imageUrl: one.imageUrl,
-                        numChests: one.numChests,
-                        catchPhrase: one.catchPhrase,
-                        crewPosition: one.crewPosition,
-                        pegLeg: one.pegLeg,
-                        eyePatch: !one.eyePatch,
-                        hookHand: one.hookHand,
-                      });
-                      console.log("in on click");
-                    }}
+                    onClick={(event) => onClickHandlerEyePatch(event)}
                     className="btn btn-secondary mx-4"
+                    name="eyePatch"
                   >
                     {one.eyePatch ? "No" : "Yes"}
                   </button>
@@ -241,20 +275,9 @@ const Single = (props) => {
                 <td className="align-middle">{one.hookHand ? "Yes" : "No"}</td>
                 <td className="align-middle">
                   <button
-                    onClick={() => {
-                      setOne({
-                        pirateName: one.pirateName,
-                        imageUrl: one.imageUrl,
-                        numChests: one.numChests,
-                        catchPhrase: one.catchPhrase,
-                        crewPosition: one.crewPosition,
-                        pegLeg: one.pegLeg,
-                        eyePatch: one.eyePatch,
-                        hookHand: !one.hookHand,
-                      });
-                      console.log("in on click");
-                    }}
+                    onClick={(event) => onClickHandlerHookHand(event)}
                     className="btn btn-secondary mx-4"
+                    name="hookHand"
                   >
                     {one.hookHand ? "No" : "Yes"}
                   </button>
@@ -276,7 +299,7 @@ const Single = (props) => {
             return (
               <tr key={i}>
                 <td>{item[0]}</td>
-                <td>{item[1]}</td>
+                <td>{item[1] ? item[1] : "false"}</td>
                 {/* <td style={{(item[1].length > 10 ? { fontSize: "10px" } : {fontSize = "20px"})}}>
                     {item[1]}
                   </td> */}
@@ -291,9 +314,9 @@ const Single = (props) => {
 
 export default Single;
 
-// module.exports.findOneSingleAUTHOR = (req, res) => {
-//     AUTHOR.findOne({ _id: req.params._id })
-//       .then((oneSingleAUTHOR) => res.json(oneSingleAUTHOR))
+// module.exports.findOneSinglePIRATE = (req, res) => {
+//     PIRATE.findOne({ _id: req.params._id })
+//       .then((oneSinglePIRATE) => res.json(oneSinglePIRATE))
 //       .catch((err) =>
 //         res.status(400).json({ message: "Something went wrong", error: err })
 //       );
