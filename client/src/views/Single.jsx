@@ -59,42 +59,77 @@ const Single = (props) => {
             }}
             className="btn btn-danger mx-4"
           >
-            delete{" "}
+            delete
           </button>
         </Link>
       </div>
       <div className="box">
         <div className="lr">
           <h1>{one.pirateName}</h1>
-          <img
-                      src={one.imageUrl}
-                      alt="imageUrl"
-                    />
+          <img src={one.imageUrl} alt="imageUrl" />
+          <h1>"{one.catchPhrase}"</h1>
         </div>
         <div className="lr">
+          <h1>About</h1>
           <table className="table table-sm table-hover ">
             <thead>
               <tr>
-                <th>Key</th>
-                <th>Value</th>
+                <th></th>
+                <th></th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
-              {Object.entries(one).map((item, i) => {
-                return (
-                  <tr key={i}>
-                    <td>{item[0]}</td>
-                    <td>{item[1]}</td>
-                    {/* <td style={{(item[1].length > 10 ? { fontSize: "10px" } : {fontSize = "20px"})}}>
-                    {item[1]}
-                  </td> */}
-                  </tr>
-                );
-              })}
+              <tr>
+                <td className="align-middle p-3">Position:</td>
+                <td className="align-middle p-3">{one.crewPosition}</td>
+                <td className="align-middle p-3"></td>
+              </tr>
+              <tr>
+                <td className="align-middle p-3">crewPosition:</td>
+                <td className="align-middle p-3">{one.crewPosition}</td>
+                <td className="align-middle p-3"></td>
+              </tr>
+              <tr>
+                <td className="align-middle">numChests:</td>
+                <td className="align-middle">{one.numChests}</td>
+                <td className="align-middle"><button className="btn btn-secondary mx-4">{one.numChests}</button></td>
+              </tr>
+              <tr>
+                <td className="align-middle">eyePatch</td>
+                <td className="align-middle">{one.eyePatch}</td>
+                <td className="align-middle"><button className="btn btn-secondary mx-4">{one.eyePatch}</button></td>
+              </tr>
+              <tr>
+                <td className="align-middle">hookHand:</td>
+                <td className="align-middle">{one.hookHand}</td>
+                <td className="align-middle"><button className="btn btn-secondary mx-4">{one.hookHand}</button></td>
+              </tr>
             </tbody>
           </table>
         </div>
       </div>
+      <table className="table table-sm table-hover ">
+        <thead>
+          <tr>
+            <th>Key</th>
+            <th>Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          {Object.entries(one).map((item, i) => {
+            return (
+              <tr key={i}>
+                <td>{item[0]}</td>
+                <td>{item[1]}</td>
+                {/* <td style={{(item[1].length > 10 ? { fontSize: "10px" } : {fontSize = "20px"})}}>
+                    {item[1]}
+                  </td> */}
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
     </>
   );
 };

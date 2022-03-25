@@ -14,7 +14,7 @@ const PirateSchema = new mongoose.Schema({
     minLength: [minLength, `Name must be at least ${minLength} characters`],
   },
   numChests: {
-    type: String,
+    type: Number,
     required: [true, "numChests is required"],
     minLength: [minLength, `numChests must be at least ${minLength} characters`],
   },
