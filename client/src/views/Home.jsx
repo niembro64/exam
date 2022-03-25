@@ -345,7 +345,7 @@ const Home = (props) => {
                 <tr key={i}>
                   {/* <td>{item._id}</td> */}
                   <td>
-                    {" "}
+                 
                     <img
                       src={item.imageUrl}
                       alt="imageUrl"

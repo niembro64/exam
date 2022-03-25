@@ -9,12 +9,19 @@ module.exports.test = (req, res) => {
 };
 
 module.exports.findAllPirate = (req, res) => {
-  Pirate.find()
+  Pirate.find().collation({locale: 'en', strength: 2}).sort({pirateName:1})
     .then((allPirate) => res.json(allPirate))
     .catch((err) =>
       res.status(400).json({ message: "Something went wrong", error: err })
     );
 };
+// module.exports.findAllPirate = (req, res) => {
+//   Pirate.find()
+//     .then((allPirate) => res.json(allPirate))
+//     .catch((err) =>
+//       res.status(400).json({ message: "Something went wrong", error: err })
+//     );
+// };
 
 module.exports.findOneSinglePirate = (req, res) => {
   Pirate.findOne({ _id: req.params._id })
