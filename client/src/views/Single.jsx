@@ -10,15 +10,21 @@ const p = (a) => {
 const Single = (props) => {
   const { _id } = useParams();
   const [one, setOne] = useState({
-    name: "default",
-
+    pirateName: "",
+    imageUrl: "",
+    numChests: "",
+    catchPhrase: "",
+    crewPosition: "",
+    pegLeg: "",
+    eyePatch: "",
+    hookHand: "",
   });
 
   useEffect(() => {
     p("useEffect Running");
 
     axios
-      .get(`http://localhost:9000/api/author/${_id}`)
+      .get(`http://localhost:9000/api/pirate/${_id}`)
       .then((res) => {
         console.log(res.data);
         setOne(res.data);
@@ -30,7 +36,7 @@ const Single = (props) => {
     if (window.confirm(`Are you sure you want to delete this item?`)) {
       console.log("inside on click delete");
       axios
-        .delete(`http://localhost:9000/api/author/delete/${_id}`)
+        .delete(`http://localhost:9000/api/pirate/delete/${_id}`)
         .then((res) => console.log(res.data))
         .catch((err) => console.log(err));
     }
@@ -58,28 +64,37 @@ const Single = (props) => {
         </Link>
       </div>
       <div className="box">
-        <table className="table table-sm table-hover ">
-          <thead>
-            <tr>
-              <th>Key</th>
-              <th>Value</th>
-            </tr>
-          </thead>
-          <tbody>
-            {Object.entries(one).map((item, i) => {
-              return (
-                <tr key={i}>
-                  <td>{item[0]}</td>
-                  <td>{item[1]}</td>
-                  {/* <td style={{(item[1].length > 10 ? { fontSize: "10px" } : {fontSize = "20px"})}}>
+        <div className="lr">
+          <h1>{one.pirateName}</h1>
+          <img
+                      src={one.imageUrl}
+                      alt="imageUrl"
+                    />
+        </div>
+        <div className="lr">
+          <table className="table table-sm table-hover ">
+            <thead>
+              <tr>
+                <th>Key</th>
+                <th>Value</th>
+              </tr>
+            </thead>
+            <tbody>
+              {Object.entries(one).map((item, i) => {
+                return (
+                  <tr key={i}>
+                    <td>{item[0]}</td>
+                    <td>{item[1]}</td>
+                    {/* <td style={{(item[1].length > 10 ? { fontSize: "10px" } : {fontSize = "20px"})}}>
                     {item[1]}
                   </td> */}
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      </div>{" "}
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      </div>
     </>
   );
 };

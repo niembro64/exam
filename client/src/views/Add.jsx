@@ -106,10 +106,10 @@ const Edit = (props) => {
   return (
     <>
       <div className="box">
+        <h2>Add Pirate</h2>
         <Link to={"/"}>
-          <button className="btn btn-secondary mx-4">Cancel</button>
+          <button className="btn btn-secondary mx-4">Crew Board</button>
         </Link>
-        <h2>Add</h2>
         {/* <Link to={`/`}>
           <button
             onClick={() => {
@@ -284,7 +284,7 @@ const Edit = (props) => {
         <span className="alert-danger">{ error.eyePatch && error.eyePatch.message}</span>
         <span className="alert-danger">{ error.hookHand && error.hookHand.message}</span>
 
-        <input type="submit" className="btn btn-primary mx-4" />
+        <input type="submit" className="btn btn-primary" />
       </form>
       <div className="box">
         <p>form</p>

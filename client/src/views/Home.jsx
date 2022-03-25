@@ -18,7 +18,7 @@ const Home = (props) => {
   });
   const [fromDb, setFromDb] = useState([]);
   const [loaded, setLoaded] = useState(false);
-  const [error, setError] = useState({ name: { } });
+  const [error, setError] = useState({ name: {} });
   const history = useHistory();
   // history.push(`/${category}/${detail}`);
 
@@ -70,7 +70,6 @@ const Home = (props) => {
         console.log(err.response.data.error.errors);
         setError(err.response.data.error.errors);
       });
-
   };
 
   const onChangeHandler = (event) => {
@@ -149,9 +148,12 @@ const Home = (props) => {
 
   return (
     <>
-      <Link to={"/add"}>
-        <button className="btn btn-primary">New Pirate</button>
-      </Link>
+      <div className="box">
+        <h2>Pirate Crew</h2>
+        <Link to={"/add"}>
+          <button className="btn btn-primary">Add Pirate</button>
+        </Link>
+      </div>
       <form onSubmit={onSubmitHandler} className="box3">
         <div id="floatContainer" className="float-container">
           <label
@@ -173,10 +175,7 @@ const Home = (props) => {
           />
         </div>
         <div id="floatContainer" className="float-container">
-          <label
-            style={{ position: "absolute", zIndex: 1 }}
-            htmlFor="imageUrl"
-          >
+          <label style={{ position: "absolute", zIndex: 1 }} htmlFor="imageUrl">
             imageUrl
           </label>
           <input
@@ -249,10 +248,7 @@ const Home = (props) => {
           />
         </div>
         <div id="floatContainer" className="float-container">
-          <label
-            style={{ position: "absolute", zIndex: 1 }}
-            htmlFor="pegLeg"
-          >
+          <label style={{ position: "absolute", zIndex: 1 }} htmlFor="pegLeg">
             pegLeg
           </label>
           <input
@@ -268,10 +264,7 @@ const Home = (props) => {
           />
         </div>
         <div id="floatContainer" className="float-container">
-          <label
-            style={{ position: "absolute", zIndex: 1 }}
-            htmlFor="eyePatch"
-          >
+          <label style={{ position: "absolute", zIndex: 1 }} htmlFor="eyePatch">
             eyePatch
           </label>
           <input
@@ -287,10 +280,7 @@ const Home = (props) => {
           />
         </div>
         <div id="floatContainer" className="float-container">
-          <label
-            style={{ position: "absolute", zIndex: 1 }}
-            htmlFor="hookHand"
-          >
+          <label style={{ position: "absolute", zIndex: 1 }} htmlFor="hookHand">
             hookHand
           </label>
           <input
@@ -305,14 +295,30 @@ const Home = (props) => {
             // default="asdf"
           />
         </div>
-        <span className="alert-danger">{ error.pirateName && error.pirateName.message}</span>
-        <span className="alert-danger">{ error.imageUrl && error.imageUrl.message}</span>
-        <span className="alert-danger">{ error.numChests && error.numChests.message}</span>
-        <span className="alert-danger">{ error.catchPhrase && error.catchPhrase.message}</span>
-        <span className="alert-danger">{ error.crewPosition && error.crewPosition.message}</span>
-        <span className="alert-danger">{ error.pegLeg && error.pegLeg.message}</span>
-        <span className="alert-danger">{ error.eyePatch && error.eyePatch.message}</span>
-        <span className="alert-danger">{ error.hookHand && error.hookHand.message}</span>
+        <span className="alert-danger">
+          {error.pirateName && error.pirateName.message}
+        </span>
+        <span className="alert-danger">
+          {error.imageUrl && error.imageUrl.message}
+        </span>
+        <span className="alert-danger">
+          {error.numChests && error.numChests.message}
+        </span>
+        <span className="alert-danger">
+          {error.catchPhrase && error.catchPhrase.message}
+        </span>
+        <span className="alert-danger">
+          {error.crewPosition && error.crewPosition.message}
+        </span>
+        <span className="alert-danger">
+          {error.pegLeg && error.pegLeg.message}
+        </span>
+        <span className="alert-danger">
+          {error.eyePatch && error.eyePatch.message}
+        </span>
+        <span className="alert-danger">
+          {error.hookHand && error.hookHand.message}
+        </span>
 
         <input type="submit" className="btn btn-primary mx-4" />
       </form>
@@ -323,11 +329,13 @@ const Home = (props) => {
             <tr>
               {/* <th>ID</th> */}
               {/* <th>#</th> */}
-              <th>Name</th>
+              <th>imageUrl</th>
+           
+              <th>pirateName</th>
 
-              <th></th>
-              <th></th>
-              <th></th>
+              <th>view</th>
+              {/* <th></th> */}
+              <th>delete</th>
             </tr>
           </thead>
           <tbody>
@@ -336,26 +344,33 @@ const Home = (props) => {
               return (
                 <tr key={i}>
                   {/* <td>{item._id}</td> */}
-                  {/* <td>{i + 1}</td> */}
-                  <td>{item.name}</td>
-
                   <td>
+                    {" "}
+                    <img
+                      src={item.imageUrl}
+                      alt="imageUrl"
+                    />
+                  </td>
+         
+                  <td className="align-middle"> {item.pirateName}</td>
+
+                  <td className="align-middle">
                     <Link to={`/${item._id}`}>
                       <button className="btn btn-secondary btn-sm">View</button>
                     </Link>
                   </td>
-                  <td>
+                  {/* <td>
                     <Link to={`/${item._id}/edit`}>
                       <button className="btn btn-success btn-sm">Edit</button>
                     </Link>
-                  </td>
-                  <td>
+                  </td> */}
+                  <td className="align-middle">
                     <Link to={`/`}>
                       <button
                         onClick={() => onDeleteHandler(item._id, i, item.title)}
                         className="btn btn-danger btn-sm"
                       >
-                        Delete
+                        Walk the Plank
                       </button>
                     </Link>
                   </td>
@@ -369,7 +384,14 @@ const Home = (props) => {
         <p>from Form:</p>
         <div className="box">
           <div className="box2">
-            <p>{form.name}</p>
+            <p>{form.pirateName}</p>
+            <p>{form.imageUrl}</p>
+            <p>{form.numChests}</p>
+            <p>{form.catchPhrase}</p>
+            <p>{form.crewPosition}</p>
+            <p>{form.pegLeg}</p>
+            <p>{form.eyePatch}</p>
+            <p>{form.hookHand}</p>
           </div>
         </div>
       </div>
