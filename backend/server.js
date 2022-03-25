@@ -16,6 +16,8 @@ const AllMyJokesRoutes = require("./server/routes/jokes.routes");
 AllMyJokesRoutes(app);
 const AllMyPMRoutes = require("./server/routes/pm.routes");
 AllMyPMRoutes(app);
+const AllMyAuthorRoutes = require("./server/routes/author.routes");
+AllMyAuthorRoutes(app);
 const AllMyPirateRoutes = require("./server/routes/pirate.routes");
 AllMyPirateRoutes(app);
 
