@@ -3,6 +3,7 @@ import { useEffect, useState, createElement } from "react";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { Switch, Route, Link } from "react-router-dom";
 import axios from "axios";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 const p = (a) => {
   console.log(a);
@@ -19,6 +20,9 @@ const Single = (props) => {
     eyePatch: true,
     hookHand: true,
   });
+  const [error, setError] = useState({ name: {} });
+
+  const history = useHistory();
 
   useEffect(() => {
     p("useEffect Running");
@@ -32,6 +36,36 @@ const Single = (props) => {
       .catch((err) => console.log(err));
   }, [_id]);
 
+  // useEffect(() => {
+  //   p("useEffect2 Running");
+
+  //   const copyState = {
+  //     pirateName: one.pirateName,
+  //     imageUrl: one.imageUrl,
+  //     numChests: one.numChests,
+  //     catchPhrase: one.catchPhrase,
+  //     crewPosition: one.crewPosition,
+  //     pegLeg: one.pegLeg,
+  //     eyePatch: one.eyePatch,
+  //     hookHand: one.hookHand,
+  //   };
+
+  //   axios
+  //     .patch(`http://localhost:9000/api/author/update/${_id}`, copyState)
+  //     .then((res) => {
+  //       console.log("Edit | onSubmitHandler | Success Submitting")
+  //       console.log(res.data);
+  //       history.push(`/`);
+  //     })
+  //     .catch((err) => {
+  //       p("Edit | onSubmitHandler | Error");
+  //       console.log(err.response.data.error.errors);
+  //       setError(err.response.data.error.errors);
+  //     });
+
+  // // one.pegLeg, one.eyePatch, one.hookHand
+  // }, [one.pegLeg, one.eyePatch, one.hookHand]);
+
   const onDeleteHandler = (_id) => {
     if (window.confirm(`Are you sure you want to delete this item?`)) {
       console.log("inside on click delete");
@@ -40,6 +74,35 @@ const Single = (props) => {
         .then((res) => console.log(res.data))
         .catch((err) => console.log(err));
     }
+  };
+
+  const onSubmitHandler = (event) => {
+    event.preventDefault();
+    console.log("Single | onSubmitHandler | Jumped In");
+
+    const copyState = {
+      pirateName: one.pirateName,
+      imageUrl: one.imageUrl,
+      numChests: one.numChests,
+      catchPhrase: one.catchPhrase,
+      crewPosition: one.crewPosition,
+      pegLeg: one.pegLeg,
+      eyePatch: one.eyePatch,
+      hookHand: one.hookHand,
+    };
+
+    axios
+      .patch(`http://localhost:9000/api/author/update/${_id}`, copyState)
+      .then((res) => {
+        console.log("Single | onSubmitHandler | Success Submitting");
+        console.log(res.data);
+        history.push(`/`);
+      })
+      .catch((err) => {
+        p("Single | onSubmitHandler | Error");
+        console.log(err.response.data.error.errors);
+        setError(err.response.data.error.errors);
+      });
   };
 
   return (
@@ -99,7 +162,52 @@ const Single = (props) => {
                 <td className="align-middle">pegLeg</td>
                 <td className="align-middle">{one.pegLeg ? "Yes" : "No"}</td>
                 <td className="align-middle">
-                  <button className="btn btn-secondary mx-4">
+                  <button
+                    onClick={() => {
+                      setOne({
+                        pirateName: one.pirateName,
+                        imageUrl: one.imageUrl,
+                        numChests: one.numChests,
+                        catchPhrase: one.catchPhrase,
+                        crewPosition: one.crewPosition,
+                        pegLeg: !one.pegLeg,
+                        eyePatch: one.eyePatch,
+                        hookHand: one.hookHand,
+                      });
+
+                      const copyState = {
+                        pirateName: one.pirateName,
+                        imageUrl: one.imageUrl,
+                        numChests: one.numChests,
+                        catchPhrase: one.catchPhrase,
+                        crewPosition: one.crewPosition,
+                        pegLeg: one.pegLeg,
+                        eyePatch: one.eyePatch,
+                        hookHand: one.hookHand,
+                      };
+
+                      axios
+                        .patch(
+                          `http://localhost:9000/api/author/update/${_id}`,
+                          copyState
+                        )
+                        .then((res) => {
+                          console.log(
+                            "Edit | onSubmitHandler | Success Submitting"
+                          );
+                          console.log(res.data);
+                          // history.push(`/`);
+                        })
+                        .catch((err) => {
+                          p("Edit | onSubmitHandler | Error");
+                          console.log(err.response.data.error.errors);
+                          setError(err.response.data.error.errors);
+                        });
+
+                      console.log("in on click");
+                    }}
+                    className="btn btn-secondary mx-4"
+                  >
                     {one.pegLeg ? "No" : "Yes"}
                   </button>
                 </td>
@@ -108,7 +216,22 @@ const Single = (props) => {
                 <td className="align-middle">eyePatch</td>
                 <td className="align-middle">{one.eyePatch ? "Yes" : "No"}</td>
                 <td className="align-middle">
-                  <button className="btn btn-secondary mx-4">
+                  <button
+                    onClick={() => {
+                      setOne({
+                        pirateName: one.pirateName,
+                        imageUrl: one.imageUrl,
+                        numChests: one.numChests,
+                        catchPhrase: one.catchPhrase,
+                        crewPosition: one.crewPosition,
+                        pegLeg: one.pegLeg,
+                        eyePatch: !one.eyePatch,
+                        hookHand: one.hookHand,
+                      });
+                      console.log("in on click");
+                    }}
+                    className="btn btn-secondary mx-4"
+                  >
                     {one.eyePatch ? "No" : "Yes"}
                   </button>
                 </td>
@@ -117,7 +240,22 @@ const Single = (props) => {
                 <td className="align-middle">hookHand:</td>
                 <td className="align-middle">{one.hookHand ? "Yes" : "No"}</td>
                 <td className="align-middle">
-                  <button className="btn btn-secondary mx-4">
+                  <button
+                    onClick={() => {
+                      setOne({
+                        pirateName: one.pirateName,
+                        imageUrl: one.imageUrl,
+                        numChests: one.numChests,
+                        catchPhrase: one.catchPhrase,
+                        crewPosition: one.crewPosition,
+                        pegLeg: one.pegLeg,
+                        eyePatch: one.eyePatch,
+                        hookHand: !one.hookHand,
+                      });
+                      console.log("in on click");
+                    }}
+                    className="btn btn-secondary mx-4"
+                  >
                     {one.hookHand ? "No" : "Yes"}
                   </button>
                 </td>

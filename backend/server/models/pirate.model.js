@@ -50,12 +50,12 @@ const PirateSchema = new mongoose.Schema(
       default: defaultBool,
     },
     eyePatch: {
-      type: String,
+      type: Boolean,
       required: [true, "eyePatch is required"],
       default: defaultBool,
     },
     hookHand: {
-      type: String,
+      type: Boolean,
       required: [true, "hookHand is required"],
       default: defaultBool,
     },
