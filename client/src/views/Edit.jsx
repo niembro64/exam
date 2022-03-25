@@ -58,7 +58,7 @@ const Edit = (props) => {
       .then((res) => {
         console.log("Edit | onSubmitHandler | Success Submitting")
         console.log(res.data);
-        // history.push(`/`);
+        history.push(`/`);
       })
       .catch((err) => {
         p("Edit | onSubmitHandler | Error");

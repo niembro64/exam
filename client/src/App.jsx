@@ -12,7 +12,7 @@ import Add from "./views/Add";
 function App() {
   return (
     <div className="App">
-      <h1>Assignment Authors</h1>
+      <h1>Exam Pirates</h1>
       <Switch>
         <Route exact path="/">
           <Home />

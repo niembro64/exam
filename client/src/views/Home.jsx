@@ -7,7 +7,14 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 const Home = (props) => {
   const [dbtest, setDbtest] = useState({ assignment: "none", port: 0 });
   const [form, setForm] = useState({
-    name: "",
+    pirateName: "",
+    imageUrl: "",
+    numChests: "",
+    catchPhrase: "",
+    crewPosition: "",
+    pegLeg: "",
+    eyePatch: "",
+    hookHand: "",
   });
   const [fromDb, setFromDb] = useState([]);
   const [loaded, setLoaded] = useState(false);
@@ -38,7 +45,7 @@ const Home = (props) => {
   const updateFromDb = () => {
     p("Running updateFromDb");
     axios
-      .get("http://localhost:9000/api/author/")
+      .get("http://localhost:9000/api/pirate/")
       .then((res) => {
         // console.log(res.data);
         setFromDb(res.data);
@@ -52,7 +59,7 @@ const Home = (props) => {
     event.preventDefault();
 
     axios
-      .post("http://localhost:9000/api/author/create", form)
+      .post("http://localhost:9000/api/pirate/create", form)
       .then((res) => {
         console.log(res.data);
         setLoaded(true);
@@ -82,7 +89,7 @@ const Home = (props) => {
     if (window.confirm(`Are you sure you want to delete item ${name}?`)) {
       console.log("inside on click delete");
       axios
-        .delete(`http://localhost:9000/api/author/delete/${_id}`)
+        .delete(`http://localhost:9000/api/pirate/delete/${_id}`)
         .then((res) => {
           console.log(res.data);
           const copyState = [...fromDb];
@@ -143,7 +150,7 @@ const Home = (props) => {
   return (
     <>
       <Link to={"/add"}>
-        <button className="btn btn-primary">New Author</button>
+        <button className="btn btn-primary">New Pirate</button>
       </Link>
       <form onSubmit={onSubmitHandler} className="box3">
         <div id="floatContainer" className="float-container">

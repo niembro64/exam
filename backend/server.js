@@ -16,12 +16,12 @@ const AllMyJokesRoutes = require("./server/routes/jokes.routes");
 AllMyJokesRoutes(app);
 const AllMyPMRoutes = require("./server/routes/pm.routes");
 AllMyPMRoutes(app);
-const AllMyAuthorRoutes = require("./server/routes/author.routes");
-AllMyAuthorRoutes(app);
+const AllMyPirateRoutes = require("./server/routes/pirate.routes");
+AllMyPirateRoutes(app);
 
 app.get("/api", (req, res) => {
   console.log("trying to talk to database");
-  res.json({ assignment: "Niemo Assignment Authors", port: port });
+  res.json({ assignment: "Niemo Exam Pirates", port: port });
 });
 
 app.listen(port, () => console.log(`Server running on port ${port}`));
