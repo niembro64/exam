@@ -229,19 +229,19 @@ const Single = (props) => {
             </thead>
             <tbody>
               <tr>
-                <td className="align-middle p-3">Crew Position:</td>
-                <td className="align-middle p-3">{one.crewPosition}</td>
-                <td className="align-middle p-3"></td>
+                <td className="align-middle text-end">Crew Position:</td>
+                <td className="align-middle text-start">{one.crewPosition}</td>
+                <td className="align-middle"></td>
               </tr>
               <tr>
-                <td className="align-middle">Number of Chests:</td>
-                <td className="align-middle">{one.numChests}</td>
-                <td className="align-middle p-3"></td>
+                <td className="align-middle text-end">Number of Chests:</td>
+                <td className="align-middle text-start">{one.numChests}</td>
+                <td className="align-middle"></td>
               </tr>
               <tr>
-                <td className="align-middle">Peg-Leg:</td>
-                <td className="align-middle">{one.pegLeg ? "Yes" : "No"}</td>
-                <td className="align-middle">
+                <td className="align-middle text-end">Peg-Leg:</td>
+                <td className="align-middle text-start">{one.pegLeg ? "Yes" : "No"}</td>
+                <td className="align-middle text-end">
                   <button
                     onClick={(event) => onClickHandlerPegLeg(event)}
                     className="btn btn-secondary mx-4"
@@ -252,9 +252,9 @@ const Single = (props) => {
                 </td>
               </tr>
               <tr>
-                <td className="align-middle">Eye-Patch:</td>
-                <td className="align-middle">{one.eyePatch ? "Yes" : "No"}</td>
-                <td className="align-middle">
+                <td className="align-middle text-end">Eye-Patch:</td>
+                <td className="align-middle text-start">{one.eyePatch ? "Yes" : "No"}</td>
+                <td className="align-middle text-end">
                   <button
                     onClick={(event) => onClickHandlerEyePatch(event)}
                     className="btn btn-secondary mx-4"
@@ -265,9 +265,9 @@ const Single = (props) => {
                 </td>
               </tr>
               <tr>
-                <td className="align-middle">Hook-Hand:</td>
-                <td className="align-middle">{one.hookHand ? "Yes" : "No"}</td>
-                <td className="align-middle">
+                <td className="align-middle text-end">Hook-Hand:</td>
+                <td className="align-middle text-start">{one.hookHand ? "Yes" : "No"}</td>
+                <td className="align-middle text-end">
                   <button
                     onClick={(event) => onClickHandlerHookHand(event)}
                     className="btn btn-secondary mx-4"
