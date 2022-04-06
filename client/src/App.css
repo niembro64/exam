@@ -152,8 +152,15 @@ img {
   margin: 30px;
 }
 
+h2{
+  margin: 5px;
+}
 h4{
   margin: 10px;
+}
+
+.btn{
+  margin: 5px;
 }
 
 .l{

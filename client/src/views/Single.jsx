@@ -200,9 +200,8 @@ const Single = (props) => {
         <Link to={"/"}>
           <button className="btn btn-secondary mx-4">Back to Crew</button>
         </Link>
-        {/* <Link to={`/${one._id}/edit`}>
-          <button className="btn btn-success mx-4">Edit</button>
-        </Link> */}
+      </div>
+      <div className="box">
         <Link to={`/`}>
           <button
             onClick={() => {
@@ -213,8 +212,6 @@ const Single = (props) => {
             Delete Pirate
           </button>
         </Link>
-      </div>
-      <div className="box">
         <div className="lr">
           <h1>{one.pirateName}</h1>
           <img src={one.imageUrl} alt="imageUrl" />
@@ -298,7 +295,7 @@ const Single = (props) => {
               return (
                 <tr key={i}>
                   <td>{item[0]}</td>
-                  <td>{typeof item[1] === 'boolean' ? (item[1] ? "true" : "false") : item[1]}</td>
+                  <td className="text-break">{typeof item[1] === 'boolean' ? (item[1] ? "true" : "false") : item[1]}</td>
                   {/* <td style={{(item[1].length > 10 ? { fontSize: "10px" } : {fontSize = "20px"})}}>
                     {item[1]}
                   </td> */}
