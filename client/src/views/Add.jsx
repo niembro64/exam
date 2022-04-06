@@ -136,9 +136,9 @@ const Edit = (props) => {
   return (
     <>
       <div className="box">
-        <h2>Add Pirate</h2>
+        <h2>Add New Pirate</h2>
         <Link to={"/"}>
-          <button className="btn btn-secondary mx-4">Crew Board</button>
+          <button className="btn btn-secondary">Back to Crew</button>
         </Link>
         {/* <Link to={`/`}>
           <button
@@ -159,7 +159,7 @@ const Edit = (props) => {
             // style={{ position: "absolute", zIndex: 1 }}
             htmlFor="pirateName"
           >
-            pirateName
+            Pirate Name
           </label>
           <input
             // style={{ position: "relative", zIndex: 2 }}
@@ -179,7 +179,10 @@ const Edit = (props) => {
             // style={{ position: "absolute", zIndex: 1 }}
             htmlFor="imageUrl"
           >
-            imageUrl
+            Picture{" "}
+            <span className="text-muted small">
+              (Google Image Search Pirate Then Right-Click Copy-URL)
+            </span>
           </label>
           <input
             // style={{ position: "relative", zIndex: 2 }}
@@ -199,7 +202,7 @@ const Edit = (props) => {
             // style={{ position: "absolute", zIndex: 1 }}
             htmlFor="numChests"
           >
-            numChests
+            Has How Many Treasure Chests?
           </label>
           <input
             // style={{ position: "relative", zIndex: 2 }}
@@ -218,7 +221,7 @@ const Edit = (props) => {
             // style={{ position: "absolute", zIndex: 1 }}
             htmlFor="catchPhrase"
           >
-            catchPhrase
+            What's his Catch Phrase?
           </label>
           <input
             // style={{ position: "relative", zIndex: 2 }}
@@ -237,7 +240,7 @@ const Edit = (props) => {
             // style={{ position: "absolute", zIndex: 1 }}
             htmlFor="crewPosition"
           >
-            crewPosition
+            What's his Position in the Crew?{" "}
           </label>
           <input
             // style={{ position: "relative", zIndex: 2 }}
@@ -256,7 +259,7 @@ const Edit = (props) => {
             // style={{ position: "absolute", zIndex: 1 }}
             htmlFor="pegLeg"
           >
-            pegLeg
+            Does He Have a Peg-Leg?
           </label>
           <input
             // style={{ position: "relative", zIndex: 2 }}
@@ -265,8 +268,8 @@ const Edit = (props) => {
             type="checkbox"
             name="pegLeg"
             onClick={onChangeHandlerPegLeg}
-
             checked={form.pegLeg}
+            className="big-checkbox"
             // placeholder=""
             // default="asdf"
           />
@@ -276,7 +279,7 @@ const Edit = (props) => {
             // style={{ position: "absolute", zIndex: 1 }}
             htmlFor="eyePatch"
           >
-            eyePatch
+            Does He Have an Eye-Patch?
           </label>
           <input
             // style={{ position: "relative", zIndex: 2 }}
@@ -286,6 +289,7 @@ const Edit = (props) => {
             name="eyePatch"
             onClick={onChangeHandlerEyePatch}
             checked={form.eyePatch}
+            className="big-checkbox"
 
             // placeholder=""
             // default="asdf"
@@ -296,7 +300,7 @@ const Edit = (props) => {
             // style={{ position: "absolute", zIndex: 1 }}
             htmlFor="hookHand"
           >
-            hookHand
+            Does He have a Hook-Hand?
           </label>
           <input
             // style={{ position: "relative", zIndex: 2 }}
@@ -306,42 +310,44 @@ const Edit = (props) => {
             name="hookHand"
             onClick={onChangeHandlerHookHand}
             checked={form.hookHand}
+            className="big-checkbox"
             // placeholder=""
             // default="asdf"
           />
         </div>
-        <span className="alert-danger">
-          {error.pirateName && error.pirateName.message}
-        </span>
-        <span className="alert-danger">
-          {error.imageUrl && error.imageUrl.message}
-        </span>
-        <span className="alert-danger">
-          {error.numChests && error.numChests.message}
-        </span>
-        <span className="alert-danger">
-          {error.catchPhrase && error.catchPhrase.message}
-        </span>
-        <span className="alert-danger">
-          {error.crewPosition && error.crewPosition.message}
-        </span>
-        <span className="alert-danger">
-          {error.pegLeg && error.pegLeg.message}
-        </span>
-        <span className="alert-danger">
-          {error.eyePatch && error.eyePatch.message}
-        </span>
-        <span className="alert-danger">
-          {error.hookHand && error.hookHand.message}
-        </span>
-
-        <input type="submit" className="btn btn-primary" />
+        <div className="box5">
+          <span className="alert-danger">
+            {error.pirateName && error.pirateName.message}
+          </span>
+          <span className="alert-danger">
+            {error.imageUrl && error.imageUrl.message}
+          </span>
+          <span className="alert-danger">
+            {error.numChests && error.numChests.message}
+          </span>
+          <span className="alert-danger">
+            {error.catchPhrase && error.catchPhrase.message}
+          </span>
+          <span className="alert-danger">
+            {error.crewPosition && error.crewPosition.message}
+          </span>
+          <span className="alert-danger">
+            {error.pegLeg && error.pegLeg.message}
+          </span>
+          <span className="alert-danger">
+            {error.eyePatch && error.eyePatch.message}
+          </span>
+          <span className="alert-danger">
+            {error.hookHand && error.hookHand.message}
+          </span>
+        </div>
+        <input type="submit" value="Create Pirate!" className="btn btn-primary" />
       </form>
       {/* </div> */}
-      <div className="box">
+      {/* <div className="box">
         <p>form</p>
         <p> {form.name}</p>
-      </div>
+      </div> */}
       {/* <div className="box">
         <p>one</p>
         <p> {one.name}</p>

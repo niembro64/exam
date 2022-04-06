@@ -66,8 +66,8 @@ const Single = (props) => {
   // // one.pegLeg, one.eyePatch, one.hookHand
   // }, [one.pegLeg, one.eyePatch, one.hookHand]);
 
-  const onDeleteHandler = (_id) => {
-    if (window.confirm(`Are you sure you want to delete this item?`)) {
+  const onDeleteHandler = (_id, pirateName) => {
+    if (window.confirm(`Are you sure you want to delete ${pirateName}?`)) {
       console.log("inside on click delete");
       axios
         .delete(`http://localhost:9000/api/pirate/delete/${_id}`)
@@ -195,20 +195,20 @@ const Single = (props) => {
     <>
       <div className="box">
         <Link to={"/"}>
-          <button className="btn btn-secondary mx-4">Back</button>
+          <button className="btn btn-secondary mx-4">Back to Crew</button>
         </Link>
-        <h2>View</h2>
+        <h2>View Pirate Details</h2>
         {/* <Link to={`/${one._id}/edit`}>
           <button className="btn btn-success mx-4">Edit</button>
         </Link> */}
         <Link to={`/`}>
           <button
             onClick={() => {
-              onDeleteHandler(one._id);
+              onDeleteHandler(one._id, one.pirateName);
             }}
             className="btn btn-danger mx-4"
           >
-            delete
+            Delete Pirate
           </button>
         </Link>
       </div>
@@ -230,22 +230,17 @@ const Single = (props) => {
             </thead>
             <tbody>
               <tr>
-                <td className="align-middle p-3">Position:</td>
+                <td className="align-middle p-3">Crew Position:</td>
                 <td className="align-middle p-3">{one.crewPosition}</td>
                 <td className="align-middle p-3"></td>
               </tr>
               <tr>
-                <td className="align-middle p-3">crewPosition:</td>
-                <td className="align-middle p-3">{one.crewPosition}</td>
-                <td className="align-middle p-3"></td>
-              </tr>
-              <tr>
-                <td className="align-middle">numChests:</td>
+                <td className="align-middle">Number of Chests:</td>
                 <td className="align-middle">{one.numChests}</td>
                 <td className="align-middle p-3"></td>
               </tr>
               <tr>
-                <td className="align-middle">pegLeg</td>
+                <td className="align-middle">Peg-Leg:</td>
                 <td className="align-middle">{one.pegLeg ? "Yes" : "No"}</td>
                 <td className="align-middle">
                   <button
@@ -258,7 +253,7 @@ const Single = (props) => {
                 </td>
               </tr>
               <tr>
-                <td className="align-middle">eyePatch</td>
+                <td className="align-middle">Eye-Patch:</td>
                 <td className="align-middle">{one.eyePatch ? "Yes" : "No"}</td>
                 <td className="align-middle">
                   <button
@@ -271,7 +266,7 @@ const Single = (props) => {
                 </td>
               </tr>
               <tr>
-                <td className="align-middle">hookHand:</td>
+                <td className="align-middle">Hook-Hand:</td>
                 <td className="align-middle">{one.hookHand ? "Yes" : "No"}</td>
                 <td className="align-middle">
                   <button

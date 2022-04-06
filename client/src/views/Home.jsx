@@ -84,8 +84,8 @@ const Home = (props) => {
     setForm(newState);
   };
 
-  const onDeleteHandler = (_id, arrIndex, name) => {
-    if (window.confirm(`Are you sure you want to delete item ${name}?`)) {
+  const onDeleteHandler = (_id, arrIndex, pirateName) => {
+    if (window.confirm(`Are you sure you want to delete ${pirateName}?`)) {
       console.log("inside on click delete");
       axios
         .delete(`http://localhost:9000/api/pirate/delete/${_id}`)
@@ -149,7 +149,7 @@ const Home = (props) => {
   return (
     <>
       <div className="box">
-        <h2>View Pirate Crew</h2>
+      <h2>View Pirate Crew</h2>
         <Link to={"/add"}>
           <button className="btn btn-primary">Add Pirate</button>
         </Link>
@@ -158,7 +158,6 @@ const Home = (props) => {
         <table className="table table-sm table-hover ">
           <thead>
             <tr>
-      
               <th>Picture</th>
 
               <th>Pirate Name</th>
@@ -182,7 +181,9 @@ const Home = (props) => {
 
                   <td className="align-middle">
                     <Link to={`/${item._id}`}>
-                      <button className="btn btn-secondary btn-sm">View</button>
+                      <button className="btn btn-secondary btn">
+                        View Pirate
+                      </button>
                     </Link>
                   </td>
                   {/* <td>
@@ -193,8 +194,8 @@ const Home = (props) => {
                   <td className="align-middle">
                     <Link to={`/`}>
                       <button
-                        onClick={() => onDeleteHandler(item._id, i, item.title)}
-                        className="btn btn-danger btn-sm"
+                        onClick={() => onDeleteHandler(item._id, i, item.pirateName)}
+                        className="btn btn-danger btn"
                       >
                         Walk the Plank
                       </button>
