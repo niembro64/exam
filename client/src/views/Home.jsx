@@ -151,7 +151,7 @@ const Home = (props) => {
       <div className="box">
       <h2>View Pirate Crew</h2>
         <Link to={"/add"}>
-          <button className="btn btn-primary">Add Pirate</button>
+          <button className="btn btn-primary">Add a Pirate</button>
         </Link>
       </div>
       <div className="box">
@@ -160,7 +160,7 @@ const Home = (props) => {
             <tr>
               <th>Picture</th>
 
-              <th>Pirate Name</th>
+              <th>Name</th>
 
               <th>Get Details</th>
               {/* <th></th> */}

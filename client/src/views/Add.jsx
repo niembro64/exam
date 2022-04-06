@@ -178,11 +178,9 @@ const Edit = (props) => {
           <label
             // style={{ position: "absolute", zIndex: 1 }}
             htmlFor="imageUrl"
+            className="control-label"
           >
-            Picture{" "}
-            <span className="text-muted small">
-              (Google Image Search Pirate Then Right-Click Copy-URL)
-            </span>
+            Picture
           </label>
           <input
             // style={{ position: "relative", zIndex: 2 }}
@@ -196,6 +194,9 @@ const Edit = (props) => {
             // placeholder=""
             // default="asdf"
           />
+            <span className="text-muted small">
+              Google Image Search Then Right-Click And Copy & Paste the URL (Address) Here
+            </span>
         </div>
         <div id="floatContainer" className="box4">
           <label
@@ -254,7 +255,7 @@ const Edit = (props) => {
             // default="asdf"
           />
         </div>
-        <div id="floatContainer" className="box4">
+        <div id="floatContainer" className="box6">
           <label
             // style={{ position: "absolute", zIndex: 1 }}
             htmlFor="pegLeg"
@@ -274,7 +275,7 @@ const Edit = (props) => {
             // default="asdf"
           />
         </div>
-        <div id="floatContainer" className="box4">
+        <div id="floatContainer" className="box6">
           <label
             // style={{ position: "absolute", zIndex: 1 }}
             htmlFor="eyePatch"
@@ -295,7 +296,7 @@ const Edit = (props) => {
             // default="asdf"
           />
         </div>
-        <div id="floatContainer" className="box4">
+        <div id="floatContainer" className="box6">
           <label
             // style={{ position: "absolute", zIndex: 1 }}
             htmlFor="hookHand"

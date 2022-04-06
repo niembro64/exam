@@ -87,16 +87,21 @@ const Single = (props) => {
     };
 
     setOne({
-      pirateName: one.pirateName,
-      imageUrl: one.imageUrl,
-      numChests: one.numChests,
-      catchPhrase: one.catchPhrase,
-      crewPosition: one.crewPosition,
+      ...one,
       pegLeg: !one.pegLeg,
-      eyePatch: one.eyePatch,
-      hookHand: one.hookHand,
-      // [event.target.name]: !event.target.value,
     });
+
+    // setOne({
+    //   pirateName: one.pirateName,
+    //   imageUrl: one.imageUrl,
+    //   numChests: one.numChests,
+    //   catchPhrase: one.catchPhrase,
+    //   crewPosition: one.crewPosition,
+    //   pegLeg: !one.pegLeg,
+    //   eyePatch: one.eyePatch,
+    //   hookHand: one.hookHand,
+    //   // [event.target.name]: !event.target.value,
+    // });
 
     console.log("CopyState:");
     console.log(copyState);
@@ -125,16 +130,20 @@ const Single = (props) => {
     };
 
     setOne({
-      pirateName: one.pirateName,
-      imageUrl: one.imageUrl,
-      numChests: one.numChests,
-      catchPhrase: one.catchPhrase,
-      crewPosition: one.crewPosition,
-      pegLeg: one.pegLeg,
+      ...one,
       eyePatch: !one.eyePatch,
-      hookHand: one.hookHand,
-      // [event.target.name]: !event.target.value,
     });
+    // setOne({
+    //   pirateName: one.pirateName,
+    //   imageUrl: one.imageUrl,
+    //   numChests: one.numChests,
+    //   catchPhrase: one.catchPhrase,
+    //   crewPosition: one.crewPosition,
+    //   pegLeg: one.pegLeg,
+    //   eyePatch: !one.eyePatch,
+    //   hookHand: one.hookHand,
+    //   // [event.target.name]: !event.target.value,
+    // });
 
     console.log("CopyState:");
     console.log(copyState);
@@ -163,15 +172,8 @@ const Single = (props) => {
     };
 
     setOne({
-      pirateName: one.pirateName,
-      imageUrl: one.imageUrl,
-      numChests: one.numChests,
-      catchPhrase: one.catchPhrase,
-      crewPosition: one.crewPosition,
-      pegLeg: one.pegLeg,
-      eyePatch: one.eyePatch,
+      ...one,
       hookHand: !one.hookHand,
-      // [event.target.name]: !event.target.value,
     });
 
     console.log("CopyState:");
@@ -194,10 +196,10 @@ const Single = (props) => {
   return (
     <>
       <div className="box">
+        <h2>View Pirate Details</h2>
         <Link to={"/"}>
           <button className="btn btn-secondary mx-4">Back to Crew</button>
         </Link>
-        <h2>View Pirate Details</h2>
         {/* <Link to={`/${one._id}/edit`}>
           <button className="btn btn-success mx-4">Edit</button>
         </Link> */}
@@ -282,27 +284,30 @@ const Single = (props) => {
           </table>
         </div>
       </div>
-      <table className="table table-sm table-hover ">
-        <thead>
-          <tr>
-            <th>Key</th>
-            <th>Value</th>
-          </tr>
-        </thead>
-        <tbody>
-          {Object.entries(one).map((item, i) => {
-            return (
-              <tr key={i}>
-                <td>{item[0]}</td>
-                <td>{item[1] ? item[1] : "false"}</td>
-                {/* <td style={{(item[1].length > 10 ? { fontSize: "10px" } : {fontSize = "20px"})}}>
+      <div className="box2">
+        <h4>Raw MongoDB Pirate Data</h4>
+        <table className="table table-sm table-hover ">
+          <thead>
+            <tr>
+              <th>Key</th>
+              <th>Value</th>
+            </tr>
+          </thead>
+          <tbody>
+            {Object.entries(one).map((item, i) => {
+              return (
+                <tr key={i}>
+                  <td>{item[0]}</td>
+                  <td>{typeof item[1] === 'boolean' ? (item[1] ? "true" : "false") : item[1]}</td>
+                  {/* <td style={{(item[1].length > 10 ? { fontSize: "10px" } : {fontSize = "20px"})}}>
                     {item[1]}
                   </td> */}
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
     </>
   );
 };
