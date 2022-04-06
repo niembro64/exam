@@ -202,16 +202,6 @@ const Single = (props) => {
         </Link>
       </div>
       <div className="box">
-        <Link to={`/`}>
-          <button
-            onClick={() => {
-              onDeleteHandler(one._id, one.pirateName);
-            }}
-            className="btn btn-danger mx-4"
-          >
-            Delete Pirate
-          </button>
-        </Link>
         <div className="lr">
           <h1>{one.pirateName}</h1>
           <img src={one.imageUrl} alt="imageUrl" />
@@ -247,7 +237,7 @@ const Single = (props) => {
                     className="btn btn-secondary mx-4"
                     name="pegLeg"
                   >
-                    {one.pegLeg ? "No" : "Yes"}
+                 Fix
                   </button>
                 </td>
               </tr>
@@ -260,7 +250,7 @@ const Single = (props) => {
                     className="btn btn-secondary mx-4"
                     name="eyePatch"
                   >
-                    {one.eyePatch ? "No" : "Yes"}
+                   Fix
                   </button>
                 </td>
               </tr>
@@ -273,12 +263,22 @@ const Single = (props) => {
                     className="btn btn-secondary mx-4"
                     name="hookHand"
                   >
-                    {one.hookHand ? "No" : "Yes"}
+                    Fix
                   </button>
                 </td>
               </tr>
             </tbody>
           </table>
+        <Link to={`/`}>
+          <button
+            onClick={() => {
+              onDeleteHandler(one._id, one.pirateName);
+            }}
+            className="btn btn-danger mx-4"
+          >
+            Walk the Plank
+          </button>
+        </Link>
         </div>
       </div>
       <div className="box2">
