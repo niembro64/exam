@@ -149,193 +149,23 @@ const Home = (props) => {
   return (
     <>
       <div className="box">
-        <h2>Pirate Crew</h2>
+        <h2>View Pirate Crew</h2>
         <Link to={"/add"}>
           <button className="btn btn-primary">Add Pirate</button>
         </Link>
       </div>
-      <form onSubmit={onSubmitHandler} className="box3">
-        <div id="floatContainer" className="float-container">
-          <label
-            style={{ position: "absolute", zIndex: 1 }}
-            htmlFor="pirateName"
-          >
-            pirateName
-          </label>
-          <input
-            style={{ position: "relative", zIndex: 2 }}
-            autoFocus="autofocus"
-            id="floatField"
-            type="text"
-            name="pirateName"
-            onChange={onChangeHandler}
-
-            // placeholder=""
-            // default="asdf"
-          />
-        </div>
-        <div id="floatContainer" className="float-container">
-          <label style={{ position: "absolute", zIndex: 1 }} htmlFor="imageUrl">
-            imageUrl
-          </label>
-          <input
-            style={{ position: "relative", zIndex: 2 }}
-            autoFocus="autofocus"
-            id="floatField"
-            type="text"
-            name="imageUrl"
-            onChange={onChangeHandler}
-
-            // placeholder=""
-            // default="asdf"
-          />
-        </div>
-        <div id="floatContainer" className="float-container">
-          <label
-            style={{ position: "absolute", zIndex: 1 }}
-            htmlFor="numChests"
-          >
-            numChests
-          </label>
-          <input
-            style={{ position: "relative", zIndex: 2 }}
-            autoFocus="autofocus"
-            id="floatField"
-            type="text"
-            name="numChests"
-            onChange={onChangeHandler}
-
-            // placeholder=""
-            // default="asdf"
-          />
-        </div>
-        <div id="floatContainer" className="float-container">
-          <label
-            style={{ position: "absolute", zIndex: 1 }}
-            htmlFor="catchPhrase"
-          >
-            catchPhrase
-          </label>
-          <input
-            style={{ position: "relative", zIndex: 2 }}
-            autoFocus="autofocus"
-            id="floatField"
-            type="text"
-            name="catchPhrase"
-            onChange={onChangeHandler}
-
-            // placeholder=""
-            // default="asdf"
-          />
-        </div>
-        <div id="floatContainer" className="float-container">
-          <label
-            style={{ position: "absolute", zIndex: 1 }}
-            htmlFor="crewPosition"
-          >
-            crewPosition
-          </label>
-          <input
-            style={{ position: "relative", zIndex: 2 }}
-            autoFocus="autofocus"
-            id="floatField"
-            type="text"
-            name="crewPosition"
-            onChange={onChangeHandler}
-
-            // placeholder=""
-            // default="asdf"
-          />
-        </div>
-        <div id="floatContainer" className="float-container">
-          <label style={{ position: "absolute", zIndex: 1 }} htmlFor="pegLeg">
-            pegLeg
-          </label>
-          <input
-            style={{ position: "relative", zIndex: 2 }}
-            autoFocus="autofocus"
-            id="floatField"
-            type="text"
-            name="pegLeg"
-            onChange={onChangeHandler}
-
-            // placeholder=""
-            // default="asdf"
-          />
-        </div>
-        <div id="floatContainer" className="float-container">
-          <label style={{ position: "absolute", zIndex: 1 }} htmlFor="eyePatch">
-            eyePatch
-          </label>
-          <input
-            style={{ position: "relative", zIndex: 2 }}
-            autoFocus="autofocus"
-            id="floatField"
-            type="text"
-            name="eyePatch"
-            onChange={onChangeHandler}
-
-            // placeholder=""
-            // default="asdf"
-          />
-        </div>
-        <div id="floatContainer" className="float-container">
-          <label style={{ position: "absolute", zIndex: 1 }} htmlFor="hookHand">
-            hookHand
-          </label>
-          <input
-            style={{ position: "relative", zIndex: 2 }}
-            autoFocus="autofocus"
-            id="floatField"
-            type="text"
-            name="hookHand"
-            onChange={onChangeHandler}
-
-            // placeholder=""
-            // default="asdf"
-          />
-        </div>
-        <span className="alert-danger">
-          {error.pirateName && error.pirateName.message}
-        </span>
-        <span className="alert-danger">
-          {error.imageUrl && error.imageUrl.message}
-        </span>
-        <span className="alert-danger">
-          {error.numChests && error.numChests.message}
-        </span>
-        <span className="alert-danger">
-          {error.catchPhrase && error.catchPhrase.message}
-        </span>
-        <span className="alert-danger">
-          {error.crewPosition && error.crewPosition.message}
-        </span>
-        <span className="alert-danger">
-          {error.pegLeg && error.pegLeg.message}
-        </span>
-        <span className="alert-danger">
-          {error.eyePatch && error.eyePatch.message}
-        </span>
-        <span className="alert-danger">
-          {error.hookHand && error.hookHand.message}
-        </span>
-
-        <input type="submit" className="btn btn-primary mx-4" />
-      </form>
-
       <div className="box">
         <table className="table table-sm table-hover ">
           <thead>
             <tr>
-              {/* <th>ID</th> */}
-              {/* <th>#</th> */}
-              <th>imageUrl</th>
-           
-              <th>pirateName</th>
+      
+              <th>Picture</th>
 
-              <th>view</th>
+              <th>Pirate Name</th>
+
+              <th>Get Details</th>
               {/* <th></th> */}
-              <th>delete</th>
+              <th>Delete Pirate</th>
             </tr>
           </thead>
           <tbody>
@@ -345,13 +175,9 @@ const Home = (props) => {
                 <tr key={i}>
                   {/* <td>{item._id}</td> */}
                   <td>
-                 
-                    <img
-                      src={item.imageUrl}
-                      alt="imageUrl"
-                    />
+                    <img src={item.imageUrl} alt="imageUrl" />
                   </td>
-         
+
                   <td className="align-middle"> {item.pirateName}</td>
 
                   <td className="align-middle">
@@ -379,21 +205,6 @@ const Home = (props) => {
             })}
           </tbody>
         </table>
-      </div>
-      <div className="box2">
-        <p>from Form:</p>
-        <div className="box">
-          <div className="box2">
-            <p>{form.pirateName}</p>
-            <p>{form.imageUrl}</p>
-            <p>{form.numChests}</p>
-            <p>{form.catchPhrase}</p>
-            <p>{form.crewPosition}</p>
-            <p>{form.pegLeg}</p>
-            <p>{form.eyePatch}</p>
-            <p>{form.hookHand}</p>
-          </div>
-        </div>
       </div>
     </>
   );

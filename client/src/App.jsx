@@ -12,7 +12,7 @@ import Add from "./views/Add";
 function App() {
   return (
     <div className="App">
-      <h1>Exam Pirates</h1>
+      <h4>Eric Niemeyer | React Exam | Coding Dojo</h4>
       <Switch>
         <Route exact path="/">
           <Home />
