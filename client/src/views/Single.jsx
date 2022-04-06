@@ -219,18 +219,18 @@ const Single = (props) => {
             </thead>
             <tbody>
               <tr>
-                <td className="align-middle text-end">Crew Position:</td>
-                <td className="align-middle text-start">{one.crewPosition}</td>
+                <td className="align-middle text-end">Position:</td>
+                <td className="align-middle">{one.crewPosition}</td>
                 <td className="align-middle"></td>
               </tr>
               <tr>
-                <td className="align-middle text-end">Number of Chests:</td>
-                <td className="align-middle text-start">{one.numChests}</td>
+                <td className="align-middle text-end">Chests:</td>
+                <td className="align-middle ">{one.numChests}</td>
                 <td className="align-middle"></td>
               </tr>
               <tr>
-                <td className="align-middle text-end">Peg-Leg:</td>
-                <td className="align-middle text-start">{one.pegLeg ? "Yes" : "No"}</td>
+                <td className="align-middle text-end">Pegleg:</td>
+                <td className="align-middle ">{one.pegLeg ? "Yes" : "No"}</td>
                 <td className="align-middle text-end">
                   <button
                     onClick={(event) => onClickHandlerPegLeg(event)}
@@ -242,8 +242,8 @@ const Single = (props) => {
                 </td>
               </tr>
               <tr>
-                <td className="align-middle text-end">Eye-Patch:</td>
-                <td className="align-middle text-start">{one.eyePatch ? "Yes" : "No"}</td>
+                <td className="align-middle text-end">Eyepatch:</td>
+                <td className="align-middle">{one.eyePatch ? "Yes" : "No"}</td>
                 <td className="align-middle text-end">
                   <button
                     onClick={(event) => onClickHandlerEyePatch(event)}
@@ -255,8 +255,8 @@ const Single = (props) => {
                 </td>
               </tr>
               <tr>
-                <td className="align-middle text-end">Hook-Hand:</td>
-                <td className="align-middle text-start">{one.hookHand ? "Yes" : "No"}</td>
+                <td className="align-middle text-end">Hookhand:</td>
+                <td className="align-middle">{one.hookHand ? "Yes" : "No"}</td>
                 <td className="align-middle text-end">
                   <button
                     onClick={(event) => onClickHandlerHookHand(event)}
