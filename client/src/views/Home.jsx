@@ -182,7 +182,7 @@ const Home = (props) => {
                   <td className="align-middle">
                     <Link to={`/${item._id}`}>
                       <button className="btn btn-secondary btn">
-                        View Pirate
+                        View {item.pirateName}
                       </button>
                     </Link>
                   </td>
