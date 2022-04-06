@@ -201,7 +201,7 @@ const Single = (props) => {
           <button className="btn btn-secondary mx-4">Back to Crew</button>
         </Link>
       </div>
-      <div className="box">
+      <div className="box0">
         <div className="lr">
           <h1>{one.pirateName}</h1>
           <img src={one.imageUrl} alt="imageUrl" />
