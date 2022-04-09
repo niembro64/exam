@@ -161,7 +161,7 @@ const Home = (props) => {
               <th>View Pirate</th>
               <th></th>
               <th></th>
-              <th>Delete</th>
+              <th>Delete Pirate</th>
             </tr>
           </thead>
           <tbody>
@@ -180,8 +180,8 @@ const Home = (props) => {
                   </td>
                   <td id="quotes">
                     
-                    <h5 id="pirate" className="text-middle pt-3 pb-0">"{item.catchPhrase}"</h5>
-                    {/* <h5 id="pirate" className="text-end  pt-0 pb-0">- {item.pirateName}</h5> */}
+                    <h3 id="pirate" className="text-middle pt-3 pb-0">"{item.catchPhrase}"</h3>
+                    <h6 id="pirate" className="text-middle  pt-0 pb-0">- {item.pirateName}</h6>
                     
                     </td>
                   <td className="align-middle">

@@ -234,7 +234,7 @@ const Single = (props) => {
                 <td className="align-middle text-end">
                   <button
                     onClick={(event) => onClickHandlerPegLeg(event)}
-                    className="btn btn-success mx-4"
+                    className="btn btn-primary mx-4"
                     name="pegLeg"
                   >
                  Update
@@ -247,7 +247,7 @@ const Single = (props) => {
                 <td className="align-middle text-end">
                   <button
                     onClick={(event) => onClickHandlerEyePatch(event)}
-                    className="btn btn-success mx-4"
+                    className="btn btn-primary mx-4"
                     name="eyePatch"
                   >
                    Update
@@ -260,7 +260,7 @@ const Single = (props) => {
                 <td className="align-middle text-end">
                   <button
                     onClick={(event) => onClickHandlerHookHand(event)}
-                    className="btn btn-success mx-4"
+                    className="btn btn-primary mx-4"
                     name="hookHand"
                   >
                     Update

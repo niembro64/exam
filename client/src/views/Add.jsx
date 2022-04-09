@@ -142,9 +142,7 @@ const Edit = (props) => {
           <button className="btn btn-secondary">Back to Crew</button>
         </Link>
         <h2>Add New Pirate</h2>
-
       </div>
-
       <div></div>
       <form onSubmit={onSubmitHandler} className="box3">
         <div id="floatContainer" className="box4">
