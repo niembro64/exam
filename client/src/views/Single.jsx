@@ -196,16 +196,16 @@ const Single = (props) => {
   return (
     <>
       <div className="box">
-        <h2>View Pirate Details</h2>
         <Link to={"/"}>
           <button className="btn btn-secondary mx-4">Back to Crew</button>
         </Link>
+        <h2>Pirate Details</h2>
       </div>
       <div className="box0">
         <div className="lr">
-          <h1>{one.pirateName}</h1>
+          <h1 id="pirate">{one.pirateName}</h1>
           <img src={one.imageUrl} alt="imageUrl" />
-          <h1>"{one.catchPhrase}"</h1>
+          <h1 id="pirate">"{one.catchPhrase}"</h1>
         </div>
         <div className="lr">
           <h1>About</h1>
@@ -219,51 +219,51 @@ const Single = (props) => {
             </thead>
             <tbody>
               <tr>
-                <td className="align-middle text-end">Position:</td>
-                <td className="align-middle">{one.crewPosition}</td>
+                <td className="align-middle text-end"><h4> Position:</h4></td>
+                <td className="align-middle"><h3 id="pirate">{one.crewPosition}</h3></td>
                 <td className="align-middle"></td>
               </tr>
               <tr>
-                <td className="align-middle text-end">Chests:</td>
-                <td className="align-middle ">{one.numChests}</td>
+                <td className="align-middle text-end"><h4>Chests:</h4></td>
+                <td id="pirate" className="align-middle "><h3 id="pirate">{one.numChests}</h3></td>
                 <td className="align-middle"></td>
               </tr>
               <tr>
-                <td className="align-middle text-end">Pegleg:</td>
-                <td className="align-middle ">{one.pegLeg ? "Yes" : "No"}</td>
+                <td className="align-middle text-end"><h4>Pegleg:</h4></td>
+                <td className="align-middle "><h4>{one.pegLeg ? "✔️" : "❌"}</h4></td>
                 <td className="align-middle text-end">
                   <button
                     onClick={(event) => onClickHandlerPegLeg(event)}
-                    className="btn btn-secondary mx-4"
+                    className="btn btn-success mx-4"
                     name="pegLeg"
                   >
-                 Fix
+                 Update
                   </button>
                 </td>
               </tr>
               <tr>
-                <td className="align-middle text-end">Eyepatch:</td>
-                <td className="align-middle">{one.eyePatch ? "Yes" : "No"}</td>
+                <td className="align-middle text-end"><h4>Eyepatch:</h4></td>
+                <td className="align-middle"><h4>{one.eyePatch ? "✔️" : "❌"}</h4></td>
                 <td className="align-middle text-end">
                   <button
                     onClick={(event) => onClickHandlerEyePatch(event)}
-                    className="btn btn-secondary mx-4"
+                    className="btn btn-success mx-4"
                     name="eyePatch"
                   >
-                   Fix
+                   Update
                   </button>
                 </td>
               </tr>
               <tr>
-                <td className="align-middle text-end">Hookhand:</td>
-                <td className="align-middle">{one.hookHand ? "Yes" : "No"}</td>
+                <td className="align-middle text-end"><h4>Hookhand:</h4></td>
+                <td className="align-middle"><h4>{one.hookHand ? "✔️" : "❌"}</h4></td>
                 <td className="align-middle text-end">
                   <button
                     onClick={(event) => onClickHandlerHookHand(event)}
-                    className="btn btn-secondary mx-4"
+                    className="btn btn-success mx-4"
                     name="hookHand"
                   >
-                    Fix
+                    Update
                   </button>
                 </td>
               </tr>

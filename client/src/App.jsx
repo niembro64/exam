@@ -12,7 +12,7 @@ import Add from "./views/Add";
 function App() {
   return (
     <div className="App">
-      <h4>Eric Niemeyer | React Exam</h4>
+      <h4>Eric Niemeyer | React Exam | AWS</h4>
       <Switch>
         <Route exact path="/">
           <Home />

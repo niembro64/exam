@@ -5,6 +5,8 @@ import { Switch, Route, Link } from "react-router-dom";
 import axios from "axios";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
+require("../demo.gif");
+
 const p = (a) => {
   console.log(a);
 };
@@ -136,23 +138,14 @@ const Edit = (props) => {
   return (
     <>
       <div className="box">
-        <h2>Add New Pirate</h2>
         <Link to={"/"}>
           <button className="btn btn-secondary">Back to Crew</button>
         </Link>
-        {/* <Link to={`/`}>
-          <button
-            onClick={() => {
-              onDeleteHandler(form._id);
-            }}
-            className="btn btn-danger mx-4"
-          >
-            delete
-          </button>
-        </Link> */}
+        <h2>Add New Pirate</h2>
+
       </div>
 
-      {/* <div className="box4"> */}
+      <div></div>
       <form onSubmit={onSubmitHandler} className="box3">
         <div id="floatContainer" className="box4">
           <label
@@ -194,9 +187,19 @@ const Edit = (props) => {
             // placeholder=""
             // default="asdf"
           />
-            <span className="text-muted small">
-              Google Image Search Then Right-Click And Copy & Paste the URL (Address) Here
-            </span>
+          <span className="text-muted small">
+            Google Image Search Then Right-Click And Copy & Paste the Image URL
+            (Link) Here
+          </span>
+          <div id="explain">
+            <img
+              id="explain2"
+              loop="infinite"
+              src={require("../demo.gif")}
+              alt="loading..."
+            />
+          </div>
+            <p className="text-muted small">Walk-Thru</p>
         </div>
         <div id="floatContainer" className="box4">
           <label
@@ -316,7 +319,7 @@ const Edit = (props) => {
             // default="asdf"
           />
         </div>
-        <div className="box5">
+        <div className="box7">
           <span className="alert-danger">
             {error.pirateName && error.pirateName.message}
           </span>
@@ -342,18 +345,12 @@ const Edit = (props) => {
             {error.hookHand && error.hookHand.message}
           </span>
         </div>
-        <input type="submit" value="Create Pirate!" className="btn btn-primary" />
+        <input
+          type="submit"
+          value="Create Pirate!"
+          className="btn btn-primary"
+        />
       </form>
-      {/* </div> */}
-      {/* <div className="box">
-        <p>form</p>
-        <p> {form.name}</p>
-      </div> */}
-      {/* <div className="box">
-        <p>one</p>
-        <p> {one.name}</p>
-
-      </div> */}
     </>
   );
 };

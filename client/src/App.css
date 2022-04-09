@@ -1,3 +1,7 @@
+* {
+  font-family: "Roboto", sans-serif;
+}
+
 .App {
   text-align: center;
   display: flex;
@@ -64,7 +68,7 @@
   width: 98%;
   border: 1px rgba(0, 0, 0, 0) solid;
   border-radius: 3px;
-  background-color: rgba(128, 45, 45, 0.084);
+  background-color: rgba(255, 255, 255, 0);
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
@@ -77,7 +81,7 @@
   width: 98%;
   border: 1px rgba(0, 0, 0, 0) solid;
   border-radius: 3px;
-  background-color: rgba(128, 45, 45, 0);
+  background-color: rgb(255, 255, 255);
   display: flex;
   flex-wrap: wrap;
   /* justify-content: left; */
@@ -89,10 +93,25 @@
   width: 98%;
   border: 1px rgba(0, 0, 0, 0) solid;
   border-radius: 3px;
-  background-color: rgba(128, 45, 45, 0.084);
+  background-color: rgba(255, 255, 255, 0.571);
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  align-items: center;
+  border: 1px solid black;
+  padding: 5px;
+  margin: 5px;
+}
+.box7 {
+  width: 98%;
+  border: 1px rgba(0, 0, 0, 0) solid;
+  border-radius: 3px;
+  background-color: rgba(128, 45, 45, 0);
+  display: flex;
+  flex-wrap: wrap;
+  /* justify-content: left; */
+  /* flex-direction: column; */
+  justify-content: space-evenly;
   align-items: center;
   padding: 5px;
   margin: 5px;
@@ -138,6 +157,10 @@ label {
 
 }
 */
+.alert-danger {
+  margin: 0px;
+  padding: 0px;
+}
 
 span {
   margin: 0 0 5px 0;
@@ -180,7 +203,10 @@ h2 {
 }
 h4 {
   margin: 10px;
+  /* font-family: "Press Start 2P", cursive;
+  font-size:medium; */
 }
+
 
 .btn {
   margin: 5px;
@@ -197,4 +223,29 @@ h4 {
 
 label {
   text-align: left;
+}
+
+#explain {
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 15px;
+  padding: 10px;
+
+  /* border: none;  */
+  width: auto;
+  height: auto;
+}
+#explain2 {
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 0px;
+
+  /* border: none;  */
+  width: auto;
+  height: 300px;
+}
+
+#pirate{
+  font-family: 'UnifrakturCook', cursive;
 }
