@@ -149,50 +149,56 @@ const Home = (props) => {
   return (
     <>
       <div className="box">
-        <h2>View Pirate Crew</h2>
+        <h2>🏴‍☠️ Pirate Crew</h2>
         <Link to={"/add"}>
-          <button className="btn btn-primary">Add a Pirate</button>
+          <button className="btn btn-primary">+ Pirate</button>
         </Link>
       </div>
       <div className="box">
         <table className="table table-sm table-hover ">
-          <thead>
+          {/* <thead>
             <tr>
+              <th></th>
+              <th></th>
               <th>View Pirate</th>
-              <th></th>
-              <th></th>
-              <th>Delete Pirate</th>
+              <th>Walk The Plank</th>
             </tr>
-          </thead>
+          </thead> */}
           <tbody>
             {fromDb.map((item, i) => {
               return (
                 <tr key={i}>
+              
+                  <td id="quotes" className="align-middle px-2">
+                    <h4 id="pirate" className="text-center pb-0">
+                      "{item.catchPhrase}"
+                    </h4>
+                    <h6 id="pirate" className="text-end pb-0">
+                      - {item.pirateName}
+                    </h6>
+                  </td>
+                  <td className="align-middle col-md-auto">
+                  {/* <td className="align-middle text-start"> */}
+                    <img src={item.imageUrl} alt="pic" />
+                  </td>
                   <td className="align-middle">
                     <Link to={`/${item._id}`}>
-                      <button className="btn btn-success btn">
-                        {item.pirateName}
+                      <button className="btn btn-warning btn">
+                        {/* {item.pirateName} */}
+                        {/* <big>👁</big> */}
+                        View
                       </button>
                     </Link>
                   </td>
-                  <td className="align-middle">
-                    <img src={item.imageUrl} alt="imageUrl" />
-                  </td>
-                  <td id="quotes">
-                    
-                    <h3 id="pirate" className="text-middle pt-3 pb-0">"{item.catchPhrase}"</h3>
-                    <h6 id="pirate" className="text-middle  pt-0 pb-0">- {item.pirateName}</h6>
-                    
-                    </td>
                   <td className="align-middle">
                     <Link to={`/`}>
                       <button
                         onClick={() =>
                           onDeleteHandler(item._id, i, item.pirateName)
                         }
-                        className="btn btn-danger btn"
+                        className="btn btn-danger btn-sm"
                       >
-                        Walk the Plank
+                        <big>✖</big>
                       </button>
                     </Link>
                   </td>

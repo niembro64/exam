@@ -139,183 +139,195 @@ const Edit = (props) => {
     <>
       <div className="box">
         <Link to={"/"}>
-          <button className="btn btn-secondary">Back to Crew</button>
+          <button className="btn btn-secondary">🡸</button>
         </Link>
         <h2>Add New Pirate</h2>
       </div>
       <div></div>
       <form onSubmit={onSubmitHandler} className="box3">
-        <div id="floatContainer" className="box4">
-          <label
-            // style={{ position: "absolute", zIndex: 1 }}
-            htmlFor="pirateName"
-          >
-            Pirate Name
-          </label>
-          <input
-            // style={{ position: "relative", zIndex: 2 }}
-            autoFocus="autofocus"
-            id="floatField"
-            type="text"
-            name="pirateName"
-            onChange={onChangeHandler}
-
-            // placeholder=""
-            // default="asdf"
-          />
-        </div>
-        {/* <div id="floatContainer" className="float-container"> */}
-        <div className="box4">
-          <label
-            // style={{ position: "absolute", zIndex: 1 }}
-            htmlFor="imageUrl"
-            className="control-label"
-          >
-            Picture
-          </label>
-          <input
-            // style={{ position: "relative", zIndex: 2 }}
-            // autoFocus="autofocus"
-            id="floatField"
-            type="text"
-            name="imageUrl"
-            onChange={onChangeHandler}
-            // placeholder=""
-
-            // placeholder=""
-            // default="asdf"
-          />
-          <span className="text-muted small">
-            Google Image Search Then Right-Click And Copy & Paste the Image URL
-            (Link) Here
-          </span>
-          <div id="explain">
+        <div id="add_top">
+          <div id="explain_out">
             <img
-              id="explain2"
+              id="explain_in"
               loop="infinite"
               src={require("../demo.gif")}
               alt="loading..."
             />
+            {/* <p className="text-muted small">Walk-Thru</p> */}
           </div>
-            <p className="text-muted small">Walk-Thru</p>
-        </div>
-        <div id="floatContainer" className="box4">
-          <label
-            // style={{ position: "absolute", zIndex: 1 }}
-            htmlFor="numChests"
-          >
-            Has How Many Treasure Chests?
-          </label>
-          <input
-            // style={{ position: "relative", zIndex: 2 }}
-            // autoFocus="autofocus"
-            id="floatField"
-            type="number"
-            name="numChests"
-            onChange={onChangeHandler}
+          <div id="add_right">
+            <div id="floatContainer" className="box4">
+              <label
+                // style={{ position: "absolute", zIndex: 1 }}
+                htmlFor="pirateName"
+              >
+                Pirate Name
+              </label>
+              <input
+                // style={{ position: "relative", zIndex: 2 }}
+                autoFocus="autofocus"
+                id="floatField"
+                type="text"
+                name="pirateName"
+                onChange={onChangeHandler}
 
-            // placeholder=""
-            // default="asdf"
-          />
-        </div>
-        <div id="floatContainer" className="box4">
-          <label
-            // style={{ position: "absolute", zIndex: 1 }}
-            htmlFor="catchPhrase"
-          >
-            What's his Catch Phrase?
-          </label>
-          <input
-            // style={{ position: "relative", zIndex: 2 }}
-            // autoFocus="autofocus"
-            id="floatField"
-            type="text"
-            name="catchPhrase"
-            onChange={onChangeHandler}
+                // placeholder=""
+                // default="asdf"
+              />
+            </div>
+            {/* <div id="floatContainer" className="float-container"> */}
+            <div className="box4">
+              <label
+                // style={{ position: "absolute", zIndex: 1 }}
+                htmlFor="imageUrl"
+                className="control-label"
+              >
+                Image URL <span className="text-muted small">(Address)</span>
+              </label>
+              <input
+                // style={{ position: "relative", zIndex: 2 }}
+                // autoFocus="autofocus"
+                id="floatField"
+                type="text"
+                name="imageUrl"
+                onChange={onChangeHandler}
+                // placeholder=""
 
-            // placeholder=""
-            // default="asdf"
-          />
-        </div>
-        <div id="floatContainer" className="box4">
-          <label
-            // style={{ position: "absolute", zIndex: 1 }}
-            htmlFor="crewPosition"
-          >
-            What's his Position in the Crew?{" "}
-          </label>
-          <input
-            // style={{ position: "relative", zIndex: 2 }}
-            // autoFocus="autofocus"
-            id="floatField"
-            type="text"
-            name="crewPosition"
-            onChange={onChangeHandler}
+                // placeholder=""
+                // default="asdf"
+              />
+              {/* <span className="text-muted small">
+                Right-Click And Copy & Paste the "Image URL" (Link) Here
+              </span>
+              <span className="text-muted small">Not All Links Will Work</span> */}
+            </div>
+            <p className="text-muted small">Not All Images Will Work</p>
+            <div id="floatContainer" className="box4">
+              <label
+                // style={{ position: "absolute", zIndex: 1 }}
+                htmlFor="numChests"
+              >
+                # Treasure Chests?
+              </label>
+              <input
+                // style={{ position: "relative", zIndex: 2 }}
+                // autoFocus="autofocus"
+                id="floatField"
+                type="number"
+                name="numChests"
+                onChange={onChangeHandler}
 
-            // placeholder=""
-            // default="asdf"
-          />
+                // placeholder=""
+                // default="asdf"
+              />
+            </div>
+            <div id="floatContainer" className="box4">
+              <label
+                // style={{ position: "absolute", zIndex: 1 }}
+                htmlFor="catchPhrase"
+              >
+                His Catch Phrase?
+              </label>
+              <input
+                // style={{ position: "relative", zIndex: 2 }}
+                // autoFocus="autofocus"
+                id="floatField"
+                type="text"
+                name="catchPhrase"
+                onChange={onChangeHandler}
+
+                // placeholder=""
+                // default="asdf"
+              />
+            </div>
+            <div id="floatContainer" className="box4">
+              <label
+                // style={{ position: "absolute", zIndex: 1 }}
+                htmlFor="crewPosition"
+              >
+                His Crew Position?
+              </label>
+              <input
+                // style={{ position: "relative", zIndex: 2 }}
+                // autoFocus="autofocus"
+                id="floatField"
+                type="text"
+                name="crewPosition"
+                onChange={onChangeHandler}
+
+                // placeholder=""
+                // default="asdf"
+              />
+            </div>
+          </div>
         </div>
         <div id="floatContainer" className="box6">
-          <label
-            // style={{ position: "absolute", zIndex: 1 }}
-            htmlFor="pegLeg"
-          >
-            Does He Have a Peg-Leg?
-          </label>
-          <input
-            // style={{ position: "relative", zIndex: 2 }}
-            // autoFocus="autofocus"
-            // id="floatField"
-            type="checkbox"
-            name="pegLeg"
-            onClick={onChangeHandlerPegLeg}
-            checked={form.pegLeg}
-            className="big-checkbox"
-            // placeholder=""
-            // default="asdf"
-          />
+          <div class="form-check form-switch">
+            <label
+              // style={{ position: "absolute", zIndex: 1 }}
+              htmlFor="pegLeg"
+            >
+              Has a Peg-Leg?
+            </label>
+            <input
+              // style={{ position: "relative", zIndex: 2 }}
+              // autoFocus="autofocus"
+              // id="floatField"
+              type="checkbox"
+              name="pegLeg"
+              onClick={onChangeHandlerPegLeg}
+              checked={form.pegLeg}
+              className="form-check-input"
+              // placeholder=""
+              // default="asdf"
+            />
+          </div>
         </div>
         <div id="floatContainer" className="box6">
-          <label
-            // style={{ position: "absolute", zIndex: 1 }}
-            htmlFor="eyePatch"
-          >
-            Does He Have an Eye-Patch?
-          </label>
-          <input
-            // style={{ position: "relative", zIndex: 2 }}
-            // autoFocus="autofocus"
-            id="floatField"
-            type="checkbox"
-            name="eyePatch"
-            onClick={onChangeHandlerEyePatch}
-            checked={form.eyePatch}
-            className="big-checkbox"
+          <div class="form-check form-switch">
+            <label
+              // style={{ position: "absolute", zIndex: 1 }}
+              htmlFor="eyePatch"
+            >
+              Has an Eye-Patch?
+            </label>
+            <input
+              // style={{ position: "relative", zIndex: 2 }}
+              // autoFocus="autofocus"
+              id="floatField"
+              type="checkbox"
+              name="eyePatch"
+              onClick={onChangeHandlerEyePatch}
+              checked={form.eyePatch}
+              className="form-check-input"
 
-            // placeholder=""
-            // default="asdf"
-          />
+              // placeholder=""
+              // default="asdf"
+            />
+          </div>
         </div>
         <div id="floatContainer" className="box6">
-          <label
-            // style={{ position: "absolute", zIndex: 1 }}
-            htmlFor="hookHand"
-          >
-            Does He have a Hook-Hand?
-          </label>
-          <input
-            // style={{ position: "relative", zIndex: 2 }}
-            // autoFocus="autofocus"
-            id="floatField"
-            type="checkbox"
-            name="hookHand"
-            onClick={onChangeHandlerHookHand}
-            checked={form.hookHand}
-            className="big-checkbox"
-            // placeholder=""
-            // default="asdf"
-          />
+          <div class="form-check form-switch">
+            <label
+              // style={{ position: "absolute", zIndex: 1 }}
+              htmlFor="hookHand"
+            >
+              Has a Hook-Hand?
+            </label>
+            <input
+              // style={{ position: "relative", zIndex: 2 }}
+              // autoFocus="autofocus"
+              id="floatField"
+              type="checkbox"
+              name="hookHand"
+              onClick={onChangeHandlerHookHand}
+              checked={form.hookHand}
+              className="form-check-input"
+
+              // placeholder=""
+              // default="asdf"
+            />
+          </div>
         </div>
         <div className="box7">
           <span className="alert-danger">
@@ -345,7 +357,7 @@ const Edit = (props) => {
         </div>
         <input
           type="submit"
-          value="Create Pirate!"
+          value="Create Pirate 🏴‍☠️"
           className="btn btn-primary"
         />
       </form>

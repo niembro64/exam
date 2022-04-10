@@ -21,6 +21,7 @@ const Single = (props) => {
     hookHand: true,
   });
   const [error, setError] = useState({ name: {} });
+  const [chests, setChests] = useState("❌");
 
   const history = useHistory();
 
@@ -34,6 +35,13 @@ const Single = (props) => {
         setOne(res.data);
       })
       .catch((err) => console.log(err));
+
+    // var c = "";
+    // for (var i = 0; i < one.numChests; i++) {
+    //   c += "💰";
+    // }
+
+    // setChests(c);
   }, [_id]);
 
   // useEffect(() => {
@@ -197,7 +205,7 @@ const Single = (props) => {
     <>
       <div className="box">
         <Link to={"/"}>
-          <button className="btn btn-secondary mx-4">Back to Crew</button>
+          <button className="btn btn-secondary mx-4">🡸</button>
         </Link>
         <h2>Pirate Details</h2>
       </div>
@@ -208,56 +216,79 @@ const Single = (props) => {
           <h1 id="pirate">"{one.catchPhrase}"</h1>
         </div>
         <div className="lr">
-          <h1>About</h1>
+          {/* <h1>About</h1> */}
           <table className="table table-sm table-hover ">
-            <thead>
+            {/* <thead>
               <tr>
                 <th></th>
                 <th></th>
                 <th></th>
               </tr>
-            </thead>
+            </thead> */}
             <tbody>
               <tr>
-                <td className="align-middle text-end"><h4> Position:</h4></td>
-                <td className="align-middle"><h3 id="pirate">{one.crewPosition}</h3></td>
-                <td className="align-middle"></td>
-              </tr>
-              <tr>
-                <td className="align-middle text-end"><h4>Chests:</h4></td>
-                <td id="pirate" className="align-middle "><h3 id="pirate">{one.numChests}</h3></td>
-                <td className="align-middle"></td>
-              </tr>
-              <tr>
-                <td className="align-middle text-end"><h4>Pegleg:</h4></td>
-                <td className="align-middle "><h4>{one.pegLeg ? "✔️" : "❌"}</h4></td>
                 <td className="align-middle text-end">
+                  <h4> Position:</h4>
+                </td>
+                <td className="align-middle">
+                  <h4>{one.crewPosition}</h4>
+                </td>
+                {/* <td className="align-middle"></td> */}
+              </tr>
+              <tr>
+                <td className="align-middle text-end">
+                  <h4>Chests:</h4>
+                </td>
+                <td id="pirate" className="align-middle ">
+                  <h3 id="pirate">
+                    {/* <span>💰</span>
+                    <span>💰</span> */}
+                  {[...Array(one.numChests),].map((value, i)=>{ return <field key={i}>💰</field>})
+                  }
+                  </h3>
+                </td>
+                {/* <td className="align-middle"></td> */}
+              </tr>
+              <tr>
+                <td className="align-middle text-end">
+                  <h4>Pegleg:</h4>
+                </td>
+                <td className="check-update">
+                  <h4>{one.pegLeg ? "✔️" : "❌"}</h4>
                   <button
                     onClick={(event) => onClickHandlerPegLeg(event)}
                     className="btn btn-primary mx-4"
                     name="pegLeg"
                   >
-                 Update
+                    Update
                   </button>
                 </td>
+                {/* <td className="align-middle text-end">
+                </td> */}
               </tr>
               <tr>
-                <td className="align-middle text-end"><h4>Eyepatch:</h4></td>
-                <td className="align-middle"><h4>{one.eyePatch ? "✔️" : "❌"}</h4></td>
                 <td className="align-middle text-end">
+                  <h4>Eyepatch:</h4>
+                </td>
+                <td className="check-update">
+                  <h4>{one.eyePatch ? "✔️" : "❌"}</h4>
                   <button
                     onClick={(event) => onClickHandlerEyePatch(event)}
                     className="btn btn-primary mx-4"
                     name="eyePatch"
                   >
-                   Update
+                    Update
                   </button>
+                {/* </td>
+                <td className="align-middle text-end"> */}
                 </td>
               </tr>
               <tr>
-                <td className="align-middle text-end"><h4>Hookhand:</h4></td>
-                <td className="align-middle"><h4>{one.hookHand ? "✔️" : "❌"}</h4></td>
                 <td className="align-middle text-end">
+                  <h4>Hookhand:</h4>
+                </td>
+                <td className="check-update">
+                  <h4>{one.hookHand ? "✔️" : "❌"}</h4>
                   <button
                     onClick={(event) => onClickHandlerHookHand(event)}
                     className="btn btn-primary mx-4"
@@ -266,19 +297,23 @@ const Single = (props) => {
                     Update
                   </button>
                 </td>
+                {/* <td className="align-middle text-end">
+                </td> */}
               </tr>
             </tbody>
           </table>
-        <Link to={`/`}>
-          <button
-            onClick={() => {
-              onDeleteHandler(one._id, one.pirateName);
-            }}
-            className="btn btn-danger mx-4"
-          >
-            Walk the Plank
-          </button>
-        </Link>
+
+          <h1>Walk the Plank</h1>
+          <Link to={`/`}>
+            <button
+              onClick={() => {
+                onDeleteHandler(one._id, one.pirateName);
+              }}
+              className="btn btn-danger btn"
+            >
+              <big>✖</big>
+            </button>
+          </Link>
         </div>
       </div>
       <div className="box2">
@@ -295,7 +330,13 @@ const Single = (props) => {
               return (
                 <tr key={i}>
                   <td>{item[0]}</td>
-                  <td className="text-break">{typeof item[1] === 'boolean' ? (item[1] ? "true" : "false") : item[1]}</td>
+                  <td className="text-break">
+                    {typeof item[1] === "boolean"
+                      ? item[1]
+                        ? "true"
+                        : "false"
+                      : item[1]}
+                  </td>
                   {/* <td style={{(item[1].length > 10 ? { fontSize: "10px" } : {fontSize = "20px"})}}>
                     {item[1]}
                   </td> */}
