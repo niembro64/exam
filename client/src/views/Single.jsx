@@ -205,7 +205,7 @@ const Single = (props) => {
     <>
       <div className="box">
         <Link to={"/"}>
-          <button className="btn btn-secondary mx-4">🡸</button>
+          <button className="btn btn-secondary mx-4">Back</button>
         </Link>
         <h2>Pirate Details</h2>
       </div>

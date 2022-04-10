@@ -91,14 +91,14 @@
 }
 .box6 {
   width: 220px;
-  border: 1px rgba(0, 0, 0, 0) solid;
-  border-radius: 3px;
-  background-color: rgba(255, 255, 255, 0.571);
+  border: 1px rgb(111, 111, 111) solid;
+  border-radius: 20px;
+  background-color: rgb(255, 255, 255);
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  border: 1px solid black;
+
   padding: 10px 10px 5px 20px;
   margin: 5px;
 }
@@ -168,6 +168,7 @@ span {
   border-radius: 10px;
 }
 
+
 td > img {
   min-height: 80px;
   max-height: 120px;
@@ -182,7 +183,17 @@ td > img {
   object-fit: cover;
   border: 1px solid black;
   border-radius: 10px;
+  margin: 10px;
 }
+
+
+@media screen and (max-width: 350px) {
+  td > img {
+    position: fixed;
+    left: -1000px;
+  }
+}
+
 
 /* .pirate-pic{
   display: flex;

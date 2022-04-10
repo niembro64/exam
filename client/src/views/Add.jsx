@@ -139,7 +139,7 @@ const Edit = (props) => {
     <>
       <div className="box">
         <Link to={"/"}>
-          <button className="btn btn-secondary">🡸</button>
+          <button className="btn btn-secondary"><big>Back</big></button>
         </Link>
         <h2>Add New Pirate</h2>
       </div>
@@ -360,6 +360,7 @@ const Edit = (props) => {
           value="Create Pirate 🏴‍☠️"
           className="btn btn-primary"
         />
+        
       </form>
     </>
   );
