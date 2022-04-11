@@ -9,6 +9,7 @@ const p = (a) => {
   console.log(a);
 };
 const About = (props) => {
+  // const[para, setPara] = useState("");
   const [deploymentItem, setDeploymentItem] = useState([
     {
       title: "AWS EC2",
@@ -91,8 +92,21 @@ const About = (props) => {
         </Link>
         <h2>About This Project</h2>
       </div>
-      <div className="box4">
-        <p>I'm proud of this project for its front-end screen responsiveness. On each of the four pages, elements are carefully designed to change form or disappear based on the available screen size. </p>
+      <div className="box1">
+        <div id="box9">
+          <p>
+            I'm proud of this project for its front-end screen responsiveness.
+            On each of the four pages, elements are carefully designed to change
+            form or disappear based on the available screen size.{" "}
+          </p>
+
+          <img
+            id="explain_in"
+            loop="infinite"
+            src={require("../qr.png")}
+            alt="loading..."
+          />
+        </div>
         <div className="box0">
           <div className="lr">
             <h4>Front End</h4>

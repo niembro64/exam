@@ -117,6 +117,25 @@
   padding: 5px;
   margin: 5px;
 }
+#box9 {
+  width: 97%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#box9 > img {
+  width: 100px;
+  padding: 5px;
+  margin: 0px;
+  border: 1px solid black;
+  border-radius: 0px; 
+}
+#box9 > p {
+  width: auto;
+  padding: 30px;
+}
 
 /*
 
@@ -181,7 +200,7 @@ td > img {
   width: calc(100% - 2em);
 
   object-fit: cover;
-  border: 1px solid black;
+  border: 3px solid black;
   border-radius: 10px;
   margin: 10px;
 }
@@ -214,7 +233,7 @@ td > img {
   width: 250px;
   height: 300px;
   object-fit: cover;
-  border: 3px solid black;
+  border: 6px solid black;
   border-radius: 40px;
   margin: 10px;
 }
