@@ -56,7 +56,7 @@ const About = (props) => {
   ]);
   const [backEndItem, setBackEndItem] = useState([
     {
-      title: "Mongo DB",
+      title: "MongoDB",
       about: "A no-sql json database. ",
       link: "https://www.mongodb.com/",
     },

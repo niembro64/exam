@@ -182,7 +182,7 @@ const Home = (props) => {
                     {/* <td className="align-middle text-start"> */}
                     <img src={item.imageUrl} alt="pic" />
                   </td>
-                  <td className="align-middle">
+                  <td id="squeezecolumn" className="align-middle">
                     <div
                       id="btngroup"
                       role="group"
