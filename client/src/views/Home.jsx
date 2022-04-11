@@ -151,7 +151,9 @@ const Home = (props) => {
       <div className="box">
         <h2>🏴‍☠️ Pirate Crew</h2>
         <Link to={"/add"}>
-          <button className="btn btn-primary">+ Pirate</button>
+          <button className="btn btn-primary px-4">
+            <big>+ Pirate</big>
+          </button>
         </Link>
       </div>
       <div className="box">
@@ -168,7 +170,6 @@ const Home = (props) => {
             {fromDb.map((item, i) => {
               return (
                 <tr key={i}>
-              
                   <td id="quotes" className="align-middle px-2">
                     <h4 id="pirate" className="text-center pb-0">
                       "{item.catchPhrase}"
@@ -178,29 +179,56 @@ const Home = (props) => {
                     </h6>
                   </td>
                   <td className="align-middle col-md-auto">
-                  {/* <td className="align-middle text-start"> */}
+                    {/* <td className="align-middle text-start"> */}
                     <img src={item.imageUrl} alt="pic" />
                   </td>
                   <td className="align-middle">
-                    <Link to={`/${item._id}`}>
-                      <button className="btn btn-warning btn">
-                        {/* {item.pirateName} */}
-                        {/* <big>👁</big> */}
-                        View
-                      </button>
-                    </Link>
-                  </td>
-                  <td className="align-middle">
-                    <Link to={`/`}>
-                      <button
-                        onClick={() =>
-                          onDeleteHandler(item._id, i, item.pirateName)
-                        }
-                        className="btn btn-danger btn-sm"
-                      >
-                        <big>✖</big>
-                      </button>
-                    </Link>
+                    <div
+                      id="btngroup"
+                      role="group"
+                      class="btn-group-vertical-sm align-middle"
+                    >
+                      <Link to={`/${item._id}`}>
+                        <button id="btn_big" className="btn btn-secondary btn-lg">
+                          {/* {item.pirateName} */}
+                          {/* <big>👁</big> */}
+                          <big>View Pirate</big>
+                        </button>
+                      </Link>
+                      {/* </td>
+                  <td className="align-middle"> */}
+                      <Link to={`/`}>
+                        <button
+                        id="btn_big"
+                          onClick={() =>
+                            onDeleteHandler(item._id, i, item.pirateName)
+                          }
+                          className="btn btn-danger btn-lg"
+                        >
+                          <big>Walk the Plank</big>
+                        </button>
+                      </Link>
+                      <Link to={`/${item._id}`}>
+                        <button id="btn_small" className="btn btn-secondary">
+                          {/* {item.pirateName} */}
+                          {/* <big>👁</big> */}
+                          <big>View</big>
+                        </button>
+                      </Link>
+                      {/* </td>
+                  <td className="align-middle"> */}
+                      <Link to={`/`}>
+                        <button
+                        id="btn_small"
+                          onClick={() =>
+                            onDeleteHandler(item._id, i, item.pirateName)
+                          }
+                          className="btn btn-danger"
+                        >
+                          <big>✖</big>
+                        </button>
+                      </Link>
+                    </div>
                   </td>
                 </tr>
               );

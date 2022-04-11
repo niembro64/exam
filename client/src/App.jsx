@@ -8,17 +8,26 @@ import Home from "./views/Home";
 import Single from "./views/Single";
 import Edit from "./views/Edit";
 import Add from "./views/Add";
+import About from "./views/About";
 
 function App() {
   return (
     <div className="App">
-      <h4>Eric Niemeyer | React Exam | AWS</h4>
+      <h4 className="align-middle">
+        Eric Niemeyer
+        <Link to={"/about"}>
+          <button className="btn btn-outline-dark btn-sm px-3 mx-2">About This Project</button>
+        </Link>
+      </h4>
       <Switch>
         <Route exact path="/">
           <Home />
         </Route>
         <Route exact path="/add">
           <Add />
+        </Route>
+        <Route exact path="/about">
+          <About />
         </Route>
         <Route exact path="/:_id">
           <Single />

@@ -5,6 +5,8 @@ import { Switch, Route, Link } from "react-router-dom";
 import axios from "axios";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
+
+
 require("../demo.gif");
 
 const p = (a) => {
@@ -139,7 +141,7 @@ const Edit = (props) => {
     <>
       <div className="box">
         <Link to={"/"}>
-          <button className="btn btn-secondary"><big>Back</big></button>
+          <button className="btn btn-secondary px-4"><big>Back</big></button>
         </Link>
         <h2>Add New Pirate</h2>
       </div>
@@ -284,7 +286,7 @@ const Edit = (props) => {
           </div>
         </div>
         <div id="floatContainer" className="box6">
-          <div class="form-check form-switch">
+          <div class="form-check form-switch check-lg">
             <label
               // style={{ position: "absolute", zIndex: 1 }}
               htmlFor="eyePatch"
@@ -358,7 +360,7 @@ const Edit = (props) => {
         <input
           type="submit"
           value="Create Pirate 🏴‍☠️"
-          className="btn btn-primary"
+          className="btn btn-primary btn-lg"
         />
         
       </form>

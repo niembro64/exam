@@ -201,11 +201,76 @@ const Single = (props) => {
       });
   };
 
+  const onClickHandlerChestMinus = (event) => {
+    event.preventDefault();
+    console.log("Single | CHEST MINUSSSSSSSSSSSSSSSS | Jumped In");
+
+    console.log(event.target.numChests);
+
+    const copyState = {
+      numChests: one.numChests - 1 < 0 ? 0 : one.numChests - 1,
+    };
+
+    setOne({
+      ...one,
+      numChests: one.numChests - 1 < 0 ? 0 : one.numChests - 1,
+    });
+
+    console.log("CopyState:");
+    console.log(copyState);
+
+    axios
+      .patch(`http://localhost:9000/api/pirate/update/${_id}`, copyState)
+      .then((res) => {
+        console.log("Single | onClickHandler | Success Submitting");
+        console.log(res.data);
+        // history.push(`/`);
+      })
+      .catch((err) => {
+        p("Single | onClickHandler | Error");
+        console.log(err.response.data.error.errors);
+        setError(err.response.data.error.errors);
+      });
+  };
+  const onClickHandlerChestPlus = (event) => {
+    event.preventDefault();
+    console.log("Single | CHEST MINUSSSSSSSSSSSSSSSS | Jumped In");
+
+    console.log(event.target.numChests);
+
+    const copyState = {
+      numChests: one.numChests + 1 > 6 ? 6 : one.numChests + 1,
+    };
+
+    setOne({
+      ...one,
+      numChests: one.numChests + 1 > 6 ? 6 : one.numChests + 1,
+    });
+
+    console.log("CopyState:");
+    console.log(copyState);
+
+    axios
+      .patch(`http://localhost:9000/api/pirate/update/${_id}`, copyState)
+      .then((res) => {
+        console.log("Single | onClickHandler | Success Submitting");
+        console.log(res.data);
+        // history.push(`/`);
+      })
+      .catch((err) => {
+        p("Single | onClickHandler | Error");
+        console.log(err.response.data.error.errors);
+        setError(err.response.data.error.errors);
+      });
+  };
+
   return (
     <>
       <div className="box">
         <Link to={"/"}>
-          <button className="btn btn-secondary mx-4">Back</button>
+          <button className="btn btn-secondary px-4">
+            <big>Back</big>
+          </button>
         </Link>
         <h2>Pirate Details</h2>
       </div>
@@ -217,17 +282,16 @@ const Single = (props) => {
         </div>
         <div className="lr">
           {/* <h1>About</h1> */}
-          <table className="table table-sm table-hover ">
+          <table className="table table-sm table-hover my-3">
             {/* <thead>
               <tr>
-                <th></th>
                 <th></th>
                 <th></th>
               </tr>
             </thead> */}
             <tbody>
               <tr>
-                <td className="align-middle text-end">
+                <td id="squeezecolumn" className="align-middle text-end">
                   <h4> Position:</h4>
                 </td>
                 <td className="align-middle">
@@ -239,14 +303,38 @@ const Single = (props) => {
                 <td className="align-middle text-end">
                   <h4>Chests:</h4>
                 </td>
-                <td id="pirate" className="align-middle ">
-                  <h3 id="pirate">
-                    {/* <span>💰</span>
-                    <span>💰</span> */}
-                  {[...Array(one.numChests),].map((value, i)=>{ return <field key={i}>💰</field>})
-                  }
-                  </h3>
+                <td id="chestbig" className="align-middle ">
+                  <h4 id="showchests">
+                    {[...Array(one.numChests)].map((value, i) => {
+                      return <field key={i}>💰</field>;
+                    })}
+                  </h4>
+                  <div
+                    id="btngroup"
+                    role="group"
+                    class="btn-group-vertical align-middle"
+                  >
+                    <button
+                      id="btnc"
+                      type="button"
+                      onClick={(event) => onClickHandlerChestPlus(event)}
+                      // href="#"
+                      class="btn btn-outline-success btn"
+                    >
+                      ➕
+                    </button>
+                    <button
+                      id="btnc"
+                      type="button"
+                      onClick={(event) => onClickHandlerChestMinus(event)}
+                      // href="#"
+                      class="btn btn-outline-danger btn"
+                    >
+                      ➖
+                    </button>
+                  </div>
                 </td>
+
                 {/* <td className="align-middle"></td> */}
               </tr>
               <tr>
@@ -279,7 +367,7 @@ const Single = (props) => {
                   >
                     Update
                   </button>
-                {/* </td>
+                  {/* </td>
                 <td className="align-middle text-end"> */}
                 </td>
               </tr>
@@ -303,7 +391,6 @@ const Single = (props) => {
             </tbody>
           </table>
 
-          <h1>Walk the Plank</h1>
           <Link to={`/`}>
             <button
               onClick={() => {
@@ -311,14 +398,19 @@ const Single = (props) => {
               }}
               className="btn btn-danger btn"
             >
-              <big>✖</big>
+              {/* <big> */}
+
+              <h4> Walk the Plank</h4>
+              {/* ✖ */}
+
+              {/* </big> */}
             </button>
           </Link>
         </div>
       </div>
       <div className="box2">
-        <h4>Raw MongoDB Pirate Data</h4>
-        <table className="table table-sm table-hover ">
+        <h4>MongoDB 🍃 {one.pirateName}</h4>
+        <table className="table table-sm table-hover">
           <thead>
             <tr>
               <th>Key</th>
