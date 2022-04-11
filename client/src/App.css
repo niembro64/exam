@@ -91,7 +91,7 @@
   margin: 5px;
 }
 .box6 {
-  width: 240px;
+  width: 180px;
   border: 1px rgb(111, 111, 111) solid;
   border-radius: 20px;
   background-color: rgb(255, 255, 255);
@@ -130,11 +130,103 @@
   padding: 5px;
   margin: 0px;
   border: 1px solid black;
-  border-radius: 0px; 
+  border-radius: 0px;
 }
 #box9 > p {
   width: auto;
-  padding: 30px;
+  height: auto;
+  padding: 0px 0px 0px 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.box10 {
+  border-radius: 10px;
+  width: auto;
+  border: 1px solid black;
+  margin: 0px 0px 0px 10px;
+  padding: 3px 10px 5px 10px;
+}
+@media screen and (max-width: 500px) {
+  .box10 {
+    position: fixed;
+    left: -1000px;
+  }
+}
+
+.box10 > img {
+  width: 100px;
+  padding: 0px;
+  margin: 0px 0px 3px 0px;
+  /* border: 1px solid black; */
+  border-radius: 0px;
+}
+.box10 > p {
+  padding: 0px;
+  margin: 0px 0px 0px 0px;
+  /* border: 1px solid black; */
+  border-radius: 0px;
+  font-size: smaller;
+  /* font-family: 'Courier New', Courier, monospace;
+  font-weight: bold; */
+}
+
+.box12 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media screen and (min-width: 500px) {
+  .box20 {
+    max-width: 180px;
+    background-color: rgb(255, 125, 186);
+    color: rgb(0, 0, 0);
+    border: 1px solid black;
+    border-radius: 20px;
+    margin: 0px 0px 15px 0px;
+    padding: 3px 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .box21 {
+    position: fixed;
+    left: -1000px;
+  }
+}
+@media screen and (max-width: 500px) {
+  .box20 {
+    position: fixed;
+    left: -1000px;
+  }
+  .box21 {
+    max-width: 180px;
+    background-color: rgb(111, 255, 111);
+    color: rgb(0, 0, 0);
+    border: 1px solid black;
+    border-radius: 20px;
+    margin: 0px 0px 15px 0px;
+    padding: 3px 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+#mobile-first {
+  max-width: 180px;
+  background-color: rgb(111, 255, 111);
+  color: rgb(0, 0, 0);
+  border: 1px solid black;
+  border-radius: 5px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
 }
 
 /*

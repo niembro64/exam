@@ -5,8 +5,6 @@ import { Switch, Route, Link } from "react-router-dom";
 import axios from "axios";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
-
-
 require("../demo.gif");
 
 const p = (a) => {
@@ -24,9 +22,9 @@ const Edit = (props) => {
     numChests: 0,
     catchPhrase: "",
     crewPosition: "",
-    pegLeg: true,
-    eyePatch: true,
-    hookHand: true,
+    pegLeg: false,
+    eyePatch: false,
+    hookHand: false,
   });
   const [error, setError] = useState({ name: {} });
 
@@ -141,7 +139,9 @@ const Edit = (props) => {
     <>
       <div className="box">
         <Link to={"/"}>
-          <button className="btn btn-secondary px-4"><big>Back</big></button>
+          <button className="btn btn-secondary px-4">
+            <big>Back</big>
+          </button>
         </Link>
         <h2>Add New Pirate</h2>
       </div>
@@ -190,7 +190,7 @@ const Edit = (props) => {
                 // style={{ position: "relative", zIndex: 2 }}
                 // autoFocus="autofocus"
                 id="floatField"
-                type="text"
+                type="url"
                 name="imageUrl"
                 onChange={onChangeHandler}
                 // placeholder=""
@@ -202,14 +202,21 @@ const Edit = (props) => {
                 Right-Click And Copy & Paste the "Image URL" (Link) Here
               </span>
               <span className="text-muted small">Not All Links Will Work</span> */}
+              <p className="text-muted small text-start">Some Links Won't Work</p>
             </div>
-            <p className="text-muted small">Not All Images Will Work</p>
+            <ul>
+              <li className="text-muted small text-start"><a  target="_blank"  href="https://www.google.com/search?q=pirate&tbm=isch&hl=en&tbs=itp:clipart%2Cisz:m%2Cil:cl&sa=X&ved=0CAEQpwVqFwoTCKjMrZ6ujPcCFQAAAAAdAAAAABAC&biw=1268&bih=719">Choose an Image</a></li>
+              <li className="text-muted small text-start">Right-Click</li>
+              <li className="text-muted small text-start">Copy "Image Link"</li>
+              <li className="text-muted small text-start">Paste Above</li>
+           
+            </ul>
             <div id="floatContainer" className="box4">
               <label
                 // style={{ position: "absolute", zIndex: 1 }}
                 htmlFor="numChests"
               >
-                # Treasure Chests?
+                # Treasure Chests
               </label>
               <input
                 // style={{ position: "relative", zIndex: 2 }}
@@ -228,7 +235,7 @@ const Edit = (props) => {
                 // style={{ position: "absolute", zIndex: 1 }}
                 htmlFor="catchPhrase"
               >
-                His Catch Phrase?
+                Catch Phrase
               </label>
               <input
                 // style={{ position: "relative", zIndex: 2 }}
@@ -247,7 +254,7 @@ const Edit = (props) => {
                 // style={{ position: "absolute", zIndex: 1 }}
                 htmlFor="crewPosition"
               >
-                His Crew Position?
+                Crew Position
               </label>
               <input
                 // style={{ position: "relative", zIndex: 2 }}
@@ -269,7 +276,7 @@ const Edit = (props) => {
               // style={{ position: "absolute", zIndex: 1 }}
               htmlFor="pegLeg"
             >
-              Has a Peg-Leg?
+              Peg-Leg
             </label>
             <input
               // style={{ position: "relative", zIndex: 2 }}
@@ -291,7 +298,7 @@ const Edit = (props) => {
               // style={{ position: "absolute", zIndex: 1 }}
               htmlFor="eyePatch"
             >
-              Has an Eye-Patch?
+              Eye-Patch
             </label>
             <input
               // style={{ position: "relative", zIndex: 2 }}
@@ -314,7 +321,7 @@ const Edit = (props) => {
               // style={{ position: "absolute", zIndex: 1 }}
               htmlFor="hookHand"
             >
-              Has a Hook-Hand?
+              Hook-Hand
             </label>
             <input
               // style={{ position: "relative", zIndex: 2 }}
@@ -362,7 +369,6 @@ const Edit = (props) => {
           value="Create Pirate 🏴‍☠️"
           className="btn btn-primary btn-lg"
         />
-        
       </form>
     </>
   );

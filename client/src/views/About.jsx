@@ -34,7 +34,7 @@ const About = (props) => {
   ]);
   const [frontEndItem, setFrontEndItem] = useState([
     {
-      title: "Create-React-App",
+      title: "React",
       about: "JavaScript library and webpack.",
       link: "https://create-react-app.dev/",
     },
@@ -92,20 +92,30 @@ const About = (props) => {
         </Link>
         <h2>About This Project</h2>
       </div>
-      <div className="box1">
+      <div className="box12">
         <div id="box9">
           <p>
+        <div className="box20">
+          Desktop Experience
+        </div>
+        <div className="box21">
+          Mobile Experience
+        </div>
             I'm proud of this project for its front-end screen responsiveness.
             On each of the four pages, elements are carefully designed to change
             form or disappear based on the available screen size.{" "}
           </p>
-
-          <img
-            id="explain_in"
-            loop="infinite"
-            src={require("../qr.png")}
-            alt="loading..."
-          />
+          <div className="box10">
+            <p className="small">44.201.88.86</p>
+            <img
+              // id="explain_in"
+              loop="infinite"
+              src={require("../44_201_88_86.png")}
+              alt="loading..."
+            />
+            <p id="mobile-first" className="small">Mobile-First Experience</p>
+            
+          </div>
         </div>
         <div className="box0">
           <div className="lr">

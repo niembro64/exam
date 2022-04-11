@@ -2,61 +2,62 @@ const mongoose = require("mongoose");
 
 const minLength = 3;
 const minNum = 0;
-const maxNum = 10;
-const defaultBool = true;
+const maxNum = 6;
+const defaultBool = false;
 
 const PirateSchema = new mongoose.Schema(
   {
     pirateName: {
       type: String,
-      required: [true, "pirateName is required"],
+      required: [true, "Name is required"],
       minLength: [
         minLength,
-        `pirateName must be at least ${minLength} characters`,
+        `Name must be at least ${minLength} characters`,
       ],
     },
     imageUrl: {
       type: String,
-      required: [true, "imageUrl is required"],
+      required: [true, "Image is required"],
       minLength: [
         minLength,
-        `imageUrl must be at least ${minLength} characters`,
+        `Image must be at least ${minLength} characters`,
       ],
     },
     numChests: {
       type: Number,
-      required: [true, "numChests is required"],
-      min: [minNum, `numChests must be at least ${minNum}`],
+      required: [true, "# Treasure Chests is required"],
+      min: [minNum, `# Treasure Chests must be at least ${minNum}`],
+      max: [maxNum, `# Treasure Chests must be at most ${maxNum}`],
     },
     catchPhrase: {
       type: String,
-      required: [true, "catchPhrase is required"],
+      required: [true, "Catch phrase is required"],
       minLength: [
         minLength,
-        `catchPhrase must be at least ${minLength} characters`,
+        `Catch phrase must be at least ${minLength} characters`,
       ],
     },
     crewPosition: {
       type: String,
-      required: [true, "crewPosition is required"],
+      required: [true, "Crew Position is required"],
       minLength: [
         minLength,
-        `crewPosition must be at least ${minLength} characters`,
+        `Crew Position must be at least ${minLength} characters`,
       ],
     },
     pegLeg: {
       type: Boolean,
-      required: [true, "pegLeg is required"],
+      required: [true, "Peg-Leg is required"],
       default: defaultBool,
     },
     eyePatch: {
       type: Boolean,
-      required: [true, "eyePatch is required"],
+      required: [true, "Eye-Patch is required"],
       default: defaultBool,
     },
     hookHand: {
       type: Boolean,
-      required: [true, "hookHand is required"],
+      required: [true, "Hook-Hand is required"],
       default: defaultBool,
     },
   },
