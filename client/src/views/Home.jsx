@@ -171,10 +171,10 @@ const Home = (props) => {
               return (
                 <tr key={i}>
                   <td id="quotes" className="align-middle px-2">
-                    <h6 id="catch_phrase" className="text-center py-0">
+                    <h6 id="catch_phrase" className="text-center pb-0">
                       <i>"{item.catchPhrase}"</i>
                     </h6>
-                    <p id="pirate" className="text-end py-0">
+                    <p id="pirate" className="text-end pb-0">
                       - {item.pirateName}
                     </p>
                   </td>

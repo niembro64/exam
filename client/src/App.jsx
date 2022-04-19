@@ -14,7 +14,7 @@ function App() {
   return (
     <div className="App">
       <h4 className="align-middle">
-        <a className="btn btn-light btn-sm px-3 mx-2" href="http://http://44.201.88.86//about">About Pirate Crew</a>
+        <a className="btn btn-light btn-sm px-3 mx-2" href="http://44.201.88.86/about">About Pirate Crew</a>
         <a className="btn btn-light btn-sm px-3 mx-2" href="http://52.70.161.67/projects">Eric Niemeyer Projects</a>
       </h4>
       <Switch>
