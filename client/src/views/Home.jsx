@@ -149,7 +149,7 @@ const Home = (props) => {
   return (
     <>
       <div className="box">
-        <h2>🏴‍☠️ Pirate Crew</h2>
+        <h2> Pirate Crew 🏴‍☠️</h2>
         <Link to={"/add"}>
           <button className="btn btn-primary px-4">
             <big>+ Pirate</big>
@@ -171,12 +171,12 @@ const Home = (props) => {
               return (
                 <tr key={i}>
                   <td id="quotes" className="align-middle px-2">
-                    <h4 id="pirate" className="text-center pb-0">
-                      "{item.catchPhrase}"
-                    </h4>
-                    <h6 id="pirate" className="text-end pb-0">
-                      - {item.pirateName}
+                    <h6 id="catch_phrase" className="text-center py-0">
+                      <i>"{item.catchPhrase}"</i>
                     </h6>
+                    <p id="pirate" className="text-end py-0">
+                      - {item.pirateName}
+                    </p>
                   </td>
                   <td className="align-middle col-md-auto">
                     {/* <td className="align-middle text-start"> */}
@@ -189,43 +189,46 @@ const Home = (props) => {
                       class="btn-group-vertical-sm align-middle"
                     >
                       <Link to={`/${item._id}`}>
-                        <button id="btn_big" className="btn btn-secondary btn-lg">
+                        <button
+                          id="btn_big"
+                          className="btn btn-secondary"
+                        >
                           {/* {item.pirateName} */}
                           {/* <big>👁</big> */}
-                          <big>View Pirate</big>
+                          View Pirate
                         </button>
                       </Link>
                       {/* </td>
                   <td className="align-middle"> */}
                       <Link to={`/`}>
                         <button
-                        id="btn_big"
+                          id="btn_big"
                           onClick={() =>
                             onDeleteHandler(item._id, i, item.pirateName)
                           }
-                          className="btn btn-danger btn-lg"
+                          className="btn btn-danger mx-1 my-1"
                         >
-                          <big>Walk the Plank</big>
+                          Walk the Plank
                         </button>
                       </Link>
                       <Link to={`/${item._id}`}>
                         <button id="btn_small" className="btn btn-secondary">
                           {/* {item.pirateName} */}
                           {/* <big>👁</big> */}
-                          <big>View</big>
+                          View
                         </button>
                       </Link>
                       {/* </td>
                   <td className="align-middle"> */}
                       <Link to={`/`}>
                         <button
-                        id="btn_small"
+                          id="btn_small"
                           onClick={() =>
                             onDeleteHandler(item._id, i, item.pirateName)
                           }
-                          className="btn btn-danger"
+                          className="btn btn-danger mx-1 my-1"
                         >
-                          <big>✖</big>
+                          ✖
                         </button>
                       </Link>
                     </div>

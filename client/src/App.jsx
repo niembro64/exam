@@ -14,10 +14,8 @@ function App() {
   return (
     <div className="App">
       <h4 className="align-middle">
-        Eric Niemeyer
-        <Link to={"/about"}>
-          <button className="btn btn-outline-dark btn-sm px-3 mx-2">About This Project</button>
-        </Link>
+        <a className="btn btn-light btn-sm px-3 mx-2" href="http://http://44.201.88.86//about">About Pirate Crew</a>
+        <a className="btn btn-light btn-sm px-3 mx-2" href="http://52.70.161.67/projects">Eric Niemeyer Projects</a>
       </h4>
       <Switch>
         <Route exact path="/">

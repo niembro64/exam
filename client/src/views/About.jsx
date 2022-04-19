@@ -103,13 +103,13 @@ const About = (props) => {
         </div>
             I'm proud of this project for its front-end screen responsiveness.
             On each of the four pages, elements are carefully designed to change
-            form or disappear based on the available screen size.{" "}
+            form or disappear based on the available screen size.
           </p>
           <div className="box10">
             <p className="small">44.201.88.86</p>
             <img
               // id="explain_in"
-              loop="infinite"
+              // loop="infinite"
               src={require("../44_201_88_86.png")}
               alt="loading..."
             />
