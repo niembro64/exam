@@ -167,6 +167,7 @@ const Home = (props) => {
                             catchPhrase={item.catchPhrase}
                             pirateName={item.pirateName}
                             imageUrl={item.imageUrl}
+                          
                         />
                     );
                 })}
