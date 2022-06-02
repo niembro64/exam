@@ -730,13 +730,13 @@ a {
     background: no-repeat center;
     background-size: cover;
     background-clip: border-box;
+    overflow: hidden;
 
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     flex-wrap: wrap;
 
-    overflow: hidden;
 
     -webkit-user-select: none; /* Safari */
     -moz-user-select: none; /* Firefox */
@@ -873,7 +873,14 @@ a {
 /* /////////////////////////////// */
 
 body {
+    /* height: 100%; */
     background: #679be3;
+
+    /* background: no-repeat center; */
+    /* background-size: cover; */
+    /* background-clip: border-box; */
+    background-clip: content-box;
+    /* overflow: hidden; */
 }
 /* .App {
     display: flex;
@@ -883,6 +890,7 @@ body {
 } */
 
 .circle {
+    max-width: 100%; 
     z-index: -3;
     position: absolute;
     transform-origin: top;
