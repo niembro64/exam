@@ -118,7 +118,7 @@
     margin: 5px;
 }
 .box6 {
-    width: 180px;
+    /* width: 180px; */
     /* border: 1px black solid; */
     border-radius: 20px;
     /* background-color: rgba(255, 255, 255, 0.6); */
@@ -135,18 +135,16 @@
         2px 2px 30px rgba(13, 109, 253, 0.5);
 }
 .box6 > div > label {
-    text-shadow: 0px 0px 5px white, 0px 0px 15px white, 0px 0px 30px white,
-        0px 0px 70px white;
+    text-shadow: 0px 0px 10px rgb(255, 255, 255);
 }
 .box6 > div > #floatfield {
-    box-shadow: 0px 0px 5px white, 0px 0px 15px white, 0px 0px 30px white,
-        0px 0px 70px white;
+    text-shadow: 0px 0px 10px rgb(255, 255, 255);
 }
 .box7 {
     /* width: 98%; */
     /* max-width: 700px;
     min-width: 400px; */
-    width: 400px; 
+    /* width: 400px;  */
     /* border: 1px rgba(0, 0, 0, 0) solid; */
     border-radius: 3px;
     /* background-color: rgba(128, 45, 45, 0); */
@@ -753,14 +751,14 @@ a {
     color: rgb(0, 0, 0);
     transition: 1s ease;
     word-wrap: break-word;
-    text-shadow: 0px 0px 5px rgb(255, 255, 255), 0px 0px 15px rgb(255, 255, 255);
+    text-shadow: 0px 0px 10px rgb(255, 255, 255);
 }
 #pnameh {
     font-size: 20px;
     color: rgb(0, 0, 0);
     transition: 0.25s ease;
     word-wrap: break-word;
-    text-shadow: 0px 0px 5px rgb(255, 255, 255), 0px 0px 15px rgb(255, 255, 255);
+    text-shadow: 0px 0px 10px rgb(255, 255, 255);
 }
 #cp {
     color: white;
@@ -1108,25 +1106,36 @@ form > p {
 }
 
 .validations_outer {
+    width: 100%;
+    border: 10px solid black;
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
 }
 .validations_box {
     max-width: 700px;
-    background-color: rgb(33, 37, 41);
-    color: white;
+    min-width: 150px;
+    background-color: rgba(33, 37, 41, 0);
+    color: rgb(0, 0, 0);
     padding: 10px 30px 10px 30px;
     margin: 10px;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
+    text-shadow: 0px 0px 10px white;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5),
+        -2px -2px 8px rgba(255, 255, 255, 0.5),
+        2px 2px 30px rgba(13, 109, 253, 0.5);
 }
 
-.box7 > p, .box7 > span  {
+.box7 > p,
+.box7 > span {
     color: white;
-    background-color: rgba(255, 0, 0, 0.421); 
+    background-color: rgba(255, 0, 0, 0.421);
     border-radius: 15px;
-    padding: 3px 15px; 
+    padding: 3px 15px;
+    text-shadow: 0px 0px 10px white;
     /* text-shadow: 0px 0px 5px rgb(255, 255, 255);  */
-
 }
