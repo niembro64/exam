@@ -1107,7 +1107,7 @@ form > p {
 
 .validations_outer {
     width: 100%;
-    border: 10px solid black;
+    /* border: 10px solid black; */
     display: flex;
     flex-direction: row;
     justify-content: center;
