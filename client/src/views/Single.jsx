@@ -274,7 +274,7 @@ const Single = (props) => {
         <>
             <div className="box">
                 <Link to={"/"}>
-                    <button className="btn btn-secondary px-4">
+                    <button className="btn btn-dark px-4">
                         <big>Back</big>
                     </button>
                 </Link>
@@ -288,7 +288,7 @@ const Single = (props) => {
                         <i>"{one.catchPhrase}"</i>
                     </h3>
                 </div>
-                <div className="lr">
+                <div className="lr2">
                     {/* <h1>About</h1> */}{" "}
                     <Link to={`/`}>
                         <button
@@ -434,7 +434,7 @@ const Single = (props) => {
             </div>
             <div className="box2">
                 <h4>MongoDB 🍃 {one.pirateName}'s Raw Data</h4>
-                <table className="table table-sm table-hover">
+                <table className="table table-dark table-sm table-hover">
                     <thead>
                         <tr>
                             <th>Key</th>
