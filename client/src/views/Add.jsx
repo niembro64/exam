@@ -10,7 +10,7 @@ require("../demo.gif");
 const p = (a) => {
     console.log(a);
 };
-const Edit = (props) => {
+const Add = (props) => {
     const { _id } = useParams();
     // const [one, setOne] = useState({
     //   name: "default",
@@ -26,7 +26,27 @@ const Edit = (props) => {
         eyePatch: false,
         hookHand: false,
     });
-    const [error, setError] = useState({ name: {} });
+    // const [error, setError] = useState({ name: {} });
+    const [error, setError] = useState({
+        pirateName: "init",
+        imageUrl: "init",
+        numChests: "init",
+        catchPhrase: "init",
+        crewPosition: "init",
+        pegLeg: "init",
+        eyePatch: "init",
+        hookHand: "init",
+    });
+    const [react_error, set_react_error] = useState({
+        pirateName: "init",
+        imageUrl: "init",
+        numChests: "init",
+        catchPhrase: "init",
+        crewPosition: "init",
+        pegLeg: "init",
+        eyePatch: "init",
+        hookHand: "init",
+    });
 
     const history = useHistory();
 
@@ -56,6 +76,68 @@ const Edit = (props) => {
             [event.target.name]: event.target.value,
         };
         setForm(newState);
+
+        //////////// front-end errors
+
+        var newErrorValue = "";
+
+        switch (event.target.name) {
+            case "pirateName":
+                console.log("pirateName");
+                console.log(event.target.value.length);
+                newErrorValue =
+                    event.target.value.length < 3
+                        ? "Pirate Name must be at least 3 characters"
+                        : event.target.value.length > 16
+                        ? "Pirate Name can't be more than 16 characters"
+                        : "";
+                break;
+            case "imageUrl":
+                console.log("imageUrl");
+                console.log(event.target.value.length);
+                newErrorValue =
+                    event.target.value.length < 3
+                        ? "Image URL must be at least 3 characters"
+                        : "";
+
+                break;
+            case "catchPhrase":
+                console.log("catchPhrase");
+                console.log(event.target.value.length);
+                newErrorValue =
+                    event.target.value.length < 3
+                        ? "Catch Phrase must be at least 3 characters"
+                        : event.target.value.length > 16
+                        ? "Catch Phrase can't be more than 16 characters"
+                        : "";
+                break;
+            case "crewPosition":
+                console.log("crewPosition");
+                console.log(event.target.value.length);
+                newErrorValue =
+                    event.target.value.length < 3
+                        ? "Crew Position must be at least 3 characters"
+                        : event.target.value.length > 16
+                        ? "Crew Position can't be more than 16 characters"
+                        : "";
+                break;
+            case "numChests":
+                console.log("numChests");
+                newErrorValue =
+                    event.target.value < 0
+                        ? "# Chests can't be negative"
+                        : event.target.value > 6
+                        ? "# Chests can't be more than 6"
+                        : "";
+                break;
+        }
+
+        const newStateErr = {
+            ...react_error,
+            [event.target.name]: newErrorValue,
+            // passMatch: newPassMatch,
+        };
+        set_react_error(newStateErr);
     };
     const onChangeHandlerPegLeg = (event) => {
         // event.preventDefault();
@@ -332,54 +414,103 @@ const Edit = (props) => {
                         />
                     </div>
                 </div>
-                <div className="box7">
-                    {/* {() => {
-                        if (error.pirateName) {
-                            return (
-                                <span className="alert-danger">
-                                    {error.pirateName &&
-                                        error.pirateName.message}
-                                </span>
-                            );
-                        }
-                    }} */}
-                    <span className="alert-danger">
-                        {error.pirateName && error.pirateName.message}
-                    </span>
-                    <span className="alert-danger">
-                        {error.imageUrl && error.imageUrl.message}
-                    </span>
-                    <span className="alert-danger">
-                        {error.catchPhrase && error.catchPhrase.message}
-                    </span>
-                    <span className="alert-danger">
-                        {error.crewPosition && error.crewPosition.message}
-                    </span>
-                    <span className="alert-danger">
-                        {error.numChests && error.numChests.message}
-                    </span>
-                    <span className="alert-danger">
-                        {error.pegLeg && error.pegLeg.message}
-                    </span>
-                    <span className="alert-danger">
-                        {error.eyePatch && error.eyePatch.message}
-                    </span>
-                    <span className="alert-danger">
-                        {error.hookHand && error.hookHand.message}
-                    </span>
-                </div>
                 <input
                     id="create_pirate"
                     type="submit"
                     value="Create Pirate 🏴‍☠️"
                     className="btn btn-dark btn-lg"
                 />
+                <div className="validations_outer">
+                    <div className="validations_box">
+                        <h4>Front-End Validations</h4>
+                        <p>React</p>
+                        <div className="box7" id="frontendvalidations">
+                            {react_error.pirateName === "" ||
+                            react_error.pirateName === "init" ? (
+                                ""
+                            ) : (
+                                <p>{react_error.pirateName}</p>
+                            )}
+                            {react_error.imageUrl === "" ||
+                            react_error.imageUrl === "init" ? (
+                                ""
+                            ) : (
+                                <p>{react_error.imageUrl}</p>
+                            )}
+                            {react_error.catchPhrase === "" ||
+                            react_error.catchPhrase === "init" ? (
+                                ""
+                            ) : (
+                                <p>{react_error.catchPhrase}</p>
+                            )}
+                            {react_error.crewPosition === "" ||
+                            react_error.crewPosition === "init" ? (
+                                ""
+                            ) : (
+                                <p>{react_error.crewPosition}</p>
+                            )}
+                            {react_error.numChests === "" ||
+                            react_error.numChests === "init" ? (
+                                ""
+                            ) : (
+                                <p>{react_error.numChests}</p>
+                            )}
+                        </div>
+                    </div>
+                    <div className="validations_box">
+                        <h4>Back-End validations</h4>
+                        <p>Express / MongoDB 🍃</p>
+                        <div className="box7" id="backendvalidations">
+                            {error.pirateName && error.pirateName.message ? (
+                                <span>{error.pirateName.message}</span>
+                            ) : (
+                                ""
+                            )}
+                            {error.imageUrl && error.imageUrl.message ? (
+                                <span>{error.imageUrl.message}</span>
+                            ) : (
+                                ""
+                            )}
+                            {error.catchPhrase && error.catchPhrase.message ? (
+                                <span>{error.catchPhrase.message}</span>
+                            ) : (
+                                ""
+                            )}
+                            {error.crewPosition &&
+                            error.crewPosition.message ? (
+                                <span>{error.crewPosition.message}</span>
+                            ) : (
+                                ""
+                            )}
+                            {error.numChests && error.numChests.message ? (
+                                <span>{error.numChests.message}</span>
+                            ) : (
+                                ""
+                            )}
+                            {error.pegLeg && error.pegLeg.message ? (
+                                <span>{error.pegLeg.message}</span>
+                            ) : (
+                                ""
+                            )}
+                            {error.eyePatch && error.eyePatch.message ? (
+                                <span>{error.eyePatch.message}</span>
+                            ) : (
+                                ""
+                            )}
+                            {error.hookHand && error.hookHand.message ? (
+                                <span>{error.hookHand.message}</span>
+                            ) : (
+                                ""
+                            )}
+                        </div>
+                    </div>
+                </div>
             </form>
         </>
     );
 };
 
-export default Edit;
+export default Add;
 
 // module.exports.updateExistingAUTHOR = (req, res) => {
 //   AUTHOR.findOneAndUpdate({ _id: req.params._id }, req.body, { new: true })
