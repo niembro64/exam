@@ -174,7 +174,12 @@ const Edit = (props) => {
                                     (Address)
                                 </span> */}
                             </label>
-                            <input type="url" name="imageUrl" />
+                            <input
+                                type="url"
+                                id="floatField"
+                                name="imageUrl"
+                                onChange={onChangeHandler}
+                            />
 
                             {/* <p className="text-muted small text-start">
                                 Some Links Won't Work
@@ -353,7 +358,7 @@ const Edit = (props) => {
                     </span>
                 </div>
                 <input
-                id="create_pirate"
+                    id="create_pirate"
                     type="submit"
                     value="Create Pirate 🏴‍☠️"
                     className="btn btn-dark btn-lg"
