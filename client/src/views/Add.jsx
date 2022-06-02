@@ -204,25 +204,7 @@ const Edit = (props) => {
                                 Paste Above
                             </li>
                         </ul> */}
-                        <div id="floatContainer" className="box4">
-                            <label
-                                // style={{ position: "absolute", zIndex: 1 }}
-                                htmlFor="numChests"
-                            >
-                                # Treasure Chests
-                            </label>
-                            <input
-                                // style={{ position: "relative", zIndex: 2 }}
-                                // autoFocus="autofocus"
-                                id="floatField"
-                                type="number"
-                                name="numChests"
-                                onChange={onChangeHandler}
 
-                                // placeholder=""
-                                // default="asdf"
-                            />
-                        </div>
                         <div id="floatContainer" className="box4">
                             <label
                                 // style={{ position: "absolute", zIndex: 1 }}
@@ -255,6 +237,25 @@ const Edit = (props) => {
                                 id="floatField"
                                 type="text"
                                 name="crewPosition"
+                                onChange={onChangeHandler}
+
+                                // placeholder=""
+                                // default="asdf"
+                            />
+                        </div>
+                        <div id="floatContainer" className="box4">
+                            <label
+                                // style={{ position: "absolute", zIndex: 1 }}
+                                htmlFor="numChests"
+                            >
+                                # Treasure Chests
+                            </label>
+                            <input
+                                // style={{ position: "relative", zIndex: 2 }}
+                                // autoFocus="autofocus"
+                                id="floatField"
+                                type="number"
+                                name="numChests"
                                 onChange={onChangeHandler}
 
                                 // placeholder=""
@@ -332,6 +333,16 @@ const Edit = (props) => {
                     </div>
                 </div>
                 <div className="box7">
+                    {/* {() => {
+                        if (error.pirateName) {
+                            return (
+                                <span className="alert-danger">
+                                    {error.pirateName &&
+                                        error.pirateName.message}
+                                </span>
+                            );
+                        }
+                    }} */}
                     <span className="alert-danger">
                         {error.pirateName && error.pirateName.message}
                     </span>
@@ -339,13 +350,13 @@ const Edit = (props) => {
                         {error.imageUrl && error.imageUrl.message}
                     </span>
                     <span className="alert-danger">
-                        {error.numChests && error.numChests.message}
-                    </span>
-                    <span className="alert-danger">
                         {error.catchPhrase && error.catchPhrase.message}
                     </span>
                     <span className="alert-danger">
                         {error.crewPosition && error.crewPosition.message}
+                    </span>
+                    <span className="alert-danger">
+                        {error.numChests && error.numChests.message}
                     </span>
                     <span className="alert-danger">
                         {error.pegLeg && error.pegLeg.message}
