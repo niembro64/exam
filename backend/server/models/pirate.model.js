@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 
 const minLength = 3;
+const maxLength = 16;
 const minNum = 0;
 const maxNum = 6;
 const defaultBool = false;
@@ -13,6 +14,10 @@ const PirateSchema = new mongoose.Schema(
       minLength: [
         minLength,
         `Name must be at least ${minLength} characters`,
+      ],
+      maxLength: [
+        maxLength,
+        `Name can be at most ${maxLength} characters`,
       ],
     },
     imageUrl: {
@@ -27,14 +32,18 @@ const PirateSchema = new mongoose.Schema(
       type: Number,
       required: [true, "# Treasure Chests is required"],
       min: [minNum, `# Treasure Chests must be at least ${minNum}`],
-      max: [maxNum, `# Treasure Chests must be at most ${maxNum}`],
+      max: [maxNum, `# Treasure Chests can be at most ${maxNum}`],
     },
     catchPhrase: {
       type: String,
       required: [true, "Catch phrase is required"],
       minLength: [
         minLength,
-        `Catch phrase must be at least ${minLength} characters`,
+        `Catch Phrase must be at least ${minLength} characters`,
+      ],
+      maxLength: [
+        maxLength,
+        `Catch Phrase can be at most ${maxLength} characters`,
       ],
     },
     crewPosition: {
@@ -43,6 +52,10 @@ const PirateSchema = new mongoose.Schema(
       minLength: [
         minLength,
         `Crew Position must be at least ${minLength} characters`,
+      ],
+      maxLength: [
+        maxLength,
+        `Crew Position can be at most ${maxLength} characters`,
       ],
     },
     pegLeg: {
