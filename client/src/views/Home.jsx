@@ -153,7 +153,7 @@ const Home = (props) => {
             <div className="box">
                 <h2> Pirate Crew 🏴‍☠️</h2>
                 <Link to={"/add"}>
-                    <button className="btn btn-primary px-4">
+                    <button className="btn btn-dark px-4">
                         <big>+ Pirate</big>
                     </button>
                 </Link>
@@ -167,7 +167,6 @@ const Home = (props) => {
                             catchPhrase={item.catchPhrase}
                             pirateName={item.pirateName}
                             imageUrl={item.imageUrl}
-                          
                         />
                     );
                 })}
