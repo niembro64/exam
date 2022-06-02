@@ -353,6 +353,7 @@ const Edit = (props) => {
                     </span>
                 </div>
                 <input
+                id="create_pirate"
                     type="submit"
                     value="Create Pirate 🏴‍☠️"
                     className="btn btn-dark btn-lg"
