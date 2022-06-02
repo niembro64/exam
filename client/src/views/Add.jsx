@@ -140,7 +140,7 @@ const Edit = (props) => {
         <>
             <div className="box">
                 <Link to={"/"}>
-                    <button className="btn btn-secondary px-4">
+                    <button className="btn btn-dark px-4">
                         <big>Back</big>
                     </button>
                 </Link>
