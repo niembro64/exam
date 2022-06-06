@@ -684,6 +684,9 @@ a {
 #cardoutline {
     border: 0px solid black;
     background-color: white;
+    position: relative;
+    top: 0px; 
+
     margin: 10px;
     border-radius: 10px;
     border-top-left-radius: 130px;
@@ -695,6 +698,8 @@ a {
 #cardoutline:hover {
     border: 0px solid black;
     background-color: white;
+    position: relative;
+    top: -3px; 
     margin: 10px;
     border-radius: 10px;
     border-top-left-radius: 130px;
@@ -764,12 +769,16 @@ a {
 #cp {
     color: white;
     font-size: 0px;
+    transition-delay: 0s;
+    transform: scale(0);
     transition: 0.25s ease-out;
 }
 #cph {
     color: black;
     font-size: 20px;
-    transition: 0.15qs ease-in;
+    transition-delay: .2s;
+    transition: 0.15s ease-in;
+    transform: scale(1);
 }
 #base0 {
     z-index: 3;
