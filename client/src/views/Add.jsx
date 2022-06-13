@@ -228,6 +228,90 @@ const Add = (props) => {
                 </Link>
                 <h2>Add New Pirate</h2>
             </div>
+            <div className="validations_outer">
+                <div className="validations_box">
+                    <h4>Front-End Validations</h4>
+                    <p>For User Experience</p>
+                    <div className="box7" id="frontendvalidations">
+                        {react_error.pirateName === "" ||
+                        react_error.pirateName === "init" ? (
+                            ""
+                        ) : (
+                            <p>{react_error.pirateName}</p>
+                        )}
+                        {react_error.imageUrl === "" ||
+                        react_error.imageUrl === "init" ? (
+                            ""
+                        ) : (
+                            <p>{react_error.imageUrl}</p>
+                        )}
+                        {react_error.catchPhrase === "" ||
+                        react_error.catchPhrase === "init" ? (
+                            ""
+                        ) : (
+                            <p>{react_error.catchPhrase}</p>
+                        )}
+                        {react_error.crewPosition === "" ||
+                        react_error.crewPosition === "init" ? (
+                            ""
+                        ) : (
+                            <p>{react_error.crewPosition}</p>
+                        )}
+                        {react_error.numChests === "" ||
+                        react_error.numChests === "init" ? (
+                            ""
+                        ) : (
+                            <p>{react_error.numChests}</p>
+                        )}
+                    </div>
+                </div>
+                <div className="validations_box">
+                    <h4>Back-End Validations</h4>
+                    <p>For Data Integrity</p>
+                    <div className="box7" id="backendvalidations">
+                        {error.pirateName && error.pirateName.message ? (
+                            <span>{error.pirateName.message}</span>
+                        ) : (
+                            ""
+                        )}
+                        {error.imageUrl && error.imageUrl.message ? (
+                            <span>{error.imageUrl.message}</span>
+                        ) : (
+                            ""
+                        )}
+                        {error.catchPhrase && error.catchPhrase.message ? (
+                            <span>{error.catchPhrase.message}</span>
+                        ) : (
+                            ""
+                        )}
+                        {error.crewPosition && error.crewPosition.message ? (
+                            <span>{error.crewPosition.message}</span>
+                        ) : (
+                            ""
+                        )}
+                        {error.numChests && error.numChests.message ? (
+                            <span>{error.numChests.message}</span>
+                        ) : (
+                            ""
+                        )}
+                        {error.pegLeg && error.pegLeg.message ? (
+                            <span>{error.pegLeg.message}</span>
+                        ) : (
+                            ""
+                        )}
+                        {error.eyePatch && error.eyePatch.message ? (
+                            <span>{error.eyePatch.message}</span>
+                        ) : (
+                            ""
+                        )}
+                        {error.hookHand && error.hookHand.message ? (
+                            <span>{error.hookHand.message}</span>
+                        ) : (
+                            ""
+                        )}
+                    </div>
+                </div>
+            </div>
             <form onSubmit={onSubmitHandler} className="box3">
                 <div id="add_top">
                     <div id="explain_out">
@@ -420,91 +504,6 @@ const Add = (props) => {
                     value="Create Pirate 🏴‍☠️"
                     className="btn btn-dark btn-lg"
                 />
-                <div className="validations_outer">
-                    <div className="validations_box">
-                        <h4>Front-End Validations</h4>
-                        <p>React</p>
-                        <div className="box7" id="frontendvalidations">
-                            {react_error.pirateName === "" ||
-                            react_error.pirateName === "init" ? (
-                                ""
-                            ) : (
-                                <p>{react_error.pirateName}</p>
-                            )}
-                            {react_error.imageUrl === "" ||
-                            react_error.imageUrl === "init" ? (
-                                ""
-                            ) : (
-                                <p>{react_error.imageUrl}</p>
-                            )}
-                            {react_error.catchPhrase === "" ||
-                            react_error.catchPhrase === "init" ? (
-                                ""
-                            ) : (
-                                <p>{react_error.catchPhrase}</p>
-                            )}
-                            {react_error.crewPosition === "" ||
-                            react_error.crewPosition === "init" ? (
-                                ""
-                            ) : (
-                                <p>{react_error.crewPosition}</p>
-                            )}
-                            {react_error.numChests === "" ||
-                            react_error.numChests === "init" ? (
-                                ""
-                            ) : (
-                                <p>{react_error.numChests}</p>
-                            )}
-                        </div>
-                    </div>
-                    <div className="validations_box">
-                        <h4>Back-End validations</h4>
-                        <p>Express / MongoDB 🍃</p>
-                        <div className="box7" id="backendvalidations">
-                            {error.pirateName && error.pirateName.message ? (
-                                <span>{error.pirateName.message}</span>
-                            ) : (
-                                ""
-                            )}
-                            {error.imageUrl && error.imageUrl.message ? (
-                                <span>{error.imageUrl.message}</span>
-                            ) : (
-                                ""
-                            )}
-                            {error.catchPhrase && error.catchPhrase.message ? (
-                                <span>{error.catchPhrase.message}</span>
-                            ) : (
-                                ""
-                            )}
-                            {error.crewPosition &&
-                            error.crewPosition.message ? (
-                                <span>{error.crewPosition.message}</span>
-                            ) : (
-                                ""
-                            )}
-                            {error.numChests && error.numChests.message ? (
-                                <span>{error.numChests.message}</span>
-                            ) : (
-                                ""
-                            )}
-                            {error.pegLeg && error.pegLeg.message ? (
-                                <span>{error.pegLeg.message}</span>
-                            ) : (
-                                ""
-                            )}
-                            {error.eyePatch && error.eyePatch.message ? (
-                                <span>{error.eyePatch.message}</span>
-                            ) : (
-                                ""
-                            )}
-                            {error.hookHand && error.hookHand.message ? (
-                                <span>{error.hookHand.message}</span>
-                            ) : (
-                                ""
-                            )}
-                        </div>
-                    </div>
-                </div>
             </form>
         </>
     );
