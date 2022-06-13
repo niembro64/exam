@@ -59,11 +59,11 @@ storeScroll();
             <div className="circle mediun shade4"></div>
             <div className="circle small shade5"></div>
             <div className="btntop">
-                <a className="bbb" href="http://44.201.88.86/about">
+                <a className="bbb" href="https://pirates.niembro64.com/about">
                     <p className="bbbt">About Pirates</p>
                 </a>
 
-                <a className="bbb" href="http://52.70.161.67/projects">
+                <a className="bbb" href="https://niembro64.com/projects">
                     <p className="bbbt">Projects Home</p>
                 </a>
 
