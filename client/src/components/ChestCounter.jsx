@@ -19,7 +19,7 @@ const ChestCounter = ({ numChests, onIncrement, onDecrement }) => {
                 justifyContent: "center",
                 alignItems: "center",
                 flexWrap: "wrap", // Allow wrapping on very small screens
-                gap: "2px", // Tighter spacing between chests
+                gap: "0px", // No gap - chests touching
                 overflow: "hidden", // Prevent visual overflow
                 position: "relative"
             }}>

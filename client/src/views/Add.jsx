@@ -267,13 +267,12 @@ const Add = (props) => {
                                 Image URL
                             </label>
                             <input
-                                type="url"
+                                type="text"
                                 id="floatField"
                                 name="imageUrl"
                                 onChange={onChangeHandler}
-                                placeholder="https://example.com/image.jpg"
+                                placeholder="https://example.com/image.jpg (optional)"
                             />
-                            <small style={{ color: "rgba(255, 255, 255, 0.7)", fontSize: "11px", marginTop: "2px" }}>Optional</small>
                         </div>
 
                         <div id="floatContainer" className="box4">
