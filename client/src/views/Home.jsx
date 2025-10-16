@@ -1,102 +1,36 @@
 import axios from "axios";
-import React, { useEffect, useState, createElement } from "react";
-import { useParams } from "react-router-dom/cjs/react-router-dom.min";
-import { Switch, Route, Link } from "react-router-dom";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import Card from "./Card";
 
 const Home = (props) => {
-    const [dbtest, setDbtest] = useState({ assignment: "none", port: 0 });
-    const [form, setForm] = useState({
-        pirateName: "",
-        imageUrl: "",
-        numChests: 0,
-        catchPhrase: "",
-        crewPosition: "",
-        pegLeg: true,
-        eyePatch: true,
-        hookHand: true,
-    });
     const [fromDb, setFromDb] = useState([]);
     const [loaded, setLoaded] = useState(false);
-    const [error, setError] = useState({ name: {} });
-    const history = useHistory();
-    // history.push(`/${category}/${detail}`);
 
     useEffect(() => {
-        p("Running useEffect");
-
-        axios
-            .get("http://localhost:9000/api")
-            .then((res) => {
-                // console.log(res);
-                setDbtest(res.data);
-            })
-            .catch((err) => console.log(err));
-        // .catch((err) => console.log(err.response.data.err.errors));
-
         updateFromDb();
         setLoaded(false);
     }, [loaded]);
 
-    const p = (a) => {
-        console.log(a);
-    };
-
     const updateFromDb = () => {
-        p("Running updateFromDb");
         axios
             .get("http://localhost:9000/api/pirate/")
             .then((res) => {
-                // console.log(res.data);
                 setFromDb(res.data);
             })
-            .catch((err) => console.log(err.response.error.errors));
-        // .catch((err) => console.log(err.response.error.errors));
-    };
-
-    const onSubmitHandler = (event) => {
-        p("Running onSubmitHandler");
-        event.preventDefault();
-
-        axios
-            .post("http://localhost:9000/api/pirate/create", form)
-            .then((res) => {
-                console.log(res.data);
-                setLoaded(true);
-                setError({});
-            })
-            .catch((err) => {
-                p("in OnSubmitHandler Error");
-                console.log(err.response.data.error.errors);
-                setError(err.response.data.error.errors);
-            });
-    };
-
-    const onChangeHandler = (event) => {
-        p("Running onChangeHandler");
-        event.preventDefault();
-
-        // p(event.target.value);
-        const newState = {
-            ...form,
-            [event.target.name]: event.target.value,
-        };
-        setForm(newState);
+            .catch((err) => console.error("Error fetching pirates:", err));
     };
 
     const onDeleteHandler = (_id, arrIndex, pirateName) => {
         if (window.confirm(`Are you sure you want to delete ${pirateName}?`)) {
-            console.log("inside on click delete");
             axios
                 .delete(`http://localhost:9000/api/pirate/delete/${_id}`)
                 .then((res) => {
-                    console.log(res.data);
                     const copyState = [...fromDb];
                     copyState.splice(arrIndex, 1);
                     setFromDb(copyState);
                 })
-                .catch((err) => console.log(error.response.data.err.errors));
+                .catch((err) => console.error("Error deleting pirate:", err));
         }
     };
 

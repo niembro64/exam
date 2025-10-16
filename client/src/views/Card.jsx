@@ -1,9 +1,7 @@
 import React from "react";
-import { useEffect, useState, createElement } from "react";
-import { useParams } from "react-router-dom/cjs/react-router-dom.min";
-import { Switch, Route, Link } from "react-router-dom";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 const Card = (props) => {
     const [style0, setStyle0] = useState("c0");
@@ -32,13 +30,13 @@ const Card = (props) => {
 
     const onDeleteHandler = (pirateId, pirateName) => {
         if (window.confirm(`Are you sure you want to delete ${pirateName}?`)) {
-            console.log("inside on click delete");
             axios
                 .delete(`http://localhost:9000/api/pirate/delete/${pirateId}`)
-                .then((res) => console.log(res.data))
-                .catch((err) => console.log(err));
+                .then((res) => {
+                    window.location.reload(false);
+                })
+                .catch((err) => console.error("Error deleting pirate:", err));
         }
-        window.location.reload(false);
     };
 
     return (

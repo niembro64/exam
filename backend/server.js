@@ -22,7 +22,6 @@ const AllMyPirateRoutes = require("./server/routes/pirate.routes");
 AllMyPirateRoutes(app);
 
 app.get("/api", (req, res) => {
-  console.log("trying to talk to database");
   res.json({ assignment: "Niemo Exam Pirates", port: port });
 });
 

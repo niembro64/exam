@@ -1,15 +1,8 @@
 import React from "react";
-import { useEffect, useState, createElement } from "react";
-import { useParams } from "react-router-dom/cjs/react-router-dom.min";
-import { Switch, Route, Link } from "react-router-dom";
-import axios from "axios";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 
-const p = (a) => {
-    console.log(a);
-};
 const About = (props) => {
-    // const[para, setPara] = useState("");
     const [deploymentItem, setDeploymentItem] = useState([
         {
             title: "AWS EC2",

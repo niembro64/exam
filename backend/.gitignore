@@ -1,6 +1,19 @@
-./nodemodules
-/nodemodules
-nodemodules
-./node_modules
-/node_modules
-node_modules
+# Dependencies
+node_modules/
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Logs
+*.log
+npm-debug.log*
+
+# Build
+dist/
+
+# Cache
+.eslintcache

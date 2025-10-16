@@ -80,5 +80,3 @@ const PirateSchema = new mongoose.Schema(
 const Pirate = mongoose.model("Pirate", PirateSchema);
 
 module.exports = Pirate;
-
-// ${minLength}

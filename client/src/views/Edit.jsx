@@ -1,19 +1,12 @@
 import React from "react";
-import { useEffect, useState, createElement } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
-import { Switch, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
-const p = (a) => {
-  console.log(a);
-};
 const Edit = (props) => {
   const { _id } = useParams();
-  // const [one, setOne] = useState({
-  //   name: "default",
-
-  // });
   const [form, setForm] = useState({
     pirateName: "",
     imageUrl: "",
@@ -29,47 +22,33 @@ const Edit = (props) => {
   const history = useHistory();
 
   useEffect(() => {
-    p("useEffect Running");
-
     axios
       .get(`http://localhost:9000/api/author/${_id}`)
       .then((res) => {
-        console.log(res.data);
-        // setOne(res.data);
         setForm(res.data);
       })
-      .catch((err) => console.log(err.response.data.error.errors));
+      .catch((err) => console.error("Error fetching author:", err));
   }, [_id]);
 
 
   const onDeleteHandler = (_id) => {
     if (window.confirm(`Are you sure you want to delete this item?`)) {
-      console.log("inside on click delete");
       axios
         .delete(`http://localhost:9000/api/author/delete/${_id}`)
-        .then((res) => console.log(res.data))
-        .catch((err) => console.log(err.response.data.error.errors));
+        .then((res) => res.data)
+        .catch((err) => console.error("Error deleting author:", err));
     }
   };
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
-    console.log("Edit | onSubmitHandler | Jumped In")
-
-    const copyState = {
-      name: form.name,
-    };
 
     axios
       .patch(`http://localhost:9000/api/author/update/${form._id}`, {name: form.name})
       .then((res) => {
-        console.log("Edit | onSubmitHandler | Success Submitting")
-        console.log(res.data);
         history.push(`/`);
       })
       .catch((err) => {
-        p("Edit | onSubmitHandler | Error");
-        console.log(err.response.data.error.errors);
         setError(err.response.data.error.errors);
       });
   };
@@ -77,7 +56,6 @@ const Edit = (props) => {
   const onChangeHandler = (event) => {
     event.preventDefault();
 
-    // p(event.target.value);
     const newState = {
       ...form,
       [event.target.name]: event.target.value,
@@ -164,24 +142,15 @@ const Edit = (props) => {
             name="name"
             value={form.name}
             onChange={onChangeHandler}
-
-            // placeholder=""
-            // default="asdf"
           />
         </div>
         <span className="alert-danger">{error.name && error.name.message}</span>
         <input type="submit" className="btn btn-success mx-4" value="Update"/>
-        {/* <input type="submit" className="btn btn-success mx-4" value="Update"/> */}
       </form>
       <div className="box">
         <p>form</p>
         <p> {form.name}</p>
       </div>
-      {/* <div className="box">
-        <p>one</p>
-        <p> {one.name}</p>
-
-      </div> */}
     </>
   );
 };
@@ -195,5 +164,3 @@ export default Edit;
 //       res.status(400).json({ message: "Something went wrong", error: err })
 //     );
 // };
-
-// pre backend validations

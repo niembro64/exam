@@ -1,13 +1,9 @@
 import React from "react";
-import { useEffect, useState, createElement } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
-import { Switch, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
-const p = (a) => {
-    console.log(a);
-};
 const Single = (props) => {
     const { _id } = useParams();
     const [one, setOne] = useState({
@@ -21,76 +17,27 @@ const Single = (props) => {
         hookHand: true,
     });
     const [error, setError] = useState({ name: {} });
-    const [chests, setChests] = useState("❌");
-
-    const history = useHistory();
 
     useEffect(() => {
-        p("useEffect Running");
-
         axios
             .get(`http://localhost:9000/api/pirate/${_id}`)
             .then((res) => {
-                console.log(res.data);
                 setOne(res.data);
             })
-            .catch((err) => console.log(err));
-
-        // var c = "";
-        // for (var i = 0; i < one.numChests; i++) {
-        //   c += "💰";
-        // }
-
-        // setChests(c);
+            .catch((err) => console.error("Error fetching pirate:", err));
     }, [_id]);
-
-    // useEffect(() => {
-    //   p("useEffect2 Running");
-
-    //   const copyState = {
-    //     pirateName: one.pirateName,
-    //     imageUrl: one.imageUrl,
-    //     numChests: one.numChests,
-    //     catchPhrase: one.catchPhrase,
-    //     crewPosition: one.crewPosition,
-    //     pegLeg: one.pegLeg,
-    //     eyePatch: one.eyePatch,
-    //     hookHand: one.hookHand,
-    //   };
-
-    //   axios
-    //     .patch(`http://localhost:9000/api/pirate/update/${_id}`, copyState)
-    //     .then((res) => {
-    //       console.log("Edit | onSubmitHandler | Success Submitting")
-    //       console.log(res.data);
-    //       history.push(`/`);
-    //     })
-    //     .catch((err) => {
-    //       p("Edit | onSubmitHandler | Error");
-    //       console.log(err.response.data.error.errors);
-    //       setError(err.response.data.error.errors);
-    //     });
-
-    // // one.pegLeg, one.eyePatch, one.hookHand
-    // }, [one.pegLeg, one.eyePatch, one.hookHand]);
 
     const onDeleteHandler = (_id, pirateName) => {
         if (window.confirm(`Are you sure you want to delete ${pirateName}?`)) {
-            console.log("inside on click delete");
             axios
                 .delete(`http://localhost:9000/api/pirate/delete/${_id}`)
-                .then((res) => console.log(res.data))
-                .catch((err) => console.log(err));
+                .then((res) => res.data)
+                .catch((err) => console.error("Error deleting pirate:", err));
         }
     };
 
     const onClickHandlerPegLeg = (event) => {
         event.preventDefault();
-        console.log("Single | onClickHandler | Jumped In");
-
-        console.log({
-            [event.target.name]: event.target.value ? "true" : "false",
-        });
 
         const copyState = {
             pegLeg: !one.pegLeg,
@@ -101,41 +48,20 @@ const Single = (props) => {
             pegLeg: !one.pegLeg,
         });
 
-        // setOne({
-        //   pirateName: one.pirateName,
-        //   imageUrl: one.imageUrl,
-        //   numChests: one.numChests,
-        //   catchPhrase: one.catchPhrase,
-        //   crewPosition: one.crewPosition,
-        //   pegLeg: !one.pegLeg,
-        //   eyePatch: one.eyePatch,
-        //   hookHand: one.hookHand,
-        //   // [event.target.name]: !event.target.value,
-        // });
-
-        console.log("CopyState:");
-        console.log(copyState);
-
         axios
             .patch(`http://localhost:9000/api/pirate/update/${_id}`, copyState)
             .then((res) => {
-                console.log("Single | onClickHandler | Success Submitting");
-                console.log(res.data);
-                // history.push(`/`);
+                // Successfully updated
             })
             .catch((err) => {
-                p("Single | onClickHandler | Error");
-                console.log(err.response.data.error.errors);
-                setError(err.response.data.error.errors);
+                console.error("Error updating peg leg:", err);
+                if (err.response?.data?.error?.errors) {
+                    setError(err.response.data.error.errors);
+                }
             });
     };
     const onClickHandlerEyePatch = (event) => {
         event.preventDefault();
-        console.log("Single | onClickHandler | Jumped In");
-
-        console.log({
-            [event.target.name]: event.target.value ? "true" : "false",
-        });
 
         const copyState = {
             eyePatch: !one.eyePatch,
@@ -145,41 +71,21 @@ const Single = (props) => {
             ...one,
             eyePatch: !one.eyePatch,
         });
-        // setOne({
-        //   pirateName: one.pirateName,
-        //   imageUrl: one.imageUrl,
-        //   numChests: one.numChests,
-        //   catchPhrase: one.catchPhrase,
-        //   crewPosition: one.crewPosition,
-        //   pegLeg: one.pegLeg,
-        //   eyePatch: !one.eyePatch,
-        //   hookHand: one.hookHand,
-        //   // [event.target.name]: !event.target.value,
-        // });
-
-        console.log("CopyState:");
-        console.log(copyState);
 
         axios
             .patch(`http://localhost:9000/api/pirate/update/${_id}`, copyState)
             .then((res) => {
-                console.log("Single | onClickHandler | Success Submitting");
-                console.log(res.data);
-                // history.push(`/`);
+                // Successfully updated
             })
             .catch((err) => {
-                p("Single | onClickHandler | Error");
-                console.log(err.response.data.error.errors);
-                setError(err.response.data.error.errors);
+                console.error("Error updating eye patch:", err);
+                if (err.response?.data?.error?.errors) {
+                    setError(err.response.data.error.errors);
+                }
             });
     };
     const onClickHandlerHookHand = (event) => {
         event.preventDefault();
-        console.log("Single | onClickHandler | Jumped In");
-
-        console.log({
-            [event.target.name]: event.target.value ? "true" : "false",
-        });
 
         const copyState = {
             hookHand: !one.hookHand,
@@ -190,28 +96,21 @@ const Single = (props) => {
             hookHand: !one.hookHand,
         });
 
-        console.log("CopyState:");
-        console.log(copyState);
-
         axios
             .patch(`http://localhost:9000/api/pirate/update/${_id}`, copyState)
             .then((res) => {
-                console.log("Single | onClickHandler | Success Submitting");
-                console.log(res.data);
-                // history.push(`/`);
+                // Successfully updated
             })
             .catch((err) => {
-                p("Single | onClickHandler | Error");
-                console.log(err.response.data.error.errors);
-                setError(err.response.data.error.errors);
+                console.error("Error updating hook hand:", err);
+                if (err.response?.data?.error?.errors) {
+                    setError(err.response.data.error.errors);
+                }
             });
     };
 
     const onClickHandlerChestMinus = (event) => {
         event.preventDefault();
-        console.log("Single | CHEST MINUSSSSSSSSSSSSSSSS | Jumped In");
-
-        console.log(event.target.numChests);
 
         const copyState = {
             numChests: one.numChests - 1 < 0 ? 0 : one.numChests - 1,
@@ -222,27 +121,20 @@ const Single = (props) => {
             numChests: one.numChests - 1 < 0 ? 0 : one.numChests - 1,
         });
 
-        console.log("CopyState:");
-        console.log(copyState);
-
         axios
             .patch(`http://localhost:9000/api/pirate/update/${_id}`, copyState)
             .then((res) => {
-                console.log("Single | onClickHandler | Success Submitting");
-                console.log(res.data);
-                // history.push(`/`);
+                // Successfully updated
             })
             .catch((err) => {
-                p("Single | onClickHandler | Error");
-                console.log(err.response.data.error.errors);
-                setError(err.response.data.error.errors);
+                console.error("Error updating chest count:", err);
+                if (err.response?.data?.error?.errors) {
+                    setError(err.response.data.error.errors);
+                }
             });
     };
     const onClickHandlerChestPlus = (event) => {
         event.preventDefault();
-        console.log("Single | CHEST MINUSSSSSSSSSSSSSSSS | Jumped In");
-
-        console.log(event.target.numChests);
 
         const copyState = {
             numChests: one.numChests + 1 > 6 ? 6 : one.numChests + 1,
@@ -253,20 +145,16 @@ const Single = (props) => {
             numChests: one.numChests + 1 > 6 ? 6 : one.numChests + 1,
         });
 
-        console.log("CopyState:");
-        console.log(copyState);
-
         axios
             .patch(`http://localhost:9000/api/pirate/update/${_id}`, copyState)
             .then((res) => {
-                console.log("Single | onClickHandler | Success Submitting");
-                console.log(res.data);
-                // history.push(`/`);
+                // Successfully updated
             })
             .catch((err) => {
-                p("Single | onClickHandler | Error");
-                console.log(err.response.data.error.errors);
-                setError(err.response.data.error.errors);
+                console.error("Error updating chest count:", err);
+                if (err.response?.data?.error?.errors) {
+                    setError(err.response.data.error.errors);
+                }
             });
     };
 
@@ -289,7 +177,6 @@ const Single = (props) => {
                     </h3>
                 </div>
                 <div className="lr2">
-                    {/* <h1>About</h1> */}{" "}
                     <Link to={`/`}>
                         <button
                             onClick={() => {
@@ -297,21 +184,10 @@ const Single = (props) => {
                             }}
                             className="btn btn-danger btn my-3"
                         >
-                            {/* <big> */}
-
                             <h4> Walk the Plank</h4>
-                            {/* ✖ */}
-
-                            {/* </big> */}
                         </button>
                     </Link>
                     <table className="table table-sm table-hover my-3">
-                        {/* <thead>
-              <tr>
-                <th></th>
-                <th></th>
-              </tr>
-            </thead> */}
                         <tbody>
                             <tr>
                                 <td
@@ -323,7 +199,6 @@ const Single = (props) => {
                                 <td className="align-middle">
                                     <h4>{one.crewPosition}</h4>
                                 </td>
-                                {/* <td className="align-middle"></td> */}
                             </tr>
                             <tr>
                                 <td className="align-middle text-end">
@@ -342,7 +217,7 @@ const Single = (props) => {
                                     <div
                                         id="btngroup"
                                         role="group"
-                                        class="btn-group-vertical align-middle"
+                                        className="btn-group-vertical align-middle"
                                     >
                                         <button
                                             id="btnc"
@@ -350,8 +225,7 @@ const Single = (props) => {
                                             onClick={(event) =>
                                                 onClickHandlerChestPlus(event)
                                             }
-                                            // href="#"
-                                            class="btn btn-success btn"
+                                            className="btn btn-success btn"
                                         >
                                             ➕
                                         </button>
@@ -361,15 +235,12 @@ const Single = (props) => {
                                             onClick={(event) =>
                                                 onClickHandlerChestMinus(event)
                                             }
-                                            // href="#"
-                                            class="btn btn-danger btn"
+                                            className="btn btn-danger btn"
                                         >
                                             ➖
                                         </button>
                                     </div>
                                 </td>
-
-                                {/* <td className="align-middle"></td> */}
                             </tr>
                             <tr>
                                 <td className="align-middle text-end">
@@ -387,8 +258,6 @@ const Single = (props) => {
                                         Update
                                     </button>
                                 </td>
-                                {/* <td className="align-middle text-end">
-                </td> */}
                             </tr>
                             <tr>
                                 <td className="align-middle text-end">
@@ -405,8 +274,6 @@ const Single = (props) => {
                                     >
                                         Update
                                     </button>
-                                    {/* </td>
-                <td className="align-middle text-end"> */}
                                 </td>
                             </tr>
                             <tr>
@@ -425,8 +292,6 @@ const Single = (props) => {
                                         Update
                                     </button>
                                 </td>
-                                {/* <td className="align-middle text-end">
-                </td> */}
                             </tr>
                         </tbody>
                     </table>
@@ -453,9 +318,6 @@ const Single = (props) => {
                                                 : "false"
                                             : item[1]}
                                     </td>
-                                    {/* <td style={{(item[1].length > 10 ? { fontSize: "10px" } : {fontSize = "20px"})}}>
-                    {item[1]}
-                  </td> */}
                                 </tr>
                             );
                         })}
