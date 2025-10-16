@@ -2,40 +2,56 @@ import React from "react";
 
 const ChestCounter = ({ numChests, onIncrement, onDecrement }) => {
     return (
-        <div id="chestbig" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", width: "100%" }}>
-            <div id="showchests" style={{
-                minWidth: "180px",
-                width: "180px",
+        <div style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            gap: "20px",
+            width: "100%"
+        }}>
+            <div style={{
+                flex: "1 1 auto",
+                minWidth: "0",
+                minHeight: "40px",
                 fontSize: "24px",
                 display: "flex",
-                justifyContent: "space-evenly",
-                alignItems: "center"
+                justifyContent: "flex-start",
+                alignItems: "center",
+                flexWrap: "nowrap",
+                gap: "8px"
             }}>
                 {[...Array(numChests)].map((value, i) => {
-                    return <span key={i}>💰</span>;
+                    return <span key={i} style={{ flexShrink: 0 }}>💰</span>;
                 })}
             </div>
             <div
-                id="btngroup"
                 role="group"
-                className="btn-group-vertical align-middle"
-                style={{ marginLeft: "10px", flexShrink: 0 }}
+                className="btn-group-vertical"
+                style={{
+                    flexShrink: 0,
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "2px",
+                    width: "50px",
+                    minWidth: "50px",
+                    marginLeft: "auto"
+                }}
             >
                 <button
-                    id="btnc"
                     type="button"
                     onClick={onIncrement}
-                    className="btn btn-success btn"
+                    className="btn btn-success btn-sm"
                     disabled={numChests >= 6}
+                    style={{ width: "100%", padding: "4px" }}
                 >
                     ➕
                 </button>
                 <button
-                    id="btnc"
                     type="button"
                     onClick={onDecrement}
-                    className="btn btn-danger btn"
+                    className="btn btn-danger btn-sm"
                     disabled={numChests <= 0}
+                    style={{ width: "100%", padding: "4px" }}
                 >
                     ➖
                 </button>
