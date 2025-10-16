@@ -5,7 +5,6 @@ import Home from "./views/Home";
 import Single from "./views/Single";
 import Edit from "./views/Edit";
 import Add from "./views/Add";
-import About from "./views/About";
 
 function App() {
     // Debounce function for scroll performance optimization
@@ -40,12 +39,8 @@ function App() {
             <div className="circle mediun shade4"></div>
             <div className="circle small shade5"></div>
             <div className="btntop">
-                <a className="bbb" href="https://pirates.niembro64.com/about">
-                    <p className="bbbt">About Pirates</p>
-                </a>
-
-                <a className="bbb" href="https://niembro64.com/projects">
-                    <p className="bbbt">Projects Home</p>
+                <a className="bbb" href="https://niemo.io">
+                    <p className="bbbt">niemo.io</p>
                 </a>
             </div>
             <Switch>
@@ -54,9 +49,6 @@ function App() {
                 </Route>
                 <Route exact path="/add">
                     <Add />
-                </Route>
-                <Route exact path="/about">
-                    <About />
                 </Route>
                 <Route exact path="/:_id">
                     <Single />
