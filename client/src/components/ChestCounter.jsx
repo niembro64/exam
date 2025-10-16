@@ -16,7 +16,7 @@ const ChestCounter = ({ numChests, onIncrement, onDecrement }) => {
                 minHeight: "40px",
                 fontSize: "24px",
                 display: "flex",
-                justifyContent: "flex-start",
+                justifyContent: "center",
                 alignItems: "center",
                 flexWrap: "wrap", // Allow wrapping on very small screens
                 gap: "2px", // Tighter spacing between chests
