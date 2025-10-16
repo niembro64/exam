@@ -253,9 +253,90 @@ git --version
 
 ---
 
-## Part 3: Deploy Application
+## Part 3: Configure API URLs for Production
 
-### 3.1 Clone Repository
+### 3.1 Update API Configuration
+
+**CRITICAL:** Before deploying, you must configure the frontend to use the correct backend URL.
+
+Your application includes an intelligent API configuration system in `/client/src/config/api.js` that automatically detects whether it's running locally or in production:
+
+```javascript
+// Local development: http://localhost:9000
+// Production: https://your-production-backend-url.com
+```
+
+**Update the production API URL:**
+
+```bash
+# Edit the API configuration file (on your local machine before pushing)
+nano /path/to/exam/client/src/config/api.js
+
+# Change line 11 from:
+return 'https://pirates-api.niemo.io';
+
+# To your actual deployed domain (examples):
+return 'https://pirates.yourdomain.com';  # If frontend and backend share domain
+# OR
+return 'https://api.yourdomain.com';      # If using separate subdomain for API
+# OR
+return 'http://your-ec2-ip';              # If using direct IP (not recommended)
+```
+
+**How it works:**
+- **Development** (`localhost:3000`): Calls `http://localhost:9000` (your local backend)
+- **Production** (`yourdomain.com`): Calls the URL you specify (your EC2 backend)
+
+This ensures:
+- ✅ Localhost development uses local backend
+- ✅ Production site uses production backend
+- ✅ Separate databases for dev and production
+- ✅ No hardcoded URLs in your components
+
+**After updating:**
+```bash
+# Commit the change
+git add client/src/config/api.js
+git commit -m "Configure production API URL"
+git push origin master
+```
+
+### 3.2 Nginx Configuration for API Routing
+
+Your Nginx configuration will proxy `/api/*` requests to the backend:
+
+```nginx
+# This goes in your nginx config (shown in Part 6)
+location /api {
+    proxy_pass http://localhost:9000;
+    # ... proxy headers ...
+}
+```
+
+This means:
+- **Frontend requests**: `https://yourdomain.com/api/pirate/`
+- **Nginx proxies to**: `http://localhost:9000/api/pirate/`
+- **Your API config**: Uses `https://yourdomain.com` (same domain as frontend)
+
+**If using same domain for frontend and backend (recommended):**
+```javascript
+// client/src/config/api.js
+return 'https://pirates.yourdomain.com';  // No /api path needed
+```
+
+**If using separate subdomain for API:**
+```javascript
+// client/src/config/api.js
+return 'https://api.yourdomain.com';  // Backend on separate subdomain
+
+// You'll need additional Cloudflare/Nginx config for api.yourdomain.com
+```
+
+---
+
+## Part 4: Deploy Application
+
+### 4.1 Clone Repository
 
 ```bash
 # Navigate to web directory
