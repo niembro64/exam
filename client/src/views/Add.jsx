@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import ChestCounter from "../components/ChestCounter";
 
 require("../demo.gif");
 
@@ -10,7 +11,7 @@ const Add = (props) => {
     const [form, setForm] = useState({
         pirateName: "",
         imageUrl: "",
-        numChests: 0,
+        numChests: 3,
         catchPhrase: "",
         crewPosition: "",
         pegLeg: false,
@@ -66,39 +67,25 @@ const Add = (props) => {
             case "pirateName":
                 newErrorValue =
                     event.target.value.length < 3
-                        ? "Pirate Name must be at least 3 characters"
+                        ? "Name must be at least 3 characters"
                         : event.target.value.length > 16
-                        ? "Pirate Name can't be more than 16 characters"
-                        : "";
-                break;
-            case "imageUrl":
-                newErrorValue =
-                    event.target.value.length < 3
-                        ? "Image URL must be at least 3 characters"
+                        ? "Name cannot exceed 16 characters"
                         : "";
                 break;
             case "catchPhrase":
                 newErrorValue =
                     event.target.value.length < 3
-                        ? "Catch Phrase must be at least 3 characters"
+                        ? "Phrase must be at least 3 characters"
                         : event.target.value.length > 16
-                        ? "Catch Phrase can't be more than 16 characters"
+                        ? "Phrase cannot exceed 16 characters"
                         : "";
                 break;
             case "crewPosition":
                 newErrorValue =
                     event.target.value.length < 3
-                        ? "Crew Position must be at least 3 characters"
+                        ? "Position must be at least 3 characters"
                         : event.target.value.length > 16
-                        ? "Crew Position can't be more than 16 characters"
-                        : "";
-                break;
-            case "numChests":
-                newErrorValue =
-                    event.target.value < 0
-                        ? "# Chests can't be negative"
-                        : event.target.value > 6
-                        ? "# Chests can't be more than 6"
+                        ? "Position cannot exceed 16 characters"
                         : "";
                 break;
         }
@@ -110,26 +97,44 @@ const Add = (props) => {
         set_react_error(newStateErr);
     };
 
-    const onChangeHandlerPegLeg = (event) => {
+    const onChangeHandlerCheckbox = (event) => {
         const newState = {
             ...form,
-            pegLeg: !form.pegLeg,
+            [event.target.name]: !form[event.target.name],
         };
         setForm(newState);
     };
-    const onChangeHandlerEyePatch = (event) => {
-        const newState = {
+
+    const onIncrementChests = (event) => {
+        event.preventDefault();
+        const newValue = form.numChests + 1 > 6 ? 6 : form.numChests + 1;
+        setForm({
             ...form,
-            eyePatch: !form.eyePatch,
-        };
-        setForm(newState);
+            numChests: newValue,
+        });
+        // Clear validation error if value is valid
+        if (newValue >= 0 && newValue <= 6) {
+            set_react_error({
+                ...react_error,
+                numChests: "",
+            });
+        }
     };
-    const onChangeHandlerHookHand = (event) => {
-        const newState = {
+
+    const onDecrementChests = (event) => {
+        event.preventDefault();
+        const newValue = form.numChests - 1 < 0 ? 0 : form.numChests - 1;
+        setForm({
             ...form,
-            hookHand: !form.hookHand,
-        };
-        setForm(newState);
+            numChests: newValue,
+        });
+        // Clear validation error if value is valid
+        if (newValue >= 0 && newValue <= 6) {
+            set_react_error({
+                ...react_error,
+                numChests: "",
+            });
+        }
     };
 
     return (
@@ -144,8 +149,7 @@ const Add = (props) => {
             </div>
             <div className="validations_outer">
                 <div className="validations_box">
-                    <h4>Front-End Validations</h4>
-                    <p>For User Experience</p>
+                    <h4>Frontend Validation</h4>
                     <div className="box7" id="frontendvalidations">
                         {react_error.pirateName === "" ||
                         react_error.pirateName === "init" ? (
@@ -180,8 +184,7 @@ const Add = (props) => {
                     </div>
                 </div>
                 <div className="validations_box">
-                    <h4>Back-End Validations</h4>
-                    <p>For Data Integrity</p>
+                    <h4>Backend Validation</h4>
                     <div className="box7" id="backendvalidations">
                         {error.pirateName && error.pirateName.message ? (
                             <span>{error.pirateName.message}</span>
@@ -244,19 +247,22 @@ const Add = (props) => {
                                 type="text"
                                 name="pirateName"
                                 onChange={onChangeHandler}
+                                placeholder="Enter pirate name (3-16 characters)"
                             />
                         </div>
 
                         <div className="box4">
                             <label htmlFor="imageUrl" className="control-label">
-                                Image Address
+                                Image URL
                             </label>
                             <input
                                 type="url"
                                 id="floatField"
                                 name="imageUrl"
                                 onChange={onChangeHandler}
+                                placeholder="https://example.com/image.jpg"
                             />
+                            <small style={{ color: "rgba(255, 255, 255, 0.7)", fontSize: "11px", marginTop: "2px" }}>Optional</small>
                         </div>
 
                         <div id="floatContainer" className="box4">
@@ -268,6 +274,7 @@ const Add = (props) => {
                                 type="text"
                                 name="catchPhrase"
                                 onChange={onChangeHandler}
+                                placeholder="Enter a memorable phrase (3-16 characters)"
                             />
                         </div>
                         <div id="floatContainer" className="box4">
@@ -279,17 +286,17 @@ const Add = (props) => {
                                 type="text"
                                 name="crewPosition"
                                 onChange={onChangeHandler}
+                                placeholder="e.g., Captain, First Mate, Navigator"
                             />
                         </div>
                         <div id="floatContainer" className="box4">
                             <label htmlFor="numChests">
-                                # Treasure Chests
+                                Treasure Chests
                             </label>
-                            <input
-                                id="floatField"
-                                type="number"
-                                name="numChests"
-                                onChange={onChangeHandler}
+                            <ChestCounter
+                                numChests={form.numChests}
+                                onIncrement={onIncrementChests}
+                                onDecrement={onDecrementChests}
                             />
                         </div>
                     </div>
@@ -297,12 +304,12 @@ const Add = (props) => {
                 <div id="floatContainer" className="box6">
                     <div className="form-check form-switch">
                         <label htmlFor="pegLeg">
-                            Peg-Leg
+                            Peg Leg
                         </label>
                         <input
                             type="checkbox"
                             name="pegLeg"
-                            onChange={onChangeHandlerPegLeg}
+                            onChange={onChangeHandlerCheckbox}
                             checked={form.pegLeg}
                             className="form-check-input"
                         />
@@ -311,13 +318,13 @@ const Add = (props) => {
                 <div id="floatContainer" className="box6">
                     <div className="form-check form-switch check-lg">
                         <label htmlFor="eyePatch">
-                            Eye-Patch
+                            Eye Patch
                         </label>
                         <input
                             id="floatField"
                             type="checkbox"
                             name="eyePatch"
-                            onChange={onChangeHandlerEyePatch}
+                            onChange={onChangeHandlerCheckbox}
                             checked={form.eyePatch}
                             className="form-check-input"
                         />
@@ -326,13 +333,13 @@ const Add = (props) => {
                 <div id="floatContainer" className="box6">
                     <div className="form-check form-switch">
                         <label htmlFor="hookHand">
-                            Hook-Hand
+                            Hook Hand
                         </label>
                         <input
                             id="floatField"
                             type="checkbox"
                             name="hookHand"
-                            onChange={onChangeHandlerHookHand}
+                            onChange={onChangeHandlerCheckbox}
                             checked={form.hookHand}
                             className="form-check-input"
                         />
@@ -341,7 +348,7 @@ const Add = (props) => {
                 <input
                     id="create_pirate"
                     type="submit"
-                    value="Create Pirate 🏴‍☠️"
+                    value="Create Pirate"
                     className="btn btn-dark btn-lg"
                 />
             </form>
@@ -350,11 +357,3 @@ const Add = (props) => {
 };
 
 export default Add;
-
-// module.exports.updateExistingAUTHOR = (req, res) => {
-//   AUTHOR.findOneAndUpdate({ _id: req.params._id }, req.body, { new: true })
-//     .then((updatedAUTHOR) => res.json(updatedAUTHOR))
-//     .catch((err) =>
-//       res.status(400).json({ message: "Something went wrong", error: err })
-//     );
-// };

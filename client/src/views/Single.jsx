@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import ChestCounter from "../components/ChestCounter";
 
 const Single = (props) => {
     const { _id } = useParams();
@@ -204,42 +205,12 @@ const Single = (props) => {
                                 <td className="align-middle text-end">
                                     <h4>Chests:</h4>
                                 </td>
-                                <td id="chestbig" className="align-middle ">
-                                    <h4 id="showchests">
-                                        {[...Array(one.numChests)].map(
-                                            (value, i) => {
-                                                return (
-                                                    <field key={i}>💰</field>
-                                                );
-                                            }
-                                        )}
-                                    </h4>
-                                    <div
-                                        id="btngroup"
-                                        role="group"
-                                        className="btn-group-vertical align-middle"
-                                    >
-                                        <button
-                                            id="btnc"
-                                            type="button"
-                                            onClick={(event) =>
-                                                onClickHandlerChestPlus(event)
-                                            }
-                                            className="btn btn-success btn"
-                                        >
-                                            ➕
-                                        </button>
-                                        <button
-                                            id="btnc"
-                                            type="button"
-                                            onClick={(event) =>
-                                                onClickHandlerChestMinus(event)
-                                            }
-                                            className="btn btn-danger btn"
-                                        >
-                                            ➖
-                                        </button>
-                                    </div>
+                                <td className="align-middle">
+                                    <ChestCounter
+                                        numChests={one.numChests}
+                                        onIncrement={onClickHandlerChestPlus}
+                                        onDecrement={onClickHandlerChestMinus}
+                                    />
                                 </td>
                             </tr>
                             <tr>

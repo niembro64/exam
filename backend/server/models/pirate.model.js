@@ -22,11 +22,7 @@ const PirateSchema = new mongoose.Schema(
     },
     imageUrl: {
       type: String,
-      required: [true, "Image is required"],
-      minLength: [
-        minLength,
-        `Image must be at least ${minLength} characters`,
-      ],
+      required: false,
     },
     numChests: {
       type: Number,
