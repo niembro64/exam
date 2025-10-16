@@ -394,7 +394,52 @@ const mongoUrl = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/assignmen
 - Local dev: `mongodb://127.0.0.1:27017/assignment_exam` (your local MongoDB)
 - Separate databases for dev and production ✅
 
-### 3.3 Build React Frontend
+### 3.3 Verify Database Separation
+
+**⚠️ CRITICAL VERIFICATION: EC2 uses its OWN MongoDB, never client databases**
+
+```bash
+# On your EC2 instance, verify MongoDB connection
+cd /home/ubuntu/exam/backend
+cat server/config/mongoose.config.js
+
+# Should show:
+# const mongoUrl = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/assignment_exam';
+
+# This means:
+# - 127.0.0.1 = THIS MACHINE ONLY
+# - EC2 backend connects to EC2's MongoDB
+# - Your local backend connects to your local MongoDB
+# - IMPOSSIBLE for EC2 to access client MongoDB (different physical machines!)
+```
+
+**Why database separation is guaranteed:**
+
+1. **127.0.0.1 is NOT a network address** - It's a loopback that always means "this computer"
+2. **Each environment has its own MongoDB:**
+   - Your laptop: MongoDB running on YOUR machine
+   - EC2 server: MongoDB running on EC2 machine
+3. **No network path between them:**
+   - EC2's `127.0.0.1` ≠ Your laptop's `127.0.0.1`
+   - These are different physical machines
+4. **Browser never touches MongoDB:**
+   - Browsers call API endpoints (via Nginx)
+   - Only backend connects to MongoDB
+   - All connections stay localhost
+
+**Test it yourself:**
+```bash
+# On EC2, check what MongoDB sees:
+sudo netstat -tlnp | grep 27017
+# Output: 127.0.0.1:27017 (NOT 0.0.0.0:27017)
+# This means MongoDB ONLY accepts local connections
+
+# Try to connect from another machine (WILL FAIL):
+# From your laptop: mongo your-ec2-ip:27017
+# Error: "Connection refused" - EXACTLY WHAT WE WANT!
+```
+
+### 3.4 Build React Frontend
 
 ```bash
 cd /home/ubuntu/exam/client
