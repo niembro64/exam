@@ -125,9 +125,9 @@
     border-radius: 12px;
     /* background-color: rgba(255, 255, 255, 0.6); */
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: flex-start;
-    align-items: center;
+    align-items: stretch;
 
     padding: 8px 14px;
     margin: 10px 0;
@@ -144,6 +144,7 @@
     align-items: center;
     justify-content: space-between; /* Label LEFT, Toggle RIGHT */
     width: 100%;
+    flex-shrink: 0;
 }
 
 .box6 > div > label {
@@ -1297,4 +1298,49 @@ form > p {
 .box4 {
     padding: 8px;
     margin: 10px 0;
+    position: relative;
+}
+
+/* Validation message container - prevents layout shift */
+.validation-container {
+    min-height: 24px;
+    margin-top: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+/* Frontend validation styling - Red/Coral */
+.validation-frontend {
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: 8px;
+    background-color: rgba(255, 107, 107, 0.9);
+    color: white;
+    text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 2px 4px rgba(255, 107, 107, 0.4);
+    animation: slideIn 0.2s ease-out;
+}
+
+/* Backend validation styling - Amber/Orange */
+.validation-backend {
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: 8px;
+    background-color: rgba(255, 169, 77, 0.9);
+    color: white;
+    text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 2px 4px rgba(255, 169, 77, 0.4);
+    animation: slideIn 0.2s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }

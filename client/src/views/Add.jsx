@@ -158,88 +158,6 @@ const Add = (props) => {
                 </Link>
                 <h2>Add New Pirate</h2>
             </div>
-            <div className="validations_outer">
-                <div className="validations_box">
-                    <h4>Frontend Validation</h4>
-                    <div className="box7" id="frontendvalidations">
-                        {react_error.pirateName === "" ||
-                        react_error.pirateName === "init" ? (
-                            ""
-                        ) : (
-                            <p>{react_error.pirateName}</p>
-                        )}
-                        {react_error.imageUrl === "" ||
-                        react_error.imageUrl === "init" ? (
-                            ""
-                        ) : (
-                            <p>{react_error.imageUrl}</p>
-                        )}
-                        {react_error.catchPhrase === "" ||
-                        react_error.catchPhrase === "init" ? (
-                            ""
-                        ) : (
-                            <p>{react_error.catchPhrase}</p>
-                        )}
-                        {react_error.crewPosition === "" ||
-                        react_error.crewPosition === "init" ? (
-                            ""
-                        ) : (
-                            <p>{react_error.crewPosition}</p>
-                        )}
-                        {react_error.numChests === "" ||
-                        react_error.numChests === "init" ? (
-                            ""
-                        ) : (
-                            <p>{react_error.numChests}</p>
-                        )}
-                    </div>
-                </div>
-                <div className="validations_box">
-                    <h4>Backend Validation</h4>
-                    <div className="box7" id="backendvalidations">
-                        {error.pirateName && error.pirateName.message ? (
-                            <span>{error.pirateName.message}</span>
-                        ) : (
-                            ""
-                        )}
-                        {error.imageUrl && error.imageUrl.message ? (
-                            <span>{error.imageUrl.message}</span>
-                        ) : (
-                            ""
-                        )}
-                        {error.catchPhrase && error.catchPhrase.message ? (
-                            <span>{error.catchPhrase.message}</span>
-                        ) : (
-                            ""
-                        )}
-                        {error.crewPosition && error.crewPosition.message ? (
-                            <span>{error.crewPosition.message}</span>
-                        ) : (
-                            ""
-                        )}
-                        {error.numChests && error.numChests.message ? (
-                            <span>{error.numChests.message}</span>
-                        ) : (
-                            ""
-                        )}
-                        {error.pegLeg && error.pegLeg.message ? (
-                            <span>{error.pegLeg.message}</span>
-                        ) : (
-                            ""
-                        )}
-                        {error.eyePatch && error.eyePatch.message ? (
-                            <span>{error.eyePatch.message}</span>
-                        ) : (
-                            ""
-                        )}
-                        {error.hookHand && error.hookHand.message ? (
-                            <span>{error.hookHand.message}</span>
-                        ) : (
-                            ""
-                        )}
-                    </div>
-                </div>
-            </div>
             <form onSubmit={onSubmitHandler} className="box3">
                 <div id="add_top">
                     <div id="explain_out">
@@ -260,6 +178,14 @@ const Add = (props) => {
                                 onChange={onChangeHandler}
                                 placeholder="Enter pirate name (3-16 characters)"
                             />
+                            <div className="validation-container">
+                                {react_error.pirateName && react_error.pirateName !== "" && react_error.pirateName !== "init" && (
+                                    <span className="validation-frontend">{react_error.pirateName}</span>
+                                )}
+                                {error.pirateName && error.pirateName.message && (
+                                    <span className="validation-backend">{error.pirateName.message}</span>
+                                )}
+                            </div>
                         </div>
 
                         <div className="box4">
@@ -273,6 +199,14 @@ const Add = (props) => {
                                 onChange={onChangeHandler}
                                 placeholder="https://example.com/image.jpg (optional)"
                             />
+                            <div className="validation-container">
+                                {react_error.imageUrl && react_error.imageUrl !== "" && react_error.imageUrl !== "init" && (
+                                    <span className="validation-frontend">{react_error.imageUrl}</span>
+                                )}
+                                {error.imageUrl && error.imageUrl.message && (
+                                    <span className="validation-backend">{error.imageUrl.message}</span>
+                                )}
+                            </div>
                         </div>
 
                         <div id="floatContainer" className="box4">
@@ -286,6 +220,14 @@ const Add = (props) => {
                                 onChange={onChangeHandler}
                                 placeholder="Enter a memorable phrase (3-16 characters)"
                             />
+                            <div className="validation-container">
+                                {react_error.catchPhrase && react_error.catchPhrase !== "" && react_error.catchPhrase !== "init" && (
+                                    <span className="validation-frontend">{react_error.catchPhrase}</span>
+                                )}
+                                {error.catchPhrase && error.catchPhrase.message && (
+                                    <span className="validation-backend">{error.catchPhrase.message}</span>
+                                )}
+                            </div>
                         </div>
                         <div id="floatContainer" className="box4">
                             <label htmlFor="crewPosition">
@@ -298,6 +240,14 @@ const Add = (props) => {
                                 onChange={onChangeHandler}
                                 placeholder="e.g., Captain, First Mate, Navigator"
                             />
+                            <div className="validation-container">
+                                {react_error.crewPosition && react_error.crewPosition !== "" && react_error.crewPosition !== "init" && (
+                                    <span className="validation-frontend">{react_error.crewPosition}</span>
+                                )}
+                                {error.crewPosition && error.crewPosition.message && (
+                                    <span className="validation-backend">{error.crewPosition.message}</span>
+                                )}
+                            </div>
                         </div>
                         <div id="floatContainer" className="box4">
                             <label htmlFor="numChests">
@@ -308,6 +258,14 @@ const Add = (props) => {
                                 onIncrement={onIncrementChests}
                                 onDecrement={onDecrementChests}
                             />
+                            <div className="validation-container">
+                                {react_error.numChests && react_error.numChests !== "" && react_error.numChests !== "init" && (
+                                    <span className="validation-frontend">{react_error.numChests}</span>
+                                )}
+                                {error.numChests && error.numChests.message && (
+                                    <span className="validation-backend">{error.numChests.message}</span>
+                                )}
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -324,6 +282,9 @@ const Add = (props) => {
                             className="form-check-input"
                         />
                     </div>
+                    {error.pegLeg && error.pegLeg.message && (
+                        <span className="validation-backend" style={{marginTop: "8px"}}>{error.pegLeg.message}</span>
+                    )}
                 </div>
                 <div id="floatContainer" className="box6">
                     <div className="form-check form-switch check-lg">
@@ -339,6 +300,9 @@ const Add = (props) => {
                             className="form-check-input"
                         />
                     </div>
+                    {error.eyePatch && error.eyePatch.message && (
+                        <span className="validation-backend" style={{marginTop: "8px"}}>{error.eyePatch.message}</span>
+                    )}
                 </div>
                 <div id="floatContainer" className="box6">
                     <div className="form-check form-switch">
@@ -354,6 +318,9 @@ const Add = (props) => {
                             className="form-check-input"
                         />
                     </div>
+                    {error.hookHand && error.hookHand.message && (
+                        <span className="validation-backend" style={{marginTop: "8px"}}>{error.hookHand.message}</span>
+                    )}
                 </div>
                 <input
                     id="create_pirate"
