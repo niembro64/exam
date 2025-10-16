@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { API_URL } from "../config/api";
 
 const Edit = (props) => {
   const { _id } = useParams();
@@ -23,7 +24,7 @@ const Edit = (props) => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:9000/api/author/${_id}`)
+      .get(`${API_URL}/api/author/${_id}`)
       .then((res) => {
         setForm(res.data);
       })
@@ -34,7 +35,7 @@ const Edit = (props) => {
   const onDeleteHandler = (_id) => {
     if (window.confirm(`Are you sure you want to delete this item?`)) {
       axios
-        .delete(`http://localhost:9000/api/author/delete/${_id}`)
+        .delete(`${API_URL}/api/author/delete/${_id}`)
         .then((res) => res.data)
         .catch((err) => console.error("Error deleting author:", err));
     }
@@ -44,7 +45,7 @@ const Edit = (props) => {
     event.preventDefault();
 
     axios
-      .patch(`http://localhost:9000/api/author/update/${form._id}`, {name: form.name})
+      .patch(`${API_URL}/api/author/update/${form._id}`, {name: form.name})
       .then((res) => {
         history.push(`/`);
       })

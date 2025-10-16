@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { API_URL } from "../config/api";
 
 const Card = (props) => {
     const [style0, setStyle0] = useState("c0");
@@ -31,7 +32,7 @@ const Card = (props) => {
     const onDeleteHandler = (pirateId, pirateName) => {
         if (window.confirm(`Are you sure you want to delete ${pirateName}?`)) {
             axios
-                .delete(`http://localhost:9000/api/pirate/delete/${pirateId}`)
+                .delete(`${API_URL}/api/pirate/delete/${pirateId}`)
                 .then((res) => {
                     window.location.reload(false);
                 })

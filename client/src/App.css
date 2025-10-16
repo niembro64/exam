@@ -627,9 +627,20 @@ label {
 
     .box6 {
         margin: 12px 0;
-        width: 100%;
-        max-width: 100%;
+        width: calc(100% - 20px);
+        max-width: calc(100% - 20px);
         min-width: auto;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .backend-validation-section {
+        padding: 0 10px;
+    }
+
+    .backend-errors-container {
+        padding: 15px;
+        max-width: 100%;
     }
 
     #create_pirate {
@@ -1343,4 +1354,27 @@ form > p {
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+/* Backend validation section - below submit button */
+.backend-validation-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.backend-errors-container {
+    width: 100%;
+    max-width: 600px;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 16px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5),
+        -2px -2px 8px rgba(255, 255, 255, 0.1),
+        2px 2px 20px rgba(255, 169, 77, 0.3);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    animation: slideIn 0.3s ease-out;
 }

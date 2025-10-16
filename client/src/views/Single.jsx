@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import ChestCounter from "../components/ChestCounter";
+import { API_URL } from "../config/api";
 
 const Single = (props) => {
     const { _id } = useParams();
@@ -21,7 +22,7 @@ const Single = (props) => {
 
     useEffect(() => {
         axios
-            .get(`http://localhost:9000/api/pirate/${_id}`)
+            .get(`${API_URL}/api/pirate/${_id}`)
             .then((res) => {
                 setOne(res.data);
             })
@@ -31,7 +32,7 @@ const Single = (props) => {
     const onDeleteHandler = (_id, pirateName) => {
         if (window.confirm(`Are you sure you want to delete ${pirateName}?`)) {
             axios
-                .delete(`http://localhost:9000/api/pirate/delete/${_id}`)
+                .delete(`${API_URL}/api/pirate/delete/${_id}`)
                 .then((res) => res.data)
                 .catch((err) => console.error("Error deleting pirate:", err));
         }
@@ -50,7 +51,7 @@ const Single = (props) => {
         });
 
         axios
-            .patch(`http://localhost:9000/api/pirate/update/${_id}`, copyState)
+            .patch(`${API_URL}/api/pirate/update/${_id}`, copyState)
             .then((res) => {
                 // Successfully updated
             })
@@ -74,7 +75,7 @@ const Single = (props) => {
         });
 
         axios
-            .patch(`http://localhost:9000/api/pirate/update/${_id}`, copyState)
+            .patch(`${API_URL}/api/pirate/update/${_id}`, copyState)
             .then((res) => {
                 // Successfully updated
             })
@@ -98,7 +99,7 @@ const Single = (props) => {
         });
 
         axios
-            .patch(`http://localhost:9000/api/pirate/update/${_id}`, copyState)
+            .patch(`${API_URL}/api/pirate/update/${_id}`, copyState)
             .then((res) => {
                 // Successfully updated
             })
@@ -123,7 +124,7 @@ const Single = (props) => {
         });
 
         axios
-            .patch(`http://localhost:9000/api/pirate/update/${_id}`, copyState)
+            .patch(`${API_URL}/api/pirate/update/${_id}`, copyState)
             .then((res) => {
                 // Successfully updated
             })
@@ -147,7 +148,7 @@ const Single = (props) => {
         });
 
         axios
-            .patch(`http://localhost:9000/api/pirate/update/${_id}`, copyState)
+            .patch(`${API_URL}/api/pirate/update/${_id}`, copyState)
             .then((res) => {
                 // Successfully updated
             })

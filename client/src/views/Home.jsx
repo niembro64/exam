@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Card from "./Card";
+import { API_URL } from "../config/api";
 
 const Home = (props) => {
     const [fromDb, setFromDb] = useState([]);
@@ -14,7 +15,7 @@ const Home = (props) => {
 
     const updateFromDb = () => {
         axios
-            .get("http://localhost:9000/api/pirate/")
+            .get(`${API_URL}/api/pirate/`)
             .then((res) => {
                 setFromDb(res.data);
             })
@@ -24,7 +25,7 @@ const Home = (props) => {
     const onDeleteHandler = (_id, arrIndex, pirateName) => {
         if (window.confirm(`Are you sure you want to delete ${pirateName}?`)) {
             axios
-                .delete(`http://localhost:9000/api/pirate/delete/${_id}`)
+                .delete(`${API_URL}/api/pirate/delete/${_id}`)
                 .then((res) => {
                     const copyState = [...fromDb];
                     copyState.splice(arrIndex, 1);

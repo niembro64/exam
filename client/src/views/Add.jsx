@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import ChestCounter from "../components/ChestCounter";
+import { API_URL } from "../config/api";
 
 require("../demo.gif");
 
@@ -45,7 +46,7 @@ const Add = (props) => {
         event.preventDefault();
 
         axios
-            .post("http://localhost:9000/api/pirate/create", form)
+            .post(`${API_URL}/api/pirate/create`, form)
             .then((res) => {
                 history.push(`/`);
             })
@@ -182,9 +183,6 @@ const Add = (props) => {
                                 {react_error.pirateName && react_error.pirateName !== "" && react_error.pirateName !== "init" && (
                                     <span className="validation-frontend">{react_error.pirateName}</span>
                                 )}
-                                {error.pirateName && error.pirateName.message && (
-                                    <span className="validation-backend">{error.pirateName.message}</span>
-                                )}
                             </div>
                         </div>
 
@@ -202,9 +200,6 @@ const Add = (props) => {
                             <div className="validation-container">
                                 {react_error.imageUrl && react_error.imageUrl !== "" && react_error.imageUrl !== "init" && (
                                     <span className="validation-frontend">{react_error.imageUrl}</span>
-                                )}
-                                {error.imageUrl && error.imageUrl.message && (
-                                    <span className="validation-backend">{error.imageUrl.message}</span>
                                 )}
                             </div>
                         </div>
@@ -224,9 +219,6 @@ const Add = (props) => {
                                 {react_error.catchPhrase && react_error.catchPhrase !== "" && react_error.catchPhrase !== "init" && (
                                     <span className="validation-frontend">{react_error.catchPhrase}</span>
                                 )}
-                                {error.catchPhrase && error.catchPhrase.message && (
-                                    <span className="validation-backend">{error.catchPhrase.message}</span>
-                                )}
                             </div>
                         </div>
                         <div id="floatContainer" className="box4">
@@ -244,9 +236,6 @@ const Add = (props) => {
                                 {react_error.crewPosition && react_error.crewPosition !== "" && react_error.crewPosition !== "init" && (
                                     <span className="validation-frontend">{react_error.crewPosition}</span>
                                 )}
-                                {error.crewPosition && error.crewPosition.message && (
-                                    <span className="validation-backend">{error.crewPosition.message}</span>
-                                )}
                             </div>
                         </div>
                         <div id="floatContainer" className="box4">
@@ -261,9 +250,6 @@ const Add = (props) => {
                             <div className="validation-container">
                                 {react_error.numChests && react_error.numChests !== "" && react_error.numChests !== "init" && (
                                     <span className="validation-frontend">{react_error.numChests}</span>
-                                )}
-                                {error.numChests && error.numChests.message && (
-                                    <span className="validation-backend">{error.numChests.message}</span>
                                 )}
                             </div>
                         </div>
@@ -282,9 +268,6 @@ const Add = (props) => {
                             className="form-check-input"
                         />
                     </div>
-                    {error.pegLeg && error.pegLeg.message && (
-                        <span className="validation-backend" style={{marginTop: "8px"}}>{error.pegLeg.message}</span>
-                    )}
                 </div>
                 <div id="floatContainer" className="box6">
                     <div className="form-check form-switch check-lg">
@@ -300,9 +283,6 @@ const Add = (props) => {
                             className="form-check-input"
                         />
                     </div>
-                    {error.eyePatch && error.eyePatch.message && (
-                        <span className="validation-backend" style={{marginTop: "8px"}}>{error.eyePatch.message}</span>
-                    )}
                 </div>
                 <div id="floatContainer" className="box6">
                     <div className="form-check form-switch">
@@ -318,9 +298,6 @@ const Add = (props) => {
                             className="form-check-input"
                         />
                     </div>
-                    {error.hookHand && error.hookHand.message && (
-                        <span className="validation-backend" style={{marginTop: "8px"}}>{error.hookHand.message}</span>
-                    )}
                 </div>
                 <input
                     id="create_pirate"
@@ -328,6 +305,46 @@ const Add = (props) => {
                     value="Create Pirate"
                     className="btn btn-dark btn-lg"
                 />
+
+                {/* Backend Validation Section - Below Submit Button */}
+                <div className="backend-validation-section">
+                    {(error.pirateName && error.pirateName.message) ||
+                     (error.imageUrl && error.imageUrl.message) ||
+                     (error.catchPhrase && error.catchPhrase.message) ||
+                     (error.crewPosition && error.crewPosition.message) ||
+                     (error.numChests && error.numChests.message) ||
+                     (error.pegLeg && error.pegLeg.message) ||
+                     (error.eyePatch && error.eyePatch.message) ||
+                     (error.hookHand && error.hookHand.message) ? (
+                        <div className="backend-errors-container">
+                            <h4 style={{color: "white", textShadow: "0px 0px 10px rgba(0,0,0,0.5)", marginBottom: "12px"}}>Backend Validation Errors</h4>
+                            {error.pirateName && error.pirateName.message && (
+                                <span className="validation-backend">{error.pirateName.message}</span>
+                            )}
+                            {error.imageUrl && error.imageUrl.message && (
+                                <span className="validation-backend">{error.imageUrl.message}</span>
+                            )}
+                            {error.catchPhrase && error.catchPhrase.message && (
+                                <span className="validation-backend">{error.catchPhrase.message}</span>
+                            )}
+                            {error.crewPosition && error.crewPosition.message && (
+                                <span className="validation-backend">{error.crewPosition.message}</span>
+                            )}
+                            {error.numChests && error.numChests.message && (
+                                <span className="validation-backend">{error.numChests.message}</span>
+                            )}
+                            {error.pegLeg && error.pegLeg.message && (
+                                <span className="validation-backend">{error.pegLeg.message}</span>
+                            )}
+                            {error.eyePatch && error.eyePatch.message && (
+                                <span className="validation-backend">{error.eyePatch.message}</span>
+                            )}
+                            {error.hookHand && error.hookHand.message && (
+                                <span className="validation-backend">{error.hookHand.message}</span>
+                            )}
+                        </div>
+                    ) : null}
+                </div>
             </form>
         </>
     );
