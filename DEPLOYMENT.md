@@ -255,82 +255,61 @@ git --version
 
 ## Part 3: Configure API URLs for Production
 
-### 3.1 Update API Configuration
+### 3.1 API Configuration (Already Done!)
 
-**CRITICAL:** Before deploying, you must configure the frontend to use the correct backend URL.
+**GOOD NEWS:** Your frontend is already configured to work in both development and production!
 
-Your application includes an intelligent API configuration system in `/client/src/config/api.js` that automatically detects whether it's running locally or in production:
+Your application includes an intelligent API configuration system in `/client/src/config/api.js`:
 
 ```javascript
+// Automatically detects environment:
 // Local development: http://localhost:9000
-// Production: https://your-production-backend-url.com
-```
-
-**Update the production API URL:**
-
-```bash
-# Edit the API configuration file (on your local machine before pushing)
-nano /path/to/exam/client/src/config/api.js
-
-# Change line 11 from:
-return 'https://pirates-api.niemo.io';
-
-# To your actual deployed domain (examples):
-return 'https://pirates.yourdomain.com';  # If frontend and backend share domain
-# OR
-return 'https://api.yourdomain.com';      # If using separate subdomain for API
-# OR
-return 'http://your-ec2-ip';              # If using direct IP (not recommended)
+// Production: Uses relative paths (proxied by Nginx)
 ```
 
 **How it works:**
-- **Development** (`localhost:3000`): Calls `http://localhost:9000` (your local backend)
-- **Production** (`yourdomain.com`): Calls the URL you specify (your EC2 backend)
 
-This ensures:
-- ✅ Localhost development uses local backend
-- ✅ Production site uses production backend
+**Development mode** (`localhost:3000`):
+- Frontend calls: `http://localhost:9000/api/pirate/...`
+- Connects directly to your local backend
+- Uses separate local MongoDB database
+
+**Production mode** (your deployed domain):
+- Frontend calls: `/api/pirate/...` (relative path)
+- Nginx proxies to: `http://localhost:9000/api/pirate/...`
+- Same-origin request (no CORS issues!)
+- Uses production MongoDB database on EC2
+
+**NO CONFIGURATION NEEDED** - The system automatically detects the environment and uses the correct API endpoint.
+
+Benefits of this approach:
+- ✅ No hardcoded production URLs
+- ✅ No CORS issues (same origin in production)
+- ✅ Simpler deployment process
+- ✅ Works with any domain name
 - ✅ Separate databases for dev and production
-- ✅ No hardcoded URLs in your components
 
-**After updating:**
-```bash
-# Commit the change
-git add client/src/config/api.js
-git commit -m "Configure production API URL"
-git push origin master
-```
+### 3.2 How Nginx Proxies API Requests
 
-### 3.2 Nginx Configuration for API Routing
-
-Your Nginx configuration will proxy `/api/*` requests to the backend:
+Your Nginx configuration (set up in Part 6) will proxy `/api/*` requests:
 
 ```nginx
-# This goes in your nginx config (shown in Part 6)
+# Nginx receives: https://yourdomain.com/api/pirate/
+# Nginx proxies to: http://localhost:9000/api/pirate/
 location /api {
     proxy_pass http://localhost:9000;
-    # ... proxy headers ...
+    proxy_http_version 1.1;
+    proxy_set_header Host $host;
+    # ... other proxy headers ...
 }
 ```
 
-This means:
-- **Frontend requests**: `https://yourdomain.com/api/pirate/`
-- **Nginx proxies to**: `http://localhost:9000/api/pirate/`
-- **Your API config**: Uses `https://yourdomain.com` (same domain as frontend)
-
-**If using same domain for frontend and backend (recommended):**
-```javascript
-// client/src/config/api.js
-return 'https://pirates.yourdomain.com';  // No /api path needed
-```
-
-**If using separate subdomain for API:**
-```javascript
-// client/src/config/api.js
-return 'https://api.yourdomain.com';  // Backend on separate subdomain
-
-// You'll need additional Cloudflare/Nginx config for api.yourdomain.com
-```
+**Request flow:**
+1. User browser → `https://yourdomain.com/api/pirate/`
+2. Cloudflare (HTTPS) → EC2 Nginx on port 80
+3. Nginx → `http://localhost:9000/api/pirate/`
+4. Node.js backend → MongoDB on localhost:27017
+5. Response flows back through the same path
 
 ---
 

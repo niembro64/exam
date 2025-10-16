@@ -6,15 +6,15 @@ const getApiUrl = () => {
                         window.location.hostname !== '127.0.0.1';
 
     if (isProduction) {
-        // Production: Use your deployed backend URL
-        // TODO: Replace this with your actual deployed backend URL
-        return 'https://pirates-api.niemo.io'; // Update this with your actual backend URL
+        // Production: Use relative path - Nginx will proxy /api to backend
+        // No need to hardcode domain - same origin, no CORS issues
+        return '';  // Empty string = relative paths like /api/pirate/...
     } else {
-        // Development: Use localhost
+        // Development: Use localhost backend
         return 'http://localhost:9000';
     }
 };
 
 export const API_URL = getApiUrl();
 
-console.log(`🚀 API URL: ${API_URL} (Environment: ${window.location.hostname})`);
+console.log(`🚀 API URL: ${API_URL || '(relative)'} (Environment: ${window.location.hostname})`);
