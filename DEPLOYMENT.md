@@ -291,25 +291,33 @@ Benefits of this approach:
 
 ### 3.2 How Nginx Proxies API Requests
 
-Your Nginx configuration (set up in Part 6) will proxy `/api/*` requests:
+**⚠️ CRITICAL:** Your Nginx configuration (Part 6) MUST proxy `/api` to `http://127.0.0.1:9000`:
 
 ```nginx
-# Nginx receives: https://yourdomain.com/api/pirate/
-# Nginx proxies to: http://localhost:9000/api/pirate/
+# Nginx receives: https://pirates.niemo.io/api/pirate/
+# Nginx proxies to: http://127.0.0.1:9000/api/pirate/
 location /api {
-    proxy_pass http://localhost:9000;
+    proxy_pass http://127.0.0.1:9000;  # Must use 127.0.0.1 or localhost
     proxy_http_version 1.1;
     proxy_set_header Host $host;
-    # ... other proxy headers ...
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
 }
 ```
 
 **Request flow:**
-1. User browser → `https://yourdomain.com/api/pirate/`
+1. User browser → `https://pirates.niemo.io/api/pirate/` (same-origin)
 2. Cloudflare (HTTPS) → EC2 Nginx on port 80
-3. Nginx → `http://localhost:9000/api/pirate/`
-4. Node.js backend → MongoDB on localhost:27017
+3. Nginx → `http://127.0.0.1:9000/api/pirate/` (internal proxy)
+4. Node.js backend → MongoDB on `127.0.0.1:27017` (localhost)
 5. Response flows back through the same path
+
+**Why this works:**
+- Frontend calls same origin (no CORS issues)
+- Nginx routes `/api` to backend internally
+- Backend and MongoDB stay on localhost (secure)
+- Everything isolated to EC2 instance
 
 ---
 
@@ -366,27 +374,25 @@ mongodb://username:password@localhost:27017/assignment_exam?authSource=admin
 ```
 But we're NOT using that - we're using the simpler no-auth version.
 
-**⚠️ IMPORTANT: DO NOT modify `mongoose.config.js`!**
+**✅ MongoDB Configuration (Already Configured)**
 
-Your existing `backend/server/config/mongoose.config.js` file is **ALREADY CONFIGURED** for no-password deployment:
+Your `backend/server/config/mongoose.config.js` file uses environment variables with a localhost fallback:
 
 ```javascript
-// This code works on BOTH WSL2 (local dev) and EC2 (production)
-const mongoUrl = `mongodb://${mongoHost}:27017/assignment_exam`;
+// Use environment variable or default to localhost
+const mongoUrl = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/assignment_exam';
 ```
 
 **How it works:**
-1. **Local WSL2**: Detects Windows host IP from `/etc/resolv.conf` (172.x.x.x)
-2. **EC2 Ubuntu**: Falls back to `127.0.0.1` (no resolv.conf with nameserver)
-3. **Both cases**: Connects WITHOUT username/password
-4. **No changes needed**: Deploy the file as-is to EC2
+1. **EC2 Production**: Uses `MONGODB_URI` from environment or defaults to `127.0.0.1`
+2. **Local Development**: Connects to `127.0.0.1:27017` (local MongoDB)
+3. **Both cases**: NO username/password required
+4. **No changes needed**: Deploy as-is to EC2
 
-**Connection behavior on EC2:**
-```javascript
-mongoHost = "127.0.0.1"  // Automatic on native Linux
-const mongoUrl = `mongodb://127.0.0.1:27017/assignment_exam`
-// Connects successfully with no authentication
-```
+**Connection behavior:**
+- Production EC2: `mongodb://127.0.0.1:27017/assignment_exam` (EC2's own MongoDB)
+- Local dev: `mongodb://127.0.0.1:27017/assignment_exam` (your local MongoDB)
+- Separate databases for dev and production ✅
 
 ### 3.3 Build React Frontend
 
@@ -742,9 +748,10 @@ server {
         try_files $uri $uri/ /index.html;
     }
 
-    # Proxy API requests to backend
+    # Proxy API requests to backend on localhost
+    # CRITICAL: This routes /api to Node.js backend on port 9000
     location /api {
-        proxy_pass http://localhost:9000;
+        proxy_pass http://127.0.0.1:9000;
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection 'upgrade';
