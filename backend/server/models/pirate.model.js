@@ -23,6 +23,15 @@ const PirateSchema = new mongoose.Schema(
     imageUrl: {
       type: String,
       required: false,
+      validate: {
+        validator: function(v) {
+          // If empty/undefined, it's valid (optional field)
+          if (!v || v.trim() === '') return true;
+          // If provided, must be a valid URL format
+          return /^https?:\/\/.+/i.test(v);
+        },
+        message: 'Image URL must be a valid URL starting with http:// or https://'
+      }
     },
     numChests: {
       type: Number,

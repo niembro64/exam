@@ -6,9 +6,10 @@ const ChestCounter = ({ numChests, onIncrement, onDecrement }) => {
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
-            gap: "20px",
+            gap: "12px",
             width: "100%"
         }}>
+            {/* Emoji Display Area - with overflow handling */}
             <div style={{
                 flex: "1 1 auto",
                 minWidth: "0",
@@ -17,23 +18,38 @@ const ChestCounter = ({ numChests, onIncrement, onDecrement }) => {
                 display: "flex",
                 justifyContent: "flex-start",
                 alignItems: "center",
-                flexWrap: "nowrap",
-                gap: "8px"
+                flexWrap: "wrap", // Allow wrapping on very small screens
+                gap: "2px", // Tighter spacing between chests
+                overflow: "hidden", // Prevent visual overflow
+                position: "relative"
             }}>
-                {[...Array(numChests)].map((value, i) => {
-                    return <span key={i} style={{ flexShrink: 0 }}>💰</span>;
-                })}
+                {numChests === 0 ? (
+                    <span style={{
+                        fontSize: "14px",
+                        color: "rgba(0, 0, 0, 0.5)",
+                        fontStyle: "italic"
+                    }}>
+                        No chests
+                    </span>
+                ) : (
+                    [...Array(numChests)].map((value, i) => {
+                        return <span key={i} style={{ flexShrink: 0 }}>💰</span>;
+                    })
+                )}
             </div>
+
+            {/* Button Group - Vertical Stack */}
             <div
                 role="group"
+                aria-label="Chest counter controls"
                 className="btn-group-vertical"
                 style={{
                     flexShrink: 0,
                     display: "flex",
                     flexDirection: "column",
-                    gap: "2px",
-                    width: "50px",
-                    minWidth: "50px",
+                    gap: "4px",
+                    width: "44px",
+                    minWidth: "44px", // Better touch target (44x44 minimum)
                     marginLeft: "auto"
                 }}
             >
@@ -42,7 +58,14 @@ const ChestCounter = ({ numChests, onIncrement, onDecrement }) => {
                     onClick={onIncrement}
                     className="btn btn-success btn-sm"
                     disabled={numChests >= 6}
-                    style={{ width: "100%", padding: "4px" }}
+                    aria-label="Add treasure chest"
+                    title={numChests >= 6 ? "Maximum chests reached (6)" : "Add chest"}
+                    style={{
+                        width: "100%",
+                        padding: "6px 4px",
+                        fontSize: "16px",
+                        minHeight: "32px"
+                    }}
                 >
                     ➕
                 </button>
@@ -51,7 +74,14 @@ const ChestCounter = ({ numChests, onIncrement, onDecrement }) => {
                     onClick={onDecrement}
                     className="btn btn-danger btn-sm"
                     disabled={numChests <= 0}
-                    style={{ width: "100%", padding: "4px" }}
+                    aria-label="Remove treasure chest"
+                    title={numChests <= 0 ? "No chests to remove" : "Remove chest"}
+                    style={{
+                        width: "100%",
+                        padding: "6px 4px",
+                        fontSize: "16px",
+                        minHeight: "32px"
+                    }}
                 >
                     ➖
                 </button>

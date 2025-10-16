@@ -72,6 +72,17 @@ const Add = (props) => {
                         ? "Name cannot exceed 16 characters"
                         : "";
                 break;
+            case "imageUrl":
+                // Optional field - only validate if user enters something
+                if (event.target.value.trim() !== "") {
+                    const urlPattern = /^https?:\/\/.+/i;
+                    newErrorValue = !urlPattern.test(event.target.value)
+                        ? "Please enter a valid URL (must start with http:// or https://)"
+                        : "";
+                } else {
+                    newErrorValue = ""; // Empty is valid (optional field)
+                }
+                break;
             case "catchPhrase":
                 newErrorValue =
                     event.target.value.length < 3
